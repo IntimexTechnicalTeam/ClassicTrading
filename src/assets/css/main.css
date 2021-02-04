@@ -1,0 +1,65 @@
+body,
+p,
+ul,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p div {
+  margin: 0;
+  padding: 0;
+}
+body{
+  padding: 0 !important;
+}
+ul,
+li {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+}
+p, a, span {
+  font-family: 'Arial', 'Microsoft YaHei';
+}
+@font-face {
+	font-family:'ArialBlack';
+	src:url('/static/fonts/ArialBlack.ttf'),url('/static/fonts/ArialBlack.eof'),url('/static/fonts/ArialBlack.woff'),url('/static/fonts/ArialBlack.otf');
+}
+body {
+  font-family: 'Arial', 'Microsoft YaHei';
+  overflow-x: hidden!important;
+}
+#container {
+  position: relative;
+  background-position: center;
+  background-size: 100%;
+  margin-top:0px;
+}
+.fieldset{
+	border: 0px;
+	padding: 0px;
+	margin: 0px;
+}
+.maincontent{
+  width: 1200px;
+  margin: 0 auto;
+}
+.pageTitle{
+  font-size: 20px;
+  margin: 0 auto;
+  margin-top: 30px;
+  line-height: 20px;
+  border-left: 5px solid #d72717;
+  text-indent: 10px;
+  margin-bottom: 20px;
+  color:#333333;
+}
+.clear {
+  clear: both;
+}
+/* 解决苹果手机按钮颜色与安卓机不一致的问题 */
+input[type=button], button { cursor: pointer; -webkit-appearance: none; }
