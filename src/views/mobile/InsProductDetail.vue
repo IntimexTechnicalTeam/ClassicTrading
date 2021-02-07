@@ -3,7 +3,6 @@
     <div class="productDetail_main" :style="'flex-wrap: wrap;'">
       <ProductSwiper width="100%"  :imgList="ImgList"></ProductSwiper>
       <PkProductInfo :panelDetail="PanelDetail"  :ProductSku="ProductSku" :AddPrice="getNewsPrice" width="100%" style="margin-top:2rem;"></PkProductInfo>
-      <div class="ProductRate"><Rate  v-model="Score" disabled  disabled-void-color="#ffbb07" disabled-void-icon-class="el-icon-star-off"></Rate></div>
       <PkProductDetailCate :source="ExtAttrList" :cateTree="CatalogTree" width="100%" style="margin-top:2rem;"></PkProductDetailCate>
       <inPanel :panelDetail="PanelDetail" width="100%" :ProductSku="ProductSku"  @getPrice="showPrice" itemscopestyle="margin-top:2rem;"></inPanel>
     </div>
@@ -45,7 +44,6 @@ import inAccordion from '@/components/base/mobile/InsAccordion.vue';
 import inComments from '@/components/business/mobile/product/InsComments.vue';
 import inProductUpOrDown from '@/components/business/mobile/product/InsProductUpOrDown.vue';
 import ProductListSwiper from '@/components/hkTasteBusiness/mobile/product/HkProductListSwiper.vue';
-import { Rate } from 'element-ui';
 @Component({ components: {
   inPreview,
   inPanel,
@@ -57,8 +55,7 @@ import { Rate } from 'element-ui';
   PkProductDetailCate,
   PkProductInfo,
   inProductUpOrDown,
-  ProductListSwiper,
-  Rate
+  ProductListSwiper
 } })
 export default class ProductDetail extends Vue {
   private Slider: YouWouldLike[] = [];
@@ -149,12 +146,11 @@ export default class ProductDetail extends Vue {
       display: inline-block;
       &:nth-child(1){
         font-size: 1.6rem;
-        color: #333333;
+        color: @base_color;
       }
       &:nth-child(2){
-        font-size:2rem;
-        color:#e01010;
-        font-weight: 700;
+        font-size:1.6rem;
+        color:@base_color;
       }
     }
   }
@@ -224,18 +220,19 @@ export default class ProductDetail extends Vue {
   margin-top: .5rem;
 }
 .isActive{
-  color:#333333!important;
+  color:#3d475f!important;
   position: relative;
   &::after{
     content: '';
-    width: 40%;
-    background: #e83428;
-    height: 2px;
+    width: 12rem;
+    background: url('/images/mobile/mobile_36.png') no-repeat center center;
+    height: 20px;
     display: block;
     position: absolute;
     left: 50%;
-    bottom: 0%;
+    bottom: -20%;
     transform: translate(-50%);
+    background-size: contain;
   }
 }
 .productDetail_container {
@@ -262,16 +259,13 @@ export default class ProductDetail extends Vue {
         float: left;
         border-radius: 3px;
         font-weight: 700;
-      }
-      .detail_title{
-        margin-right:3rem;
+        width: 50%;
       }
     }
     .product_detail{
       width: 90%;
       margin:0 auto;
       background: #fff;
-      border: 1px solid #e0e0e0;
       min-height: 20rem;
       border-radius: 3px;
       margin-top: 1rem;

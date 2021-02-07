@@ -4,7 +4,8 @@
     <div class="Cmsbg contactMain" v-if="NewcateId=='40112'">
       <transition name="slide">
         <div key="1" v-if="!waiting" style="display:flex;">
-           <div class="DetailTitle"><img :src="ImgList" v-show="ImgList!==null"><div class="TitleBg"><div class="innerBoxText">{{TitleName}}</div></div></div>
+              <div class="DetailTitle"><img :src="OtherPageImg" v-show="OtherPageImg!==null"><div class="TitleBg"><div class="innerBoxText"><img src="/images/mobile/mobile_37.png">
+              <span class="borderName" :class="{'TextCn':currentlang=='C'}">{{TitleName}}</span></div></div></div>
       </div>
       </transition>
       <transition name="slide">
@@ -27,7 +28,8 @@
     <div class="CmsNormal" v-if="NewcateId!='40112'">
       <transition name="slide">
         <div key="1" v-if="!waiting" style="display:flex;">
-              <div class="DetailTitle"><img :src="ImgList" v-show="ImgList!==null"><div class="TitleBg"><div class="innerBoxText">{{TitleName}}</div></div></div>
+              <div class="DetailTitle"><img :src="OtherPageImg" v-show="OtherPageImg!==null"><div class="TitleBg"><div class="innerBoxText"><img src="/images/mobile/mobile_37.png">
+              <span class="borderName" :class="{'TextCn':currentlang=='C'}">{{TitleName}}</span></div></div></div>
       </div>
       </transition>
       <transition name="slide">
@@ -219,9 +221,9 @@ export default class InsCmsContent extends Vue {
 .MobileContact{
     .CmsNormal{
       p{
-        font-size: 1.5rem;
+        font-size: 1.4rem;
         line-height: 2.5rem;
-        color: #666666;
+        color: #333333;
         word-break: break-word;
       }
     }
@@ -252,62 +254,19 @@ export default class InsCmsContent extends Vue {
     display: flex;
     flex-wrap: wrap;
     .contactBox {
-      .text{
+      .titleA{
         font-size: 1.6rem;
-        color: #666666;
-        margin-bottom: 1.5rem;
+        color:#3d4364;
+        text-align: center;
+        font-weight: 700;
+        margin-bottom: 1rem;
+      }
+      .titleB {
+        font-size: 1.5rem;
+        color:#838a97;
+        margin-bottom: 2rem;
         text-align: center;
       }
-      .title{
-        font-size: 1.6rem;
-        color: #333;
-        margin-bottom: .5rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: 700;
-        text-transform: uppercase;
-        .icon1{
-          background: url('/images/mobile/mobile_07.jpg') no-repeat center center;
-          background-size: contain;
-          width: 3rem;
-          height: 3rem;
-          display: inline-block;
-          vertical-align:middle;
-          margin-right: .5rem;
-        }
-        .icon2{
-          background: url('/images/mobile/mobile_08.jpg') no-repeat center center;
-          background-size: contain;
-          width: 3rem;
-          height: 3rem;
-          display: inline-block;
-          vertical-align:middle;
-          margin-right: .5rem;
-        }
-        .icon3{
-          background: url('/images/mobile/mobile_09.jpg') no-repeat center center;
-          background-size: contain;
-          width: 3rem;
-          height: 3rem;
-          display: inline-block;
-          vertical-align:middle;
-          margin-right: .5rem;
-        }
-        .icon4{
-          background: url('/images/mobile/mobile_10.jpg') no-repeat center center;
-          background-size: contain;
-          width: 3rem;
-          height: 3rem;
-          display: inline-block;
-          vertical-align:middle;
-          margin-right: .5rem;
-        }
-      }
-    }
-    .lineBottom{
-      width: 100%;
-      height: 2rem;
     }
   }
 }
@@ -352,7 +311,7 @@ export default class InsCmsContent extends Vue {
       line-height: 2rem;
       font-size: 1.4rem;
       margin-bottom: .5rem;
-      color:#999;
+      color:#838a97;
       font-weight: 500;
     }
     input[type="text"],input[type="email"]{
@@ -383,8 +342,8 @@ export default class InsCmsContent extends Vue {
     }
     .btn-default{
       width: 100%;
-      background: #868f95;
-      border:1px solid #868f95!important;
+      background: #838a97;
+      border:1px solid #838a97!important;
       color:#fff!important;
       height: 4rem;
       line-height: 4rem;
@@ -394,9 +353,7 @@ export default class InsCmsContent extends Vue {
       margin-top: 1rem;
       font-size: 1.6rem;
       margin-bottom: 5rem;
-      border-radius: 2rem;
-      text-transform: uppercase;
-      font-weight: 700;
+      border-radius: .2rem;
     }
   }
 }
@@ -412,20 +369,12 @@ export default class InsCmsContent extends Vue {
   span{
     text-align: left;
     font-size: 1.8rem!important;
-    font-weight: 700;
-    color:#333333!important;
-    padding-left: 40px;
+    color:#3d4364!important;
   }
-  &::before{
-    content: '';
-    width: 35px;
-    height: 35px;
-    background: url('/images/mobile/mobile_11.jpg') no-repeat center center;
-    display: inline-block;
-    margin-right: 1rem;
-    position: absolute;
-    vertical-align: middle;
-  }
+}
+.TextCn{
+  font-size: 2rem!important;
+   letter-spacing: 5px!important;
 }
 .DetailTitle{
   width: 100%;
@@ -438,27 +387,31 @@ export default class InsCmsContent extends Vue {
     width: 100%;
   }
   .TitleBg{
-    width: 42%;
+    width: 100%;
     position: absolute;
-    left: 5%;
     height: 100%;
-    background: rgba(89,97,100,.5);
     display: flex;
-    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
     .innerBoxText{
       color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.8rem;
-      font-weight: 700;
       font-family: 'Arial';
-      line-height: 3rem;
       text-transform: uppercase;
       text-align: center;
-      padding: 2rem;
+      width: 40%;
+      margin: 0 auto;
+      position: relative;
+      .borderName{
+        position: absolute;
+        bottom: 40%;
+        width: 100%;
+        display: block;
+        font-size: 1.6rem;
+        letter-spacing: 2px;
+      }
+      img{
+        width: 100%;
+      }
     }
   }
 }

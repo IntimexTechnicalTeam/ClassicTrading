@@ -1,11 +1,19 @@
 <template>
   <div class="liveBox mobileVersion">
+    <div class="AboutUs"  :style="{'background-image': 'url('+ImagePath+')'}">
+        <p class="AboutTitle"><img src="/images/mobile/mobile_26.png"><span :class="{'TextCn':currentlang=='C'}">{{AboutName}}</span></p>
+        <p class="AboutContent" v-html="AboutContent"></p>
+        <router-link to="/CMS/content/20295" class="learnMore">{{$t('Message.ViewDetail')}}</router-link>
+    </div>
     <div class="liveBox_in">
-        <p class="ProductTitle"><i class="productIcon"></i>{{$t('Message.LatestTrends')}}</p>
         <div class="fbcontent">
-           <p v-html="fbContent.Body"></p>
+           <p v-html="videoContent"></p>
+        </div>
+        <div class="fbcontent">
+           <p v-html="fbContent"></p>
         </div>
     </div>
+    <p class="ProductTitle"><img src="/images/mobile/mobile_07.png"><span :class="{'TextCn':currentlang=='C'}">{{CatName}}</span></p>
     <div class="contactMain">
         <p v-html="contactContent.Body"></p>
     </div>
@@ -21,33 +29,79 @@ export default class PkLiveBox extends Vue {
   videoContent:string='';
   fbContent:string='';
   contactContent:string='';
-  MapInfo:string='';
+  MapInfo:string = '';
+  CatName:string = '';
+  currentPage: number = 1; // 当前页
+  pageSize: number = 2; // 每页显示条目个数
+  ContentList:any[]=[];
+  AboutName:string='';
+  AboutContent:string='';
+  ImagePath:string='';
   getFbContent () {
     this.$Api.cms.getContentByDevice({ Key: 'Facebook', IsMobile: true }).then(result => {
-      this.fbContent = result.CMS;
+      this.fbContent = result.CMS.Body;
     });
   }
+ getVideoContent () {
+    this.$Api.cms.getContentByDevice({ Key: 'Youtube', IsMobile: true }).then(result => {
+      this.videoContent = result.CMS.Body;
+    });
+  }
+  get currentlang () {
+    return this.$i18n.locale;
+  }
   getContactBox () {
-    this.$Api.cms.getContentByDevice({ Key: 'ContactUs', IsMobile: true }).then(result => {
+    this.$Api.cms.getContentByDevice({ Key: 'contactus', IsMobile: true }).then(result => {
       this.contactContent = result.CMS;
       this.getCategoryByDevice(result.CMS.CatId);
     });
   }
-    // 根据设备类型获取CMSCategory信息
-  getCategoryByDevice (cateId) {
-    this.$Api.cms.getCategoryByDevice({ CatId: cateId, IsMobile: true }).then(async (result) => {
-      this.MapInfo = result.Content;
+  getAboutus () {
+    this.$Api.cms.getCategoryByDevice({ Key: 'About', IsMobile: true }).then(async (result) => {
+      this.AboutContent = result.Content;
+      this.AboutName = result.Name;
+      this.ImagePath = result.ImagePath;
     }).catch((error) => {
-      console.log(error, 'error');
       this.$message({
         message: error,
         type: 'error'
       });
     });
   }
+    // 根据设备类型获取CMSCategory信息
+  getCategoryByDevice (cateId) {
+    this.$Api.cms.getCategoryByDevice({ CatId: cateId, IsMobile: true }).then(async (result) => {
+      this.MapInfo = result.Content;
+      this.CatName = result.Name;
+    }).catch((error) => {
+      this.$message({
+        message: error,
+        type: 'error'
+      });
+    });
+  }
+  // getContentsList() {
+  //     var params = {
+  //       Key: 'HomeRelated',
+  //       Page: this.currentPage,
+  //       PageSize: this.pageSize
+  //     };
+  //     this.$Api.cms.getContentsByCatKeyEx(params).then((result) => {
+  //       result.Data.forEach((item) => {
+  //           if (item.Key === 'Youtube') {
+  //               this.videoContent = item.Body;
+  //           }
+  //           if (item.Key === 'Facebook') {
+  //               this.fbContent = item.Body;
+  //           }
+  //       });
+  //     });
+  //   }
   created () {
     this.getFbContent();
+    this.getVideoContent();
     this.getContactBox();
+    this.getAboutus();
   }
   get lang () {
     return this.$Storage.get('locale');
@@ -78,89 +132,117 @@ export default class PkLiveBox extends Vue {
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
+    margin-top: 3rem;
     .contactBox {
-      .text{
+      .titleA{
         font-size: 1.6rem;
-        color: #666666;
-        margin-bottom: 1.5rem;
+        color:#3d4364;
+        text-align: center;
+        font-weight: 700;
+        margin-bottom: 1rem;
+      }
+      .titleB {
+        font-size: 1.5rem;
+        color:#838a97;
+        margin-bottom: 2rem;
         text-align: center;
       }
-      .title{
-        font-size: 1.6rem;
-        color: #333;
-        margin-bottom: .5rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: 700;
-        text-transform: uppercase;
-        .icon1{
-          background: url('/images/mobile/mobile_07.jpg') no-repeat center center;
-          background-size: contain;
-          width: 3rem;
-          height: 3rem;
-          display: inline-block;
-          vertical-align:middle;
-          margin-right: .5rem;
-        }
-        .icon2{
-          background: url('/images/mobile/mobile_08.jpg') no-repeat center center;
-          background-size: contain;
-          width: 3rem;
-          height: 3rem;
-          display: inline-block;
-          vertical-align:middle;
-          margin-right: .5rem;
-        }
-        .icon3{
-          background: url('/images/mobile/mobile_09.jpg') no-repeat center center;
-          background-size: contain;
-          width: 3rem;
-          height: 3rem;
-          display: inline-block;
-          vertical-align:middle;
-          margin-right: .5rem;
-        }
-        .icon4{
-          background: url('/images/mobile/mobile_10.jpg') no-repeat center center;
-          background-size: contain;
-          width: 3rem;
-          height: 3rem;
-          display: inline-block;
-          vertical-align:middle;
-          margin-right: .5rem;
-        }
-      }
-    }
-    .lineBottom{
-      width: 100%;
-      height: 2rem;
     }
   }
 }
 </style>
 <style scoped lang="less">
+.AboutUs {
+  background-size: cover;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  padding-left: 5%;
+  padding-right: 5%;
+  .AboutContent {
+    margin-top: 2rem;
+    /deep/ p {
+      color:#fff;
+      font-size: 1.4rem;
+      line-height: 2.5rem;
+    }
+  }
+  .learnMore {
+      width: 50%;
+      margin: 0 auto;
+      display: flex;
+      height: 3.5rem;
+      background: #fff;
+      margin-top: 2rem;
+      border-radius: .2rem;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      color:#3d475f;
+    }
+}
 .liveBox {
     width: 100%;
-    background: #fbfbfb;
     background-size: 100% 100%;
     display: flex;
     padding-top: 2rem;
     flex-wrap: wrap;
 }
-.ProductTitle{
-   font-size: 1.6rem;
-   font-weight: 700;
-   text-transform: uppercase;
-   margin-bottom: 1rem;
-    .productIcon {
-        background: url('/images/mobile/mobile_15.jpg') no-repeat center center;
-        width: 1.5rem;
-        height: 1.5rem;
-        background-size: 1.5rem;
-        display: inline-block;
-        margin-right: .5rem;
-        vertical-align: middle;
+.fbcontent {
+  margin-bottom: 1rem;
+}
+.AboutTitle{
+    font-size: 1.6rem;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    height: 3rem;
+    width: 90%;
+    margin: 0 auto;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    img{
+      width: 100%;
     }
- }
+    span{
+      position: absolute;
+      bottom: 20%;
+      left:50%;
+      transform: translate(-50%);
+      text-align: center;
+      font-size:1.4rem;
+      font-weight: 700;
+      width: 10rem;
+      color:#fff;
+    }
+  }
+  .ProductTitle{
+    font-size: 1.6rem;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    height: 3rem;
+    width: 81%;
+    margin: 0 auto;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    img{
+      width: 100%;
+    }
+    span{
+      position: absolute;
+      bottom: 20%;
+      left:50%;
+      transform: translate(-50%);
+      text-align: center;
+      font-size:1.4rem;
+      font-weight: 700;
+      width: 10rem;
+    }
+  }
+.TextCn{
+  font-size: 2rem!important;
+  bottom: 10%!important;
+}
 </style>

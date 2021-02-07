@@ -13,6 +13,10 @@
                     </div>
               </div>
             </div>
+            <div class="SearchBox">
+              <input type="text" v-model="key" :placeholder = "$t('Message.KeyWords')"/>
+              <span class="search_btn"  @click="searchFun(key)"><img src="/images/mobile/mobile_29.png"></span>
+            </div>
             <div class="InnerBox">
                 <Menu :backColor="'transparent'" :textColor="'rgba(0,0,0,0.8)'"   :uniqueOpened="true" defaultActive="true" />
             </div>
@@ -295,6 +299,40 @@ export default class InsMenuLayout extends Vue {
 </style>
 
 <style scoped lang="less">
+.SearchBox {
+  width: calc(100% - 2px);
+  display: flex;
+  border: 1px solid #838a97;
+  height: 3.5rem;
+  flex-wrap: wrap;
+  input{
+    width: calc(100% - 40px);
+    height: 3.5rem;
+    line-height:  3.5rem;
+    background: #fff;
+    border:none;
+    float: left;
+    padding: 0px;
+    margin: 0px;
+    outline: 0;
+    text-indent: 10px;
+    color:#666;
+  }
+  .search_btn{
+    width: 40px;
+    background: #838a97;
+    float: right;
+    height:  3.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    img{
+      width: 60%;
+      margin: 0 auto;
+      display: block;
+    }
+  }
+}
 .meunBarBtn{
   float:right;
   .menubar{
@@ -319,11 +357,12 @@ export default class InsMenuLayout extends Vue {
 .menu_warpper{
     .meunTop{
         width: 100%;
-        display: inline-block;
+        display: flex;
         background: @base_color;
         padding-top: 1rem;
         padding-bottom: 1rem;
         position: relative;
+        flex-wrap: wrap;
         .innerMeun{
             width: 90%;
             margin: 0 auto;

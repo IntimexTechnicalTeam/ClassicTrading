@@ -269,12 +269,12 @@ export default class InsAdvancedSearch extends Vue {
 <style scoped lang="less">
 .InsAdvancedSearch {
   .resetAll{
-    background: #868f95;
+    background: #838a97;
     padding-left: 1rem;
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
     color:#FFF;
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     text-decoration: underline;
     text-transform: uppercase;
     margin-bottom: 2rem;
@@ -285,8 +285,8 @@ export default class InsAdvancedSearch extends Vue {
     padding-left: 1rem;
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
-    color:#333333;
-    font-size: 1.4rem;
+    color:@base_color;
+    font-size: 1.8rem;
     text-transform: uppercase;
     span{
       float:right;
@@ -299,5 +299,8 @@ export default class InsAdvancedSearch extends Vue {
     position: relative;
     background: #FFF;
     border-bottom: 1px solid #eee;
+    &:first-child{
+      border-top: 1px solid #eee;
+    }
   }
 </style>

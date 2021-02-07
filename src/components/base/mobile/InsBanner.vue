@@ -134,17 +134,17 @@ export default class InsBanner extends Vue {
 </style>
 <style lang="less">
 .mobileBanner .swiper-pagination-bullet{
-  width: 10px!important;
-  height: 10px!important;
-  background: #fff;
+  width: 8px!important;
+  height: 8px!important;
+  background: transparent;
   opacity: 1;
-  border:1px solid #fff;
+  border:2px solid #fff;
 }
 .mobileBanner .swiper-pagination-bullet-active{
-  background: #282828!important;
+  background: #fff!important;
 }
 .mobileBanner  .swiper-pagination{
-  text-align: right!important;
+  text-align: center!important;
   right: 10px!important;
   left:unset!important;
 }

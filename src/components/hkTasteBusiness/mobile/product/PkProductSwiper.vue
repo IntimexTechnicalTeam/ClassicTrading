@@ -29,14 +29,14 @@ export default class PkProductSwiper extends Vue {
 .in_preview_warpper .swiper-pagination-bullet {
     width: 1rem!important;
     height: 1rem!important;
-    margin-left: 1rem;
+    margin-left: .5rem;
 }
 .in_preview_warpper .swiper-pagination-bullet{
   background: #e6e6e6!important;
   opacity: 1!important;
 }
 .in_preview_warpper .swiper-pagination-bullet-active{
-    background: #cf3e3c!important;
+    background: @base_color!important;
 }
 .in_preview_warpper  .swiper-pagination{
     margin-top: -1rem;

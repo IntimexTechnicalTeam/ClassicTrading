@@ -47,7 +47,9 @@ export default {
     Weaccept: '付款方式',
     WhatNew: '最新商品',
     HotCategories: '熱門分類',
-    LatestTrends: '最新動態'
+    LatestTrends: '最新動態',
+    MoreProducts: '更多產品',
+    KeyWords: '請輸入關鍵字'
   },
   Account: {
     MemberCenter: '會員中心',

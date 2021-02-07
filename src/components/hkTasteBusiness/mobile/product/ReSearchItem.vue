@@ -1,6 +1,6 @@
 <template>
     <li class="ReSearchItem">
-        <p class="category">
+        <p class="category" :class="{'openCat':!isOpen}">
           {{searchGroup.Name}}
             <i class="el-icon-arrow-up"  @click="isOpen = !isOpen" v-if="!isOpen"></i>
             <i class="el-icon-arrow-down" @click="isOpen = !isOpen" v-else></i>
@@ -108,13 +108,12 @@ export default class InsAdvancedSearch extends Vue {
       p.category {
         font-size:1.6rem;
         color: #333333;
-        background-color: #f0f0f0;
+        background-color: #fff;
         display: flex;
         justify-self: start;;
         align-items: center;
         flex-shrink: 0;
         position: relative;
-        font-weight: 700;
         padding: 1rem;
         padding-top: 1.5rem;
         padding-bottom: 1.5rem;
@@ -123,7 +122,7 @@ export default class InsAdvancedSearch extends Vue {
           right: 1rem;
           top: 20px;
           font-size: 2rem;
-          color: #d72717;
+          color: @base_color;
         }
     }
 
@@ -147,19 +146,19 @@ export default class InsAdvancedSearch extends Vue {
             }
 
             input[type="checkbox"]:checked {
-                border: 1px solid #d72717;
-                background: #d72717 url('/images/mobile/checked.png'); /*复选框的背景图*/
+                border: 1px solid @base_color;
+                background: @base_color url('/images/mobile/checked.png'); /*复选框的背景图*/
                 background-repeat: no-repeat;
                 background-position: center;
                 background-size: auto;
                 background-size: 15px;
                 &+label {
-                    color: #333333;
+                    color: @base_color;
                 }
             }
 
             label {
-            font-size: 18px;
+            font-size: 1.4rem;
             color: #999999;
             width: 90%;
             margin-left: 5px;
@@ -184,5 +183,12 @@ export default class InsAdvancedSearch extends Vue {
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
+}
+.openCat{
+    background-color:@base_color!important;
+    color:#fff!important;
+    i{
+      color:#fff!important;
+    }
 }
 </style>

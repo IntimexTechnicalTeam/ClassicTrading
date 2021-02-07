@@ -48,7 +48,9 @@ export default {
     /* eslint-disable */
     WhatNew: "What's New",
     HotCategories: 'Hot Categories',
-    LatestTrends: 'Latest Trends'
+    LatestTrends: 'Latest Trends',
+    MoreProducts: 'More',
+    KeyWords:'Please Enter Key Words'
   },
   RegNPay: {
     BackText: 'Back',

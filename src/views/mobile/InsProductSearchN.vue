@@ -1,8 +1,5 @@
 <template>
   <div id="container" class="ProductSearch">
-        <div class="ProducBanner">
-            <ProductListSwiper :TitleName="$t('product.Producttitle')"/>
-        </div>
         <div class="SearchSlide">
           <div class="leftSide">
             <advancedSearch @advancedChange="advancedChange" v-if="isAdvanced"  @closeSub="closeSub" @resetAll="resetAll" />
@@ -205,27 +202,31 @@ export default class InsProductSearch extends Vue {
 .products_container{
   display: flex;
   flex-wrap: wrap;
+  width: 95%;
+  margin: 0 auto;
 }
 
 .product_item{
-    width: 50% !important;
-    padding:2rem 1rem 0;
-    box-sizing:border-box;
+  width: 50% !important;
+  padding: 1rem .5rem 0;
+  box-sizing:border-box;
 }
 
 .loading{
     text-align: center;
     height: 3.5rem;
     line-height: 3.5rem;
-    width: 90%;
+    width: 50%;
     margin: 0 auto;
-    border:1px solid #999999;
-    color:#999999;
+    color:#fff;
+    background: #838a97;
     border-radius: 2px;
-    font-size: 1.4rem;
     text-transform: uppercase;
     margin-top: 3rem;
     margin-bottom: 3rem;
+    p{
+        font-size: 1.4rem;
+    }
 }
 
 .ProductSearch {
@@ -262,7 +263,7 @@ export default class InsProductSearch extends Vue {
     display: inline-block;
     margin-top: 2rem;
   ul{
-    width: 95%;
+    width: 92%;
     margin: 0 auto;
   }
   li{
@@ -270,10 +271,9 @@ export default class InsProductSearch extends Vue {
     margin-right: 4%;
     width: 47%;
     background: #FFF;
-    border:1px solid #737a80;
-    font-size: 1.6rem;
-    background: #737a80;
-    color: #FFF;
+    border:1px solid #838a97;
+    font-size: 1.2rem;
+    color: #838a97;
     height: 3.5rem;
     line-height: 3.5rem;
     list-style: none;
@@ -281,14 +281,14 @@ export default class InsProductSearch extends Vue {
     span{
     width: 20%;
     display: inline-block;
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     text-align: center;
     }
     b{
       width: 60%;
       display: flex;
       text-align: center;
-      font-size: 1.4rem;
+      font-size: 1.2rem;
       font-weight: 500;
       margin: 0 auto;
       align-items: center;
@@ -303,16 +303,16 @@ export default class InsProductSearch extends Vue {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    background: url(/images/mobile/mobile_04.jpg) 98% 12px no-repeat;
+    background: url(/images/mobile/mobile_38.png) 98% 12px no-repeat;
     background-size: 15px;
     outline: none;
-    color:#333333;
+    color:#838a97;
     }
     &:last-child{
       margin-right: 0px!important;
       background: #FFF!important;
-      color:#333333;
-      border:1px solid #ebebeb!important;
+      color:#838a97;
+      border:1px solid #838a97!important;
     }
   }
 }

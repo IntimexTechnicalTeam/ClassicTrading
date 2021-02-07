@@ -225,15 +225,15 @@ export default class InsPanel extends Vue {
     .in_btn {
       height: 3.5rem;
       font-size:1.8rem;
-      color: #333333;
+      color: #fff;
       display: inline-flex;
       justify-content: center;
       align-items: center;
-      background-color: #333333;
+      background-color: @base_color;
       color: #fff;
       border-radius: 3px;
       margin-bottom: 1rem;
-      border:1px solid #333333;
+      border:1px solid @base_color;
       text-transform: uppercase;
       width: 48%;
       float: left;

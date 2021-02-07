@@ -69,9 +69,9 @@ ul,li{
 }
 .detail-select-attribute .common-select li{
     display: inline-block;
-    background-color: #fff;
-    color: #999999;
-    border:1px solid #cccccc;
+    background-color:#838a97;
+    color: #fff;
+    border:1px solid #838a97;
     margin-right: 0.5rem;
     font-size: 1.2rem;
     margin-bottom: 1rem;
