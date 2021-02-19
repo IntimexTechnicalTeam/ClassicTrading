@@ -38,7 +38,7 @@ ul,li{
 }
 .cateName{
   font-size: 16px;
-  color: #666666;
+  color: #838a97;
   margin-bottom: 1rem;
 }
 .cateMain{

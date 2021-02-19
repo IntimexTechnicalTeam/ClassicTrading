@@ -21,8 +21,34 @@ export default class InsHome extends Vue {
   swiperOption: object = {
     autoplay: {
       disableOnInteraction: false
+    },
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true
     }
   };
+    get init () {
+    return {
+      HkPromotion: this.$store.state.HkPromotion,
+      HkLiveBox: this.$store.state.HkLiveBox
+    };
+  }
+  @Watch('init', { deep: true })
+  onItemsChange (n, o) {
+    if (n.HkPromotion && n.HkLiveBox) {
+      this.$nextTick(() => {
+        let wow = new WOW.WOW({
+          boxClass: 'wow',
+          animateClass: 'animated',
+          offset: 100,
+          live: false,
+          callback: function (box) {
+          }
+        });
+        wow.init();
+      });
+    }
+  }
   mounted () {
     this.$HiddenLayer();
   }

@@ -1,11 +1,11 @@
 <template>
   <div class="productBox mobileProductBox">
-    <p class="ProductTitle"><img src="/images/mobile/mobile_07.png"><span :class="{'TextCn':currentlang=='C'}">{{bannerTitle}}</span></p>
+    <p class="ProductTitle"><img src="/images/mobile/mobile_07.png" class="wow fadeInUp" data-wow-delay="0.5s"><span :class="{'TextCn':currentlang=='C'}" class="wow fadeIn"  data-wow-delay="0.3s">{{bannerTitle}}</span></p>
     <div class="swiper-container swiper-container-hot">
         <swiper :options="swiperOption" ref="mySwiper">
         <!-- slides -->
         <swiperSlide v-for="(slide, index) in hotProducts" :key="index">
-           <inProductWindow :item="slide"  class="insProductHot"></inProductWindow>
+           <inProductWindow :item="slide"   class="insProductHot wow fadeInLeftBig"  data-wow-delay="0.3s"></inProductWindow>
         </swiperSlide>
         <div
           class="swiper-button-prev"
@@ -20,7 +20,7 @@
           v-if="swiperOption.navigation && swiperOption.navigation.prevEl"
         ></div>
         </swiper>
-        <router-link to="/product/search/-" class="moreBtn">{{$t('Message.MoreProducts')}}</router-link>
+        <router-link to="/product/search/-" class="moreBtn wow fadeIn" data-wow-delay="0.3s">{{$t('Message.MoreProducts')}}</router-link>
     </div>
   </div>
 </template>
@@ -55,6 +55,8 @@ export default class PkHotProduct extends Vue {
         this.bannerTitle = result.Promotion.Desc;
         if (result.Promotion.PrmtProductList.length > 0) {
           this.hotProducts = result.Promotion.PrmtProductList.slice(0, 8);
+          this.$store.dispatch('setHkPromotion', this.hotProducts);
+          this.$store.dispatch('setHkPromotion', this.bannerTitle);
         }
       });
     }

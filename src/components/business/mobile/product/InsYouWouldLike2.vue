@@ -1,12 +1,22 @@
 <template>
   <div :style="styla" v-if="ShowItemsLength>0">
-    <div class="in_slider_title">{{title}}</div>
-    <swiper :options="SwiperOption" ref="mySwiper" class="youlikeMain">
+    <p class="ProductTitle"><img src="/images/mobile/mobile_07.png"><span :class="{'TextCn':currentlang=='C'}">{{title}}</span></p>
+    <swiper :options="swiperOption" ref="mySwiper" class="youlikeMainMobile">
       <!-- slides -->
       <swiperSlide v-for="(item,idx) in InnerItems" :key="idx">
-        <inProductWindow :item="item" :imgStyla="imgStyla" styla="width:90%;margin:0 auto;padding-bottom:2rem;margin-bottom: 2rem;"></inProductWindow>
+        <inProductWindow :item="item" :imgStyla="imgStyla"></inProductWindow>
       </swiperSlide>
-      <div class="swiper-scrollbar"   slot="scrollbar"></div>
+      <!-- <div class="swiper-scrollbar"   slot="scrollbar"></div> -->
+        <div
+          class="swiper-button-prev swiper-prev-cn"
+          slot="button-prev"
+          v-if="swiperOption.navigation && swiperOption.navigation.nextEl"
+        ></div>
+        <div
+          class="swiper-button-next swiper-next-cn"
+          slot="button-next"
+          v-if="swiperOption.navigation && swiperOption.navigation.prevEl"
+        ></div>
     </swiper>
   </div>
 </template>
@@ -24,16 +34,14 @@ import { swiper, swiperSlide } from 'vue-awesome-swiper/src';
 })
 export default class InsYouWouldLike2 extends Vue {
   // data
-  private SwiperOption = {
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev'
-    },
-    scrollbar: {
-      el: '.swiper-scrollbar'
-    },
-    slidesPerView: 2
-  };
+    swiperOption: object = {
+      navigation: {
+        nextEl: '.swiper-next-cn',
+        prevEl: '.swiper-prev-cn'
+      },
+      slidesPerView: 2,
+      spaceBetween: 20
+    };
   private InnerItems: YouWouldLike[] = [];
   private InnerItemsCopy: YouWouldLike[] = [];
   private ShowItems: YouWouldLike[][] = [];
@@ -52,6 +60,9 @@ export default class InsYouWouldLike2 extends Vue {
     if (target.nodeName === 'IMG') {
     }
   }
+  get currentlang () {
+    return this.$i18n.locale;
+  }
   buttonClick (item: YouWouldLike) {
     console.log(item);
   }
@@ -68,22 +79,61 @@ export default class InsYouWouldLike2 extends Vue {
 }
 </script>
 <style lang="less">
-.youlikeMain{
-  .swiper-scrollbar {
-      border-radius:0px!important;
-      position: relative;
-      background: #f0f0f0!important;
+.youlikeMainMobile {
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 3rem;
+  margin-bottom: 2rem;
+  .swiper-button-prev{
+      background: #8f95a1 url('/images/mobile/pleft.png') no-repeat center center!important;
+      background-size: 25px!important;
+      width: 40px;
+      height: 40px;
+      outline: 0;
+      left: 0px!important;
+      top: 45%!important;
   }
-  .swiper-scrollbar-drag{
-        background: #666666;
-        border-radius: 0px;
-  }
-  .swiper-container-horizontal > .swiper-scrollbar{
-        height: 4px!important;
+  .swiper-button-next{
+      background: #8f95a1 url('/images/mobile/pright.png') no-repeat center center!important;
+      background-size: 25px!important;
+      width: 40px;
+      height: 40px;
+      outline: 0;
+      right: 0px!important;
+      top: 45%!important;
   }
 }
 </style>
 <style lang="less" scoped>
+.TextCn{
+  font-size: 2rem!important;
+  bottom: 10%!important;
+}
+.ProductTitle{
+    font-size: 1.6rem;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    height: 3rem;
+    width: 85%;
+    margin: 0 auto;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    img{
+      width: 100%;
+    }
+    span{
+      position: absolute;
+      bottom: 20%;
+      left:50%;
+      transform: translate(-50%);
+      text-align: center;
+      font-size:1.4rem;
+      font-weight: 700;
+      width: 10rem;
+    }
+  }
 .youlikeMain{
   width: 90%;
   margin: 0 auto;

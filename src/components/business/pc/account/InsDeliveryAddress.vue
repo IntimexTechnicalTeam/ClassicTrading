@@ -562,14 +562,13 @@ export default class InsDeliveryAddress extends Vue {
   margin-left: 0px!important;
 }
 .MemberInfoMain .el-button{
-    background: #868f95;
+    background: #838a97;
     border: none;
     display: block;
-    border-radius: 20px;
+    border-radius: 5px;
     width: 100%;
     float: right;
     text-transform: uppercase;
-    font-size: 24px;
-    font-weight: 700;
+    font-size: 22px;
 }
 </style>

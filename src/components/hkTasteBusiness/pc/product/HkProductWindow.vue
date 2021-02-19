@@ -2,22 +2,23 @@
   <div class="PcVersion">
     <div class="productMain" v-if="item">
       <div class="in_pdWindow_page_item" :style="styla" @mouseenter="Enter=true" @mouseleave="Enter=false">
-        <div class="topWindowsImg imgbox">
-          <img :src="(item.Image?item.Image:item.Img_L)" :class="{'height_line':Enter}" :style="imgStyla" :data-key="item.Sku"
-            @error="loadError" v-on:click="ToUrl(item)" />
-          <div class="shopMark">
-            <div class="innerBox">
-              <a href="javascript:;" v-on:click="addCart(item)">{{$t('product.addToCart')}}</a>
+            <div class="topWindowsImg imgbox">
+              <img :src="(item.Image?item.Image:item.Img_L)"  :style="imgStyla" :data-key="item.Sku"
+                @error="loadError" v-on:click="ToUrl(item)" />
+              <div class="shopMark">
+                <div class="innerBox">
+                    <a  href="javascript:;"><i class="indexfav" v-bind:class="{'indexfav_hover':item.IsFavorite}"  v-on:click="addToFavorite(item)"></i><span v-on:click="addToFavorite(item)">{{$t('MyFavorite.MyFavorite')}}</span></a>
+                    <a  href="javascript:;" ><i class="showDetail" v-on:click="ToUrl(item)"></i><span v-on:click="ToUrl(item)">{{$t('home.ViewDetail')}}</span></a>
+                </div>
+              </div>
+            </div>
+            <div class="in_pdWindow_item_description">
+              <a href="javascript:;" class="in_pdWindow_item_title" v-on:click="ToUrl(item)">{{item.Name}}</a>
+              <div class="in_pdWindow_item_price">
+                <inPrices :primePrices="item.ListPrice" :currentPrices="item.SalePrice" :currency="item.Currency" size="small"></inPrices>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="in_pdWindow_item_description">
-          <a href="javascript:;" class="in_pdWindow_item_title" v-on:click="ToUrl(item)">{{item.Name}}</a>
-          <div class="in_pdWindow_item_price">
-            <inPrices :primePrices="item.ListPrice" :currentPrices="item.SalePrice" :currency="item.Currency" size="small"></inPrices>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 </template>
@@ -119,20 +120,21 @@
   .PcVersion .in_pdWindow_item_price .currentPricesMain,
   .in_pdWindow_item_price .primePricesMain {
     display: inline-block;
-    text-align: center;
+    text-align: left;
+    width: 100%;
   }
 
   .PcVersion .in_pdWindow_item_price .currentPricesMain .small:nth-child(1) {
     font-size: 18px;
     word-break: break-word;
     text-align: center;
-    color: #e01010;
+    color: @base_color;
     display: inline-block;
   }
 
   .PcVersion .in_pdWindow_item_price .currentPricesMain .small:nth-child(2) {
     font-size: 18px;
-    color: #e01010;
+    color: @base_color;
     display: inline-block;
   }
 
@@ -140,24 +142,20 @@
     font-size: 16px;
     word-break: break-word;
     text-align: center;
-    color: #cccccc;
+    color: #b2b2b2;
     display: inline-block;
     text-decoration: line-through;
   }
 
   .PcVersion .in_pdWindow_item_price .primePricesMain .small:nth-child(2) {
     font-size: 16px;
-    color: #cccccc;
+    color: #b2b2b2;
     display: inline-block;
     text-decoration: line-through;
   }
 
-  .productMain:hover .in_pdWindow_page_item img {
-    border: 1px solid #e83428;
-  }
-
   .productMain:hover .in_pdWindow_item_title {
-    color: #e83428 !important;
+    color: @base_color !important;
     font-weight: 20px;
   }
 </style>
@@ -172,54 +170,84 @@
   .imgbox:hover .shopMark {
     bottom: 0px;
   }
-
+  .imgbox .shopMark .indexfav{
+    background: url(/images/pc/unfav.png) no-repeat center center;
+    background-size: 100%;
+}
+.imgbox .shopMark .indexfav_hover{
+    background: url(/images/pc/faved.png) no-repeat center center!important;
+    background-size: 100%;
+}
+.imgbox .shopMark .showDetail{
+    background: url(/images/pc/view.png) no-repeat center center;
+    background-size: 100%;
+}
+.imgbox .shopMark .showDetail:hover{
+    background: url(/images/pc/view_hover.png) no-repeat center center;
+    background-size: 100%;
+ }
   .imgbox .shopMark {
     position: absolute;
     left: 0px;
-    bottom: -45px;
+    bottom: -100%;
     right: 0px;
-    height: 45px;
-    background: #e83428;
+    height: 100%;
+    background: rgba(143, 149, 161, .8);
     transition: all .3s;
     display: flex;
     align-items: center;
     justify-content: center;
-
     .innerBox {
       width: 100%;
       display: inline-block;
     }
   }
 
-  .imgbox .shopMark a {
+.imgbox .shopMark a{
     text-align: center;
     display: block;
-    color: #fff;
-  }
-
-  .imgbox .shopMark a:hover span {
+}
+.imgbox .shopMark a:hover span{
     text-decoration: underline;
-  }
+}
+.imgbox .shopMark a:nth-child(1){
+    // padding-top: 60px;
+    padding-bottom: 20px;
+}
+.imgbox .shopMark a span{
+    color: #FFF;
+    font-size: 16px;
+    margin-top: 5px;
+    display: block;
+}
+.imgbox .shopMark i{
+    width: 24px;
+    height: 24px;
+    display: block;
+    margin: 0 auto;
+}
 
   .imgbox img {
     width: 100%;
     border-radius: 0px;
-    border: 1px solid #eee;
     transition: border all 1s;
     box-sizing: border-box;
   }
 
+  .in_pdWindow_page_item {
+    border:1px solid #eee;
+    min-height: 23rem;
+    padding: 10px;
+    transition: all .3s;
+  }
+  .in_pdWindow_page_item:hover {
+      border:1px solid #c2c7d1;
+  }
   .in_pdWindow_page_item img {
     box-sizing: border-box;
     cursor: pointer;
-    border: 1px solid #cdcdcd;
     border-radius: 0px;
   }
-
-  .height_line {
-    border: 1px solid #e83428 !important;
-  }
-
   .in_pdWindow_item_title {
     font-size: 18px;
     width: 100%;

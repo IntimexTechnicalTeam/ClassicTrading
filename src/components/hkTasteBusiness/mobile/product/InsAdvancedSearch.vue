@@ -292,6 +292,7 @@ export default class InsAdvancedSearch extends Vue {
       float:right;
       margin-right: 1rem;
       font-size: 2.5rem;
+      color: #3d475f;
     }
   }
 }

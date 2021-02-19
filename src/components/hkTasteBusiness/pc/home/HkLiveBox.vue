@@ -1,11 +1,20 @@
 <template>
-  <div class="liveBox pcversion">
+  <div class="liveBox pcVersion">
+    <div class="AboutUs"  :style="{'background-image': 'url('+ImagePath+')'}">
+        <p class="AboutTitle wow fadeIn" data-wow-delay="0.3s"><img src="/images/pc/lineabout.png"><span :class="{'TextCn':currentlang=='C'}">{{AboutName}}</span></p>
+        <p class="AboutContent wow fadeIn" v-html="AboutContent" data-wow-delay="0.3s"></p>
+        <router-link to="/CMS/content/20295" class="learnMore wow fadeIn" data-wow-delay="0.3s">{{$t('Message.ViewDetail')}}</router-link>
+    </div>
     <div class="liveBox_in">
-        <div class="fbcontent">
-           <p v-html="fbContent.Body"></p>
+        <div class="fbcontent  wow fadeInLeftBig" data-wow-delay="0.3s">
+            <p v-html="fbContent" ></p>
         </div>
-        <div class="contactMain">
-            <p v-html="contactContent.Body"></p>
+        <div class="videoContent wow fadeInRightBig" data-wow-delay="0.3s" >
+            <p v-html="videoContent"></p>
+             <p class="ProductTitle"><img src="/images/mobile/mobile_07.png"><span :class="{'TextCn':currentlang=='C'}">{{CatName}}</span></p>
+            <div class="contactMain wow fadeIn" data-wow-delay="0.3s">
+              <p v-html="contactContent.Body"></p>
+          </div>
         </div>
     </div>
     <div class="MapInfo">
@@ -20,33 +29,80 @@ export default class PkLiveBox extends Vue {
   videoContent:string='';
   fbContent:string='';
   contactContent:string='';
-  MapInfo:string='';
+  MapInfo:string = '';
+  CatName:string = '';
+  currentPage: number = 1; // 当前页
+  pageSize: number = 2; // 每页显示条目个数
+  ContentList:any[]=[];
+  AboutName:string='';
+  AboutContent:string='';
+  ImagePath:string='';
   getFbContent () {
     this.$Api.cms.getContentByDevice({ Key: 'Facebook', IsMobile: false }).then(result => {
-      this.fbContent = result.CMS;
+      this.fbContent = result.CMS.Body;
     });
   }
+ getVideoContent () {
+    this.$Api.cms.getContentByDevice({ Key: 'Youtube', IsMobile: false }).then(result => {
+      this.videoContent = result.CMS.Body;
+    });
+  }
+  get currentlang () {
+    return this.$i18n.locale;
+  }
   getContactBox () {
-    this.$Api.cms.getContentByDevice({ Key: 'ContactUs', IsMobile: false }).then(result => {
+    this.$Api.cms.getContentByDevice({ Key: 'contactus', IsMobile: false }).then(result => {
       this.contactContent = result.CMS;
       this.getCategoryByDevice(result.CMS.CatId);
     });
   }
-    // 根据设备类型获取CMSCategory信息
-  getCategoryByDevice (cateId) {
-    this.$Api.cms.getCategoryByDevice({ CatId: cateId, IsMobile: false }).then(async (result) => {
-      this.MapInfo = result.Content;
+  getAboutus () {
+    this.$Api.cms.getCategoryByDevice({ Key: 'About', IsMobile: false }).then(async (result) => {
+      this.AboutContent = result.Content;
+      this.AboutName = result.Name;
+      this.ImagePath = result.ImagePath;
+      this.$store.dispatch('setHkLiveBox', this.AboutName);
     }).catch((error) => {
-      console.log(error, 'error');
       this.$message({
         message: error,
         type: 'error'
       });
     });
   }
+    // 根据设备类型获取CMSCategory信息
+  getCategoryByDevice (cateId) {
+    this.$Api.cms.getCategoryByDevice({ CatId: cateId, IsMobile: false }).then(async (result) => {
+      this.MapInfo = result.Content;
+      this.CatName = result.Name;
+    }).catch((error) => {
+      this.$message({
+        message: error,
+        type: 'error'
+      });
+    });
+  }
+  // getContentsList() {
+  //     var params = {
+  //       Key: 'HomeRelated',
+  //       Page: this.currentPage,
+  //       PageSize: this.pageSize
+  //     };
+  //     this.$Api.cms.getContentsByCatKeyEx(params).then((result) => {
+  //       result.Data.forEach((item) => {
+  //           if (item.Key === 'Youtube') {
+  //               this.videoContent = item.Body;
+  //           }
+  //           if (item.Key === 'Facebook') {
+  //               this.fbContent = item.Body;
+  //           }
+  //       });
+  //     });
+  //   }
   created () {
     this.getFbContent();
+    this.getVideoContent();
     this.getContactBox();
+    this.getAboutus();
   }
   get lang () {
     return this.$Storage.get('locale');
@@ -54,7 +110,7 @@ export default class PkLiveBox extends Vue {
 }
 </script>
 <style  lang="less">
-.pcversion{
+.pcVersion{
   .MapInfo{
     width: 100%;
     display: inline-block;
@@ -66,107 +122,144 @@ export default class PkLiveBox extends Vue {
   .liveBox_in{
     width: 1200px;
     margin: 0 auto;
-    padding-top:1rem;
+    padding-top:3rem;
     margin-bottom: 2rem;
-    .fbcontent{
-      width: 40%;
-      float: left;
-      margin-right: 10%;
-    }
       img{
         width: 100%;
       }
     }
   .contactMain{
-    width:50%;
-    float: left;
+    width:90%;
+    margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
-    padding-top: 10%;
+    margin-top: 3rem;
+    align-items: center;
+    justify-content: center;
     .contactBox {
-      .text{
-        font-size: 16px;
-        color: #666666;
-        margin-bottom: 1.5rem;
+      .titleA{
+        font-size: 20px;
+        color:#3d4364;
+        text-align: center;
+        font-weight: 700;
+        margin-bottom: 20px;
+      }
+      .titleB {
+        font-size: 18px;
+        color:#838a97;
+        margin-bottom: 40px;
         text-align: center;
       }
-      .title{
-        font-size: 18px;
-        color: #333;
-        margin-bottom: .5rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: 700;
-        text-transform: uppercase;
-        .icon1{
-          background: url('/images/mobile/mobile_07.jpg') no-repeat center center;
-          background-size: contain;
-          width: 30px;
-          height: 30px;
-          display: inline-block;
-          vertical-align:middle;
-          margin-right: .5rem;
-        }
-        .icon2{
-          background: url('/images/mobile/mobile_08.jpg') no-repeat center center;
-          background-size: contain;
-          width: 30px;
-          height: 30px;
-          display: inline-block;
-          vertical-align:middle;
-          margin-right: .5rem;
-        }
-        .icon3{
-          background: url('/images/mobile/mobile_09.jpg') no-repeat center center;
-          background-size: contain;
-          width: 30px;
-          height: 30px;
-          display: inline-block;
-          vertical-align:middle;
-          margin-right: .5rem;
-        }
-        .icon4{
-          background: url('/images/mobile/mobile_10.jpg') no-repeat center center;
-          background-size: contain;
-          width: 30px;
-          height: 30px;
-          display: inline-block;
-          vertical-align:middle;
-          margin-right: .5rem;
-        }
-      }
-    }
-    .lineBottom{
-      width: 100%;
-      height: 2rem;
     }
   }
 }
 </style>
 <style scoped lang="less">
+.AboutUs {
+  background-size: cover;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  width: 100%;
+  .AboutContent {
+    width: 1200px;
+    margin: 0 auto;
+    margin-top: 40px;
+    /deep/ p {
+      color:#fff;
+      font-size: 20px;
+      line-height: 2.5rem;
+    }
+  }
+  .learnMore {
+      width: 160px;
+      margin: 0 auto;
+      display: flex;
+      height: 45px;
+      background: #fff;
+      margin-top: 2rem;
+      border-radius: .2rem;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      color:#3d475f;
+      transition:  all .3s;
+      &:hover {
+        background:#3d475f;
+        color: #fff;
+      }
+    }
+}
 .liveBox {
     width: 100%;
-    background: #fbfbfb;
     background-size: 100% 100%;
     display: flex;
     padding-top: 2rem;
     flex-wrap: wrap;
-    margin-top: 5rem;
 }
-.ProductTitle{
-   font-size: 1.6rem;
-   font-weight: 700;
-   text-transform: uppercase;
-   margin-bottom: 1rem;
-    .productIcon {
-        background: url('/images/mobile/mobile_15.jpg') no-repeat center center;
-        width: 1.5rem;
-        height: 1.5rem;
-        background-size: 1.5rem;
-        display: inline-block;
-        margin-right: .5rem;
-        vertical-align: middle;
+.fbcontent {
+  margin-bottom: 1rem;
+  width: 45%;
+  margin-right: 5%;
+  float: left;
+}
+.videoContent{
+  width: 50%;
+  float: left;
+}
+.AboutTitle{
+    font-size: 36px;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    height: 3rem;
+    width: 460px;
+    margin: 0 auto;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    img{
+      width: 100%;
     }
- }
+    span{
+      position: absolute;
+      bottom: 20%;
+      left:50%;
+      transform: translate(-50%);
+      text-align: center;
+      font-size:1.4rem;
+      font-weight: 700;
+      width: 10rem;
+      color:#fff;
+    }
+  }
+  .ProductTitle{
+    font-size: 1.6rem;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    height: 3rem;
+    width: 460px;
+    margin: 0 auto;
+    margin-top: 20px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    img{
+      width: 100%;
+    }
+    span{
+      position: absolute;
+      bottom: 20%;
+      left:50%;
+      transform: translate(-50%);
+      text-align: center;
+      font-size:1.4rem;
+      font-weight: 700;
+      width: 10rem;
+    }
+  }
+.TextCn{
+  font-size:36px!important;
+  bottom: 10%!important;
+}
 </style>

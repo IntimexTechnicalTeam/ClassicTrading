@@ -1,11 +1,18 @@
 <template>
 <div id="header" class="pcHeader"  v-cloak>
 <!-- 正常菜单 -->
-<div class="headerBg">
+<div class="headerBg" :class="{'pageother':showHomePage!=='/'}">
     <div class="headerTop">
+        <div class="logoBox">
+            <a href="/"><img src="/images/pc/pclogo.png"></a>
+        </div>
         <div class="inner">
             <!-- 搜索框开始 -->
             <div class="functionBox">
+                  <div class="searchBox">
+                      <input type="text" v-model="key" :placeholder = "$t('Message.KeyWords')"/>
+                       <span class="search_btn"  @click="searchFun(key)"><img src="/images/pc/pc_05.jpg"></span>
+                  </div>
                   <InsLogin class="memberLogin"></InsLogin>
                     <!-- 我的喜爱开始 -->
                     <div class="cartTop">
@@ -19,8 +26,7 @@
             </div>
             <CodeSelect/>
             <div class="langBox">
-              <a href="javascript:;"  @click="changLange('E')" :class="{'langActive':currentlang=='E'}">ENG</a>&nbsp;|&nbsp;
-              <a href="javascript:;"  @click="changLange('C')" :class="{'langActive':currentlang=='C'}">繁體</a>
+               <LangSwitch />
             </div>
             <!-- 切换语言结束 -->
         </div>
@@ -29,9 +35,6 @@
           <!-- 导航栏开始 -->
           <div class="headerBoxMain">
               <div class="headerBottom">
-                <div class="logoBox">
-                    <a href="/"><img src="/images/pc/pclogo.jpg"></a>
-                </div>
                   <div class="navMainbar">
                       <ul>
                         <li v-for="(item,index) in this.$store.state.headerMenus" :key="index">
@@ -46,12 +49,6 @@
                             </ul>
                         </li>
                       </ul>
-                  </div>
-                  <div class="SearchBar">
-                      <div class="searchBox">
-                          <span class="search_btn"  @click="searchFun(key)"><img src="/images/pc/pc_05.jpg"></span>
-                          <input type="text" v-model="key" placeholder="Text"/>
-                      </div>
                   </div>
         </div>
       </div>
@@ -62,35 +59,39 @@
 
 <!-- 固定菜单 -->
 <div class="header-Fixed">
+    <div class="headerTop">
+        <div class="logoBox">
+            <a href="/"><img src="/images/pc/pclogo.png"></a>
+        </div>
+        <div class="inner">
+            <!-- 搜索框开始 -->
+            <div class="functionBox">
+                  <div class="searchBox">
+                      <input type="text" v-model="key" :placeholder = "$t('Message.KeyWords')"/>
+                       <span class="search_btn"  @click="searchFun(key)"><img src="/images/pc/pc_05.jpg"></span>
+                  </div>
+                  <InsLogin class="memberLogin"></InsLogin>
+                    <!-- 我的喜爱开始 -->
+                    <div class="cartTop">
+                        <router-link to="/account/MyFavorite">
+                            <i class="handle-icon fav-icon"></i>
+                        </router-link>
+                    </div>
+                    <!-- 我的喜爱结束 -->
+                    <!-- 购物车开始 -->
+                    <Shopcart class="memberLogin"></Shopcart>
+            </div>
+            <CodeSelect/>
+            <div class="langBox">
+               <LangSwitch />
+            </div>
+            <!-- 切换语言结束 -->
+        </div>
+    </div>
+    <div class="HeaderNormalBar">
           <!-- 导航栏开始 -->
-          <div class="headerTop">
-              <div class="inner">
-                  <!-- 搜索框开始 -->
-                  <div class="functionBox">
-                        <InsLogin class="memberLogin"></InsLogin>
-                          <!-- 我的喜爱开始 -->
-                          <div class="cartTop">
-                              <router-link to="/account/MyFavorite">
-                                  <i class="handle-icon fav-icon"></i>
-                              </router-link>
-                          </div>
-                          <!-- 我的喜爱结束 -->
-                          <!-- 购物车开始 -->
-                          <Shopcart class="memberLogin"></Shopcart>
-                  </div>
-                  <CodeSelect/>
-                  <div class="langBox">
-                    <a href="javascript:;"  @click="changLange('E')" :class="{'langActive':currentlang=='E'}">ENG</a>&nbsp;|&nbsp;
-                    <a href="javascript:;"  @click="changLange('C')" :class="{'langActive':currentlang=='C'}">繁體</a>
-                  </div>
-                  <!-- 切换语言结束 -->
-              </div>
-          </div>
           <div class="headerBoxMain">
               <div class="headerBottom">
-                <div class="logoBox">
-                    <a href="/"><img src="/images/pc/pclogo.jpg"></a>
-                </div>
                   <div class="navMainbar">
                       <ul>
                         <li v-for="(item,index) in this.$store.state.headerMenus" :key="index">
@@ -106,15 +107,10 @@
                         </li>
                       </ul>
                   </div>
-                  <div class="SearchBar">
-                      <div class="searchBox">
-                          <span class="search_btn"  @click="searchFun(key)"><img src="/images/pc/pc_07.jpg"></span>
-                          <input type="text" v-model="key" placeholder="Text"/>
-                      </div>
-                  </div>
         </div>
       </div>
           <!-- 导航栏结束 -->
+    </div>
 </div>
 <!-- 固定菜单结束 -->
 <div class="clear"></div>
@@ -135,6 +131,7 @@ import $ from 'jquery';
       import('@/components/business/pc/header/InsLogin.vue'),
     CodeSelect: () =>
       import('@/components/business/pc/header/InsCodeSelect.vue'),
+     LangSwitch: () => import('@/components/business/pc/header/InsLangSwitch.vue'),
     elMenu: () => import('@/components/business/pc/header/InsElMenu.vue')
   }
 })
@@ -288,17 +285,17 @@ export default class InsHeader extends Vue {
   position: relative;
   .headerBg{
     .member-icon{
-        background: url(/images/pc/pc_02.jpg) no-repeat center center!important;
-        background-size: contain;
+        background: url(/images/pc/mobile_08.png) no-repeat center center!important;
+        background-size: 25px;
         cursor: pointer;
     }
     .cart-icon{
-        background: url(/images/pc/pc_03.jpg) no-repeat center center!important;
+        background: url(/images/pc/mobile_10.png) no-repeat center center!important;
         background-size: 25px;
         cursor: pointer;
     }
     .searchIcon{
-        background: url(/images/pc/pc_05.jpg) no-repeat center center!important;
+        background: url(/images/mobile/pc_05.jpg) no-repeat center center!important;
         background-size: 25px;
         display: block;
         width: 25px;
@@ -311,17 +308,17 @@ export default class InsHeader extends Vue {
   }
   .header-Fixed{
     .member-icon{
-        background: url(/images/pc/pc_02.jpg) no-repeat center center!important;
-        background-size: contain;
+        background: url(/images/pc/mobile_08.png) no-repeat center center!important;
+        background-size: 25px;
         cursor: pointer;
     }
     .cart-icon{
-        background: url(/images/pc/pc_03.jpg) no-repeat center center!important;
+        background: url(/images/pc/mobile_10.png) no-repeat center center!important;
         background-size: 25px;
         cursor: pointer;
     }
     .searchIcon{
-        background: url(/images/pc/pc_05.jpg) no-repeat center center!important;
+        background: url(/images/mobile/pc_05.jpg) no-repeat center center!important;
         background-size: 25px;
         display: block;
         width: 25px;
@@ -342,21 +339,17 @@ export default class InsHeader extends Vue {
    margin-top: 1rem;
  }
 .searchBox{
-    width: 90%;
-    height: 40px;
-    margin: 0 auto;
-    position: absolute;
+    width: 240px;
+    height: 35px;
     overflow: hidden;
-    margin-bottom: 2rem;
     z-index: 1;
     background: #fff;
     border: 1px solid #e0e0e0;
-    left: 50%;
-    transform: translate(-50%);
     border-radius: 2rem;
+    margin-right: 20px;
     input{
         width: calc(100% - 40px);
-        height: 40px;
+        height: 35px;
         text-indent: 1rem;
         border:none;
         float: left;
@@ -375,7 +368,7 @@ export default class InsHeader extends Vue {
             outline: none;
             border:none;
             margin-left: 5px;
-            margin-top: 5px;
+            margin-top: 0px;
             cursor: pointer;
             img{
                 width: 70%;
@@ -400,10 +393,14 @@ export default class InsHeader extends Vue {
       color:#1b1b1b;
     }
 }
+.pageother{
+    background-color: #3d475f;
+    position: relative!important;
+}
 .header-Fixed {
     position: relative;
     width: 100%;
-    background-color:#FFFFFF;
+    background-color:#3d4364;
     position: fixed;
     left: 0;
     top: 0;
@@ -411,31 +408,19 @@ export default class InsHeader extends Vue {
     display:none;
     width: 100%;
     background-size: cover;
-    border-bottom: 1px solid #ebebeb;
-     .navMainbar >ul>li>ul{
-       top: 95%!important;
-       .innerMain{
-         margin-left: 35%!important;
-       }
-     }
   .headerTop{
-      width: 100%;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: flex-end;
-      padding-bottom: 10px;
-      border-bottom: 1px solid #eee;
+        width: 1200px;
+        margin: 0 auto;
+        margin-top: 15px;
+        margin-bottom: 20px;
       .inner{
         display: flex;
         align-items: center;
         justify-content: flex-end;
-        margin-right: 5%;
-        width: 1200px;
-        margin: 0 auto;
         .main-code{
           float: left;
           display: flex;
+          margin-left: 10px;
         }
       }
       .ShareBtn{
@@ -457,7 +442,7 @@ export default class InsHeader extends Vue {
       }
     }
     .logoBox{
-    width: 15%;
+    width: 305px;
     float: left;
     text-align: center;
     display: flex;
@@ -473,7 +458,7 @@ export default class InsHeader extends Vue {
         }
     }
     .fav-icon {
-        background: url('/images/pc/pc_04.jpg') no-repeat center center;
+        background: url('/images/mobile/mobile_28.png') no-repeat center center;
         display: inline-block;
         width: 25px;
         height: 25px;
@@ -492,27 +477,24 @@ export default class InsHeader extends Vue {
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: all 0.3s ease;
-      -o-transition: all 0.3s ease;
-      -webkit-transition: all 0.3s ease;
-      -moz-transition: all 0.3s ease;
-      border-bottom: 3px solid #fff;
   }
   .navMainbar .topa:hover{
-      width: 75%;
       margin: 0 auto;
-      border-bottom: 3px solid #CE352B;
-      span{
-        color: #CE352B;
-      }
+      background: #fff;
+      border-radius: 2px;
   }
   .navMainbar .topa span{
     width: 100%;
     font-size: 18px;
-    color:#666666;
+    color:#fff;
     display: block;
     text-align: center;
     font-weight: 500;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  .navMainbar .topa:hover span{
+      color: @base_color;
   }
   .navMainbar .topa b{
     width: 100%;
@@ -530,16 +512,19 @@ export default class InsHeader extends Vue {
       -o-transition: all 0.3s ease;
       -webkit-transition: all 0.3s ease;
       -moz-transition: all 0.3s ease;
+      padding-top: 10px;
+      padding-bottom: 10px;
   }
   .navMainbar .topb:hover{
-    color:#666666;
+    color:#fff;
+    background: @base_color;
   }
   .navMainbar .topb:hover span{
-     color:#e83428;
+       color:#fff;
   }
   .navMainbar .topb span{
     width: 100%;
-    font-size: 18px;
+    font-size: 16px;
     color:#666666;
     display: block;
     text-align: center;
@@ -564,31 +549,24 @@ export default class InsHeader extends Vue {
   position: relative;
 }
 .headerBg{
-    position: relative;
-    z-index: 999;
-    width: 100%;
-    top: 0px;
-    left: 0px;
-    right: 0px;
-    bottom: 0px;
-    background: #fff;
-    border-bottom: 1px solid #ebebeb;
+  z-index: 999;
+  width: 100%;
+  position:absolute;
+  top:0px;
+  left:0px;
     .headerTop{
-        width: 100%;
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        justify-content: flex-end;
-        padding-bottom: 10px;
-        border-bottom: 1px solid #eee;
+        width: 1200px;
+        margin: 0 auto;
+        margin-top: 15px;
+        margin-bottom: 20px;
         .inner{
           display: flex;
           align-items: center;
           justify-content: flex-end;
-          margin-right: 5%;
           .main-code{
             float: left;
             display: flex;
+            margin-left: 10px;
           }
         }
         .ShareBtn{
@@ -609,7 +587,7 @@ export default class InsHeader extends Vue {
       }
     }
     .logoBox{
-    width: 15%;
+    width:300px;
     float: left;
     text-align: center;
     display: flex;
@@ -625,7 +603,7 @@ export default class InsHeader extends Vue {
         }
     }
     .fav-icon {
-        background: url('/images/pc/pc_04.jpg') no-repeat center center;
+        background: url('/images/mobile/mobile_28.png') no-repeat center center;
         display: inline-block;
         width: 25px;
         height: 25px;
@@ -646,8 +624,8 @@ export default class InsHeader extends Vue {
     position: relative;
     margin-right:10px;
     a{
-      width: 30px;
-      height: 30px;
+      width: 25px;
+      height: 25px;
     }
 }
 .langBox{
@@ -683,28 +661,24 @@ export default class InsHeader extends Vue {
   margin-top: 10px;
 }
 .HeaderNormalBar{
-  width: 90%;
+  width: 1200px;
   margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 .functionBox{
     float: right;
     margin-top: 4.5px;
-    width: 20%;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: center;
     position: relative;
 }
 .navMainbar{
-    width: 55%;
+    width: 100%;
     float:left;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-right: 5%;
+    padding-bottom: 10px;
 }
 .navMainbar >ul{
   width: 100%;
@@ -723,6 +697,7 @@ export default class InsHeader extends Vue {
   align-items: center;
   justify-content: center;
   height: calc(100% - 3px);
+  position: relative;
 }
 .navMainbar >ul>li:hover ul{
   display: block;
@@ -735,26 +710,5 @@ export default class InsHeader extends Vue {
     left: 0px;
     top: 100%;
     background: #fff;
-    border-bottom: 1px solid #ebebeb;
-    border-top: 1px solid #ebebeb;
-    .innerMain{
-      margin-left: 32%;
-      height: 90px;
-      line-height: 90px;
-      display: flex;
-      align-items: center;
-      >li{
-       float: left;
-       margin-right: 20px;
-       border-right: 1px solid #ebebeb;
-       padding-right: 10px;
-       height: 20px;
-       line-height: 20px;
-       &:last-child{
-         border-right: 0px!important;
-       }
-      }
-    }
 }
-
 </style>

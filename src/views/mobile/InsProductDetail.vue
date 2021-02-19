@@ -34,7 +34,7 @@ import YouWouldLike from '@/model/youWouldLike';
 import PanelDetail from '@/model/PanelDetail';
 import inPanel from '@/components/business/mobile/product/InsPanel.vue';
 import inPreview from '@/components/business/mobile/product/InsPreview.vue';
-import ProductSwiper from '@/components/hkTasteBusiness/mobile/product/PkProductSwiper.vue';
+import ProductSwiper from '@/components/hkTasteBusiness/mobile/product/PkProductSwiperN.vue';
 import PkProductDetailCate from '@/components/hkTasteBusiness/mobile/product/HkProductDetailCate.vue';
 import PkProductInfo from '@/components/hkTasteBusiness/mobile/product/PkProductInfo.vue';
 import ProductAttr from '@/model/ProductAttr';

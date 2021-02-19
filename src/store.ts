@@ -61,7 +61,7 @@ export default new Vuex.Store({
     catMenuType: 1, // 菜单产品目录跳转类型（0 => 产品目录，1 => 产品搜索页）
     HomeBanner: null,
     HkPromotion: null,
-    HkHomeNews: null
+    HkLiveBox: null
   },
   mutations: {
     setHomeBanner (state, id) {
@@ -70,8 +70,8 @@ export default new Vuex.Store({
     setHkPromotion (state, id) {
       state.HkPromotion = id;
     },
-    setHkHomeNews (state, id) {
-      state.HkHomeNews = id;
+    setHkLiveBox (state, id) {
+      state.HkLiveBox = id;
     },
     setIds (state, id) {
       state.ids = id;
@@ -201,8 +201,8 @@ export default new Vuex.Store({
     setHkPromotion (context, HkPromotion) {
       context.commit('setHkPromotion', HkPromotion);
     },
-    setHkHomeNews (context, HkHomeNews) {
-      context.commit('setHkHomeNews', HkHomeNews);
+    setHkLiveBox (context, HkLiveBox) {
+      context.commit('setHkLiveBox', HkLiveBox);
     },
     setLang (context, lang) {
       context.commit('setLang', lang);

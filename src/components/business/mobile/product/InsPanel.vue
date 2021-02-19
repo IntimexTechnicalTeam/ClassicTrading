@@ -185,7 +185,7 @@ export default class InsPanel extends Vue {
 }
 .in_panel_warpper .el-input-number{
   box-sizing: border-box;
-  border:1px solid #d9d9d9!important;
+  border:1px solid #838a97!important;
   border-radius: 3px;
 }
 .in_panel_warpper .el-input__inner{
@@ -193,12 +193,22 @@ export default class InsPanel extends Vue {
   box-sizing: border-box;
   width: 4rem;
 }
+.in_panel_warpper .el-input-number__decrease {
+  left:0px!important;
+  border-radius: 0px;
+}
+.in_panel_warpper .el-input-number__increase {
+  right:0px!important;
+  border-radius: 0px;
+}
 .in_panel_warpper .in_num_main .el-input-number__decrease, .in_panel_warpper .in_num_main .el-input-number__increase{
   top: 0px!important;
   width: 3rem!important;
+  background: #838a97!important;
+  color: #fff!important;
 }
 .in_panel_warpper .in_num_main .el-input-number__decrease i, .in_panel_warpper .in_num_main .el-input-number__increase i{
-  color:#333333;
+  color:#fff;
 }
 .in_panel_warpper  .el-input-number{
   width: auto!important;
@@ -218,7 +228,7 @@ export default class InsPanel extends Vue {
   .in_num_warpper{
     margin-top: 1rem;
     .in_num_label{
-      color:#666666;
+      color:#838a97;
     }
   }
   .in_panel_footer {

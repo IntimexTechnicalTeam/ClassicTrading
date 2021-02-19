@@ -290,7 +290,8 @@ export default class InsAdvancedSearch extends Vue {
     span{
       float:right;
       margin-right: 1rem;
-      font-size: 28px;
+      font-size: 35px;
+      color: #3d475f;
       cursor: pointer;
     }
   }

@@ -4,40 +4,32 @@
     <div class="Cmsbg contactMain" v-if="NewcateId=='40112'">
       <transition name="slide">
         <div key="1" v-if="!waiting" style="display:flex;">
-           <div class="DetailTitle"><img :src="ImgList" v-show="ImgList!==null">
-           <div class="innerBox">
-                <div class="TitleBg"><div class="innerBoxText">{{TitleName}}</div></div>
-           </div>
-          </div>
+              <div class="DetailTitle"><img :src="OtherPageImg" v-show="OtherPageImg!==null"><div class="TitleBg"><div class="innerBoxText"><img src="/images/mobile/mobile_37.png">
+              <span class="borderName" :class="{'TextCn':currentlang=='C'}">{{TitleName}}</span></div></div></div>
       </div>
       </transition>
       <transition name="slide">
         <div class="faker" key="2" v-if="waiting" v-loading="true"></div>
       </transition>
       <!-- 表单信息 -->
-      <div class="contactContainer">
-        <div class="contactLeft">
-            <p v-html="content.Body"></p>
-        </div>
-        <div class="contactRight">
-            <p class="TitleName"><span>{{FormTitle}}</span></p>
-            <div v-html="htmlString" class="to_vertical" id="content"></div>
-            <div id="preview" style="display:none;"></div>
-        </div>
-      </div>
-      <div class="CmsMap">
-            <p v-html="MapInfo" class="MapInfo"></p>
+      <div class="innerBox">
+          <div class="CmsContent leftside">
+              <p v-html="content.Body"></p>
+              <p v-html="MapInfo" class="MapInfo"></p>
+          </div>
+          <div class="FormMain rightside">
+              <p class="TitleName"><span>{{FormTitle}}</span></p>
+              <div v-html="htmlString" class="to_vertical" id="content"></div>
+              <div id="preview" style="display:none;"></div>
+          </div>
       </div>
     </div>
     <!-- 其他页面 -->
     <div class="CmsNormal" v-if="NewcateId!='40112'">
       <transition name="slide">
         <div key="1" v-if="!waiting" style="display:flex;">
-           <div class="DetailTitle"><img :src="ImgList" v-show="ImgList!==null">
-           <div class="innerBox">
-                <div class="TitleBg"><div class="innerBoxText">{{TitleName}}</div></div>
-           </div>
-          </div>
+              <div class="DetailTitle"><img :src="OtherPageImg" v-show="OtherPageImg!==null"><div class="TitleBg"><div class="innerBoxText"><img src="/images/mobile/mobile_37.png">
+              <span class="borderName" :class="{'TextCn':currentlang=='C'}">{{TitleName}}</span></div></div></div>
       </div>
       </transition>
       <transition name="slide">
@@ -202,10 +194,10 @@ export default class InsCmsContent extends Vue {
 }
 </script>
 <style lang="less">
-.pcContact .contactRight{
+.pcContact .FormMain{
   #preview{
     width: 80%;
-    float:left;
+    float:right;
     .anwer{
       margin-bottom: 20px;
     }
@@ -216,26 +208,21 @@ export default class InsCmsContent extends Vue {
       border:none;
       margin-right: 20px;
       margin-top: 30px;
-      margin-left: 10px;
-      cursor: pointer;
-      outline: 0;
     }
     .confirm{
-      background: #868f95;
+      background: #333;
       color:#FFF;
       padding:10px 20px 10px 20px;
       border:none;
       margin-top: 30px;
-      cursor: pointer;
-      outline: 0;
     }
   }
 }
 .pcContact{
     .CmsNormal{
       p{
-        font-size: 16px;
-        line-height: 25px;
+        font-size:18px;
+        line-height: 30px;
         color: #333333;
         word-break: break-word;
       }
@@ -262,72 +249,48 @@ export default class InsCmsContent extends Vue {
 }
 .pcContact {
   .contactMain{
-    width:90%;
-    margin: 0 auto;
-    display: flex;
-    flex-wrap: wrap;
-    .contactBox {
-      .text{
-        font-size: 16px;
-        color: #666666;
-        margin-bottom: 40px;
-        text-align: left;
+      width: 100%;
+      display: inline-block;
+    .innerBox{
+      width: 1200px;
+      margin: 0 auto;
+      .leftside{
+        width: 45%;
+        float: left;
+        margin-right: 5%;
       }
-      .title{
-        font-size: 18px;
-        color: #333;
-        margin-bottom: .5rem;
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-        font-weight: 700;
-        text-transform: uppercase;
-        .icon1{
-          background: url('/images/mobile/mobile_07.jpg') no-repeat center center;
-          background-size: contain;
-          width: 30px;
-          height: 30px;
-          display: inline-block;
-          vertical-align:middle;
-          margin-right: .5rem;
-        }
-        .icon2{
-          background: url('/images/mobile/mobile_08.jpg') no-repeat center center;
-          background-size: contain;
-          width: 30px;
-          height: 30px;
-          display: inline-block;
-          vertical-align:middle;
-          margin-right: .5rem;
-        }
-        .icon3{
-          background: url('/images/mobile/mobile_09.jpg') no-repeat center center;
-          background-size: contain;
-          width: 30px;
-          height: 30px;
-          display: inline-block;
-          vertical-align:middle;
-          margin-right: .5rem;
-        }
-        .icon4{
-          background: url('/images/mobile/mobile_10.jpg') no-repeat center center;
-          background-size: contain;
-          width: 30px;
-          height: 30px;
-          display: inline-block;
-          vertical-align:middle;
-          margin-right: .5rem;
+      .rightside {
+        width: 50%;
+        float: left;
+      }
+    }
+    .MapInfo {
+      /deep/ p {
+        img{
+          width: 100%;
         }
       }
     }
-    .lineBottom{
-      width: 100%;
-      height: 2rem;
+    .contactBox {
+      .titleA{
+        font-size: 20px;
+        color:#3d4364;
+        text-align: center;
+        font-weight: 700;
+        margin-bottom: 15px;
+      }
+      .titleB {
+        font-size: 20px;
+        color:#838a97;
+        margin-bottom: 38px;
+        text-align: center;
+      }
     }
   }
 }
 .pcContact .CmsMap .MapInfo{
   width:100%;
+  margin-bottom: 1rem;
   iframe{
     width:100%;
     height: 30rem;
@@ -336,11 +299,11 @@ export default class InsCmsContent extends Vue {
     width:100%;
   }
 }
-.pcContact {
-.contactRight{
+.pcContact .FormMain{
   width:90%;
   margin:0 auto;
   position: relative;
+  padding-top: 3rem;
   .FormTitle{
     font-size: 2.5rem;
     margin-top: 2rem;
@@ -359,14 +322,12 @@ export default class InsCmsContent extends Vue {
   .form-group{
     h4{
       background: #fff;
-      background-size: 100% 100%;
       display: inline-block;
-      height: 2rem;
       text-align: center;
-      line-height: 2rem;
-      font-size: 16px;
+      line-height: 25px;
+      font-size: 20px;
       margin-bottom: .5rem;
-      color:#999;
+      color:#838a97;
       font-weight: 500;
     }
     input[type="text"],input[type="email"]{
@@ -379,17 +340,17 @@ export default class InsCmsContent extends Vue {
       margin-bottom: .5rem;
       text-indent: 1rem;
       outline: none;
-      font-size: 16px;
+      font-size: 20px;
     }
     textarea{
       border:1px solid #e6e6e6;
-      height: 190px;
+      height: 10rem;
       width: 100%;
       box-sizing: border-box;
       border-radius: 3px;
       margin-bottom: .5rem;
       outline: none;
-      font-size:16px;
+      font-size: 20px;
     }
     p[name="error"]{
       color:red;
@@ -397,28 +358,20 @@ export default class InsCmsContent extends Vue {
     }
     .btn-default{
       width: 100%;
-      background: #868f95;
-      border:1px solid #868f95!important;
+      background: #838a97;
+      border:1px solid #838a97!important;
       color:#fff!important;
       height: 50px;
-      line-height: 50px;
+      line-height:50px;
       color:#fff;
       background-size: 100%;
       border:none;
       margin-top: 1rem;
       font-size: 22px;
       margin-bottom: 5rem;
-      border-radius: 2rem;
-      text-transform: uppercase;
-      font-weight: 700;
-      outline: 0;
-      cursor: pointer;
-      &:hover{
-        background: @base_color;
-      }
+      border-radius: .2rem;
     }
   }
-}
 }
 </style>
 <style scoped lang="less">
@@ -431,21 +384,13 @@ export default class InsCmsContent extends Vue {
   position: relative;
   span{
     text-align: left;
-    font-size: 18px;
-    font-weight: 700;
-    color:#333333!important;
-    padding-left: 40px;
+    font-size: 22px!important;
+    color:#3d4364!important;
   }
-  &::before{
-    content: '';
-    width: 30px;
-    height: 30px;
-    background: url('/images/mobile/mobile_11.jpg') no-repeat center center;
-    display: inline-block;
-    margin-right: 1rem;
-    position: absolute;
-    vertical-align: middle;
-  }
+}
+.TextCn{
+  font-size: 2rem!important;
+   letter-spacing: 5px!important;
 }
 .DetailTitle{
   width: 100%;
@@ -454,38 +399,35 @@ export default class InsCmsContent extends Vue {
   position: relative;
   align-items: center;
   justify-content: flex-start;
-  height: 100%;
   img{
     width: 100%;
   }
-  .innerBox{
-    width: 1200px;
-    position: absolute;
-    left: 50%;
-    transform: translate(-50%);
-    height: 100%;
-    z-index: 10;
-  }
   .TitleBg{
-    background: rgba(89,97,100,.5);
+    width: 100%;
+    position: absolute;
+    height: 100%;
     display: flex;
-    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    width: 220px;
-    height: 100%;
     .innerBoxText{
       color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 30px;
-      font-weight: 700;
       font-family: 'Arial';
-      line-height: 3rem;
       text-transform: uppercase;
       text-align: center;
-      padding: 2rem;
+      width: 220px;
+      margin: 0 auto;
+      position: relative;
+      .borderName{
+        position: absolute;
+        bottom: 40%;
+        width: 100%;
+        display: block;
+        font-size: 30px;
+        letter-spacing: 2px;
+      }
+      img{
+        width: 100%;
+      }
     }
   }
 }
@@ -493,22 +435,6 @@ export default class InsCmsContent extends Vue {
   width: 100%;
   display: inline-block;
   background: #FFF;
-}
-.contactContainer{
-  width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  flex-wrap: wrap;
-  margin-top: 50px;
-  .contactLeft{
-    width: 40%;
-    float: left;
-    margin-right: 10%;
-  }
-  .contactRight{
-    width: 50%;
-    float: left;
-  }
 }
 .cmsTitlebg{
     width: 50%;
@@ -537,6 +463,7 @@ export default class InsCmsContent extends Vue {
     background-size: 100% 100%;
     display: inline-block;
     box-sizing: border-box;
+    padding-bottom: 2rem;
     .borderline{
       height:1px;
       width: 100%;
@@ -568,7 +495,7 @@ export default class InsCmsContent extends Vue {
   position: relative;
     width: 1200px;
     margin: 0 auto;
-    padding-top: 2rem;
+    padding-top: 3rem;
     padding-bottom: 2rem;
   .CmsMapImg{
     width: 20%;

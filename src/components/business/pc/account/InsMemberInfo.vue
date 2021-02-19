@@ -278,16 +278,16 @@ export default class InsMemberInfo extends Vue {
     width: 100%!important;
 }
 .MemberPc .el-form .el-radio__input.is-checked .el-radio__inner{
-    border-color: #ce352b;
-    background: #ce352b;
+    border-color: #3d4364;
+    background: #3d4364;
 }
 .MemberPc  .el-radio__input.is-checked+.el-radio__label {
-    color:#ce352b;
+    color:#3d4364;
 }
 .MemberPc .el-form .el-form-item__label{
     width: 100%;
     float: left;
-    color: #999999 !important;
+    color: #838a97 !important;
     padding: 0px;
     padding-right: 10px;
     line-height: inherit;
@@ -299,11 +299,11 @@ export default class InsMemberInfo extends Vue {
     font-size: 16px;
 }
 .MemberPc .el-select .el-input__suffix{
-  color:#ce352b;
+  color:#3d4364;
   right: 10px!important;
 }
 .MemberPc .el-select .el-input .el-select__caret{
-  color:#ce352b!important;
+  color:#3d4364!important;
   font-size: 20px;
 }
 .MemberPc .el-form-item__error{
@@ -335,14 +335,13 @@ export default class InsMemberInfo extends Vue {
   margin-left: 0px!important;
 }
 .MemberInfoMain .el-button{
-    background: #868f95;
+    background: #838a97;
     border: none;
     display: block;
-    border-radius: 20px;
+    border-radius: 5px;
     width: 100%;
     float: left;
     text-transform: uppercase;
-    font-size: 24px;
-    font-weight: 700;
+    font-size: 22px;
 }
 </style>

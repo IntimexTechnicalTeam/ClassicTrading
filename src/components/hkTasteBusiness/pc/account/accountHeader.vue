@@ -80,14 +80,14 @@ ul,li{
     }
 }
 .iconBg{
-    border:1px solid #333;
+    border:1px solid #fff;
     background-size: contain;
     float: left;
     width: 18%;
     text-align: center;
-    padding-top: 15px;
-    padding-bottom: 15px;
-    border-radius: 50px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 5px;
     .innerStyle{
       display: block;
       width: 100%;
@@ -102,7 +102,7 @@ ul,li{
   span{
     width: 100%;
     display: inline-block;
-    color:#333;
+    color:#fff;
     font-size: 18px;
     font-weight: 500;
   }
@@ -125,7 +125,7 @@ ul,li{
     width: 100%;
     display: flex;
     .memberBg{
-      background: url('/images/pc/pc_12.jpg') no-repeat center center;
+      background: url('/images/pc/PersonalCenter.jpg') no-repeat center center;
       background-size: cover;
       box-sizing: border-box;
       display: inline-block;
@@ -137,10 +137,10 @@ ul,li{
         margin: 0 auto;
         .memberCenterTitle{
           font-weight: 700;
-          font-size: 40px;
+          font-size: 30px;
           text-align: center;
-          padding-top: 30px;
-          color:#333;
+          padding-top: 50px;
+          color:#fff;
           text-transform:uppercase;
         }
         .leftside{
@@ -148,8 +148,9 @@ ul,li{
           padding-top: 30px;
           p{
             font-size: 24px;
-            color:#333;
+            color:#fff;
             margin-bottom: 30px;
+            text-align: center;
           }
           a{
             display: inline-block;

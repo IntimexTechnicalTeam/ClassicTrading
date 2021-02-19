@@ -3,9 +3,9 @@
   <div class="footbg">
     <div class="footerMain">
         <div class="footerBotttom">
-          <div class="footerLeft">
+          <div class="footerNav">
               <ul v-for="(n,index) in footerMenus" :key="index">
-                <li v-show="index!==4 && index!==5">
+                <li>
                     <a href="javascript:;" v-if="n.Type === 0" @click="toUrl(n)"><span>{{n.Name}}</span></a>
                     <router-link :to="To(n)"  v-else><span>{{n.Name}}</span></router-link>
                   <ul>
@@ -19,27 +19,32 @@
                 </li>
              </ul>
           </div>
-          <div class="footerRight">
+          <div class="footerBottom">
               <div class="footerLogo">
-                  <p class="headerLogo"><img src="/images/mobile/mobile_23.jpg"></p>
-                  <p class="shareLogo">
-                    <a href="https://www.facebook.com/pibalancehk" target="_blank"><img src="/images/mobile/mobile_25.jpg"></a>
-                    <a href="#" target="_blank"><img src="/images/mobile/mobile_24.jpg"></a>
-                  </p>
+                  <p class="headerLogo"><img src="/images/pc/pclogo.png"></p>
+                  <div class="ContentList">
+                    <ul>
+                        <li v-for="(v,index) in ContentList" :key="index"><router-link :to="'/cms/content/'+v.Id">{{v.Title}}</router-link></li>
+                    </ul>
+                </div>
               </div>
               <div class="footerAccept">
-                <p class="text">{{$t('Message.Weaccept')}}</p>
-                <p><img src="/images/mobile/mobile_26.jpg"></p>
+                  <p class="text">{{$t('Message.Weaccept')}}</p>
+                  <p style="margin-bottom:.5rem"><img src="/images/mobile/mobile_16.jpg"></p>
+                  <p class="text">{{$t('Message.LatestTrends')}}</p>
+                  <div class="LatestTrends">
+                    <a href="" target="_blank"><img src="/images/mobile/mobile_18.jpg"></a>
+                    <a href="" target="_blank"><img src="/images/mobile/mobile_17.jpg"></a>
+                </div>
               </div>
           </div>
         </div>
-        <div class="footercopy">
-          <p class="cpy">
-            <router-link to="/cms/content/20297">{{$t('Message.PrivacyPolicy')}}</router-link>&nbsp;|&nbsp;<router-link to="/cms/content/20298">{{$t('Message.TermsAndConditions')}}</router-link>&nbsp;|&nbsp;
-            <span>Copyright {{currentYear}} © sharpwell limited.powered by Intimex<img src="/images/pc/footerlogo.png"></span>
-           </p>
-        </div>
     </div>
+  </div>
+  <div class="footercopy">
+    <p class="cpy">
+      <span>Copyright {{currentYear}} Classic Trading Company.powered by Intimex<img src="/images/pc/footerlogo.png"></span>
+      </p>
   </div>
 </div>
 
@@ -53,6 +58,9 @@ export default class InsFooterLayout1 extends Vue {
   currentYear: number = 0;
   footerMenus: any[] = [];
   content:string='';
+  currentPage: number = 1; // 当前页
+  pageSize: number = 3; // 每页显示条目个数
+  ContentList:any[]=[];
   goToTop () {
     let sTop = document.documentElement.scrollTop;
     let times = setInterval(() => {
@@ -64,6 +72,17 @@ export default class InsFooterLayout1 extends Vue {
         document.documentElement.scrollTop = sTop;
       }
     }, 1);
+  }
+    getContentsList() {
+    var params = {
+      Key: 'Terms',
+      Page: this.currentPage,
+      PageSize: this.pageSize
+    };
+    this.$Api.cms.getContentsByCatKeyEx(params).then((result) => {
+      this.ContentList = result.Data.slice(0, 3);
+      console.log(this.ContentList, 'this.ContentListthis.ContentList');
+    });
   }
   toUrl (n) {
     if (!n.IsNewWin && n.Url) {
@@ -90,6 +109,7 @@ export default class InsFooterLayout1 extends Vue {
     this.currentYear = date.getFullYear();
     this.getMenu();
     this.getContent();
+    this.getContentsList();
   }
 }
 </script>
@@ -121,9 +141,41 @@ export default class InsFooterLayout1 extends Vue {
 }
 </style>
 <style scoped lang="less">
+        .ContentList{
+          float: left;
+          width: 75%;
+          ul{
+            width: 100%;
+            display: inline-block;
+            li{
+              float: left;
+              width: 32%;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              background: #31394d;
+              height: 40px;
+              margin-right: 2%;
+              border-radius: .3rem;
+              a{
+                color:#cfd6e6;
+                font-size: 16px;
+                width: 100%;
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+              }
+              &:last-child{
+                margin-right: 0px!important;
+              }
+            }
+          }
+        }
 /* 底部文件 */
 .footbg{
-    background: #333333;
+    background: #3d475f;
     background-size: cover;
     width: 100%;
     display: inline-block;
@@ -164,50 +216,54 @@ export default class InsFooterLayout1 extends Vue {
     width: 100%;
     position: relative;
 }
-.footerLeft{
-    float: left;
-    width: 50%;
-}
-.footerLeft > ul{
-    float: left;
-    width: 25%;
-}
-.footerLeft > ul >li{
+.footerNav{
     width: 100%;
-    line-height: 30px;
+    display: inline-block;
 }
-.footerLeft > ul >li >a{
+.footerNav > ul{
+    float: left;
+    width: 10%;
+}
+.footerNav > ul >li{
+    width: 100%;
+    line-height: 20px;
+}
+.footerNav > ul >li >a{
     font-size:16px;
     color:#FFF;
     font-weight: 700;
     text-transform: uppercase;
 }
-.footerLeft > ul >li >ul{
+.footerNav > ul >li >a >span{
+    height: 40px;
+   display: block;
+}
+.footerNav > ul >li >ul{
   width: 100%;
 }
-.footerLeft > ul >li >ul a{
+.footerNav > ul >li >ul a{
     font-size: 14px;
-    color:#b2b2b2;
+    color:#cfd6e6;
     display: inline-block;
+    padding-bottom: 10px;
 }
-.footerLeft > ul >li >ul a:hover{
+.footerNav > ul >li >ul a:hover{
    text-decoration: underline;
    color: #fff;;
 }
-.footerRight{
-  width: 30%;
-  float: left;
-  margin-left: 20%;
+.footerBottom{
+  width: 100%;
+  display: inline-block;
+  margin-top: 50px;
     .footerLogo{
-      width: 90%;
-      margin: 0 auto;
+      width: 40%;
+      float: left;
       display:  flex;
       flex-wrap: wrap;
       .headerLogo{
+        margin-bottom: 20px;
         img{
-          width: 80%;
-          margin: 0 auto;
-          display: block;
+          width:305px;
         }
       }
       .shareLogo{
@@ -228,18 +284,28 @@ export default class InsFooterLayout1 extends Vue {
       }
     }
     .footerAccept{
-      width: 90%;
-      margin: 0 auto;
+      width: 40%;
+      float: right;
       display:  flex;
       flex-wrap: wrap;
       align-items: center;
       justify-content: flex-start;
       .text{
         text-align: left;
-        font-size: 14px;
-        color: #999999;
-        margin-bottom: 1rem;
-        margin-top: 2rem;
+        font-size: 16px;
+        color: #cfd6e6;
+        margin-bottom: .5rem;
+        width: 100%;
+      }
+      .LatestTrends {
+        a {
+          width: 30px;
+          height: 30px;
+          display: inline-block;
+          img{
+            width: 100%;
+          }
+        }
       }
       >p{
         img{
@@ -249,14 +315,14 @@ export default class InsFooterLayout1 extends Vue {
       }
     }
 }
-.footerLeft p{
+.footerNav p{
     width: 100%;
     display: block;
     font-size: 14px;
     color: #fff;
     padding-top: 20px;
 }
-.footerLeft p img{
+.footerNav p img{
     display: inline-block;
     vertical-align: middle;
     padding-left: 10px;
@@ -265,8 +331,10 @@ export default class InsFooterLayout1 extends Vue {
   width: 100%;
   display: inline-block;
   text-align: center;
-  color: #999999;
-  margin-top: 50px;
+  color: #a1b0bc;
+  background: #31394d;
+  padding-top: 20px;
+  padding-bottom: 20px;
   .cpy {
     display: flex;
     align-items: center;

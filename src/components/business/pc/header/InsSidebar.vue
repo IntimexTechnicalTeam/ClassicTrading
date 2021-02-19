@@ -201,12 +201,12 @@ export default class InsSidebar extends Vue {
 }
 #sidebar {
   img {
-    width: 4rem;
+    width: 50px;
   }
   position: fixed;
   right: 0 !important;
   bottom: 60px;
-  width: 4rem;
+  width: 50px;
   // text-align: center;
   z-index: 9999;
   line-height: 0;

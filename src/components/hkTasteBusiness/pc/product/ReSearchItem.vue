@@ -1,6 +1,6 @@
 <template>
     <li class="ReSearchItem">
-          <p class="category">
+          <p class="category" :class="{'openCat':!isOpen}">
           {{searchGroup.Name}}
             <i class="el-icon-arrow-up"  @click="isOpen = !isOpen" v-if="!isOpen"></i>
             <i class="el-icon-arrow-down" @click="isOpen = !isOpen" v-else></i>
@@ -117,13 +117,12 @@ export default class InsAdvancedSearch extends Vue {
         position: relative;
         font-size: 20px;
         text-transform: uppercase;
-        font-weight: 700;
         i{
           position: absolute;
           right: 20px;
           top: 20px;
           font-size: 1.6rem;
-          color:#d72717;
+          color:#3d475f;
           cursor: pointer;
         }
     }
@@ -147,25 +146,26 @@ export default class InsAdvancedSearch extends Vue {
                 -webkit-appearance:none;
                 border: 1px solid #cccccc;
                 outline: none;
+                cursor: pointer;
             }
 
             input[type="checkbox"]:checked {
-                border: 1px solid #d72717;
-                background:#d72717 url('/images/mobile/checked.png'); /*复选框的背景图*/
+                border: 1px solid #3d475f;
+                background:#3d475f url('/images/mobile/checked.png'); /*复选框的背景图*/
                 background-repeat: no-repeat;
                 background-position: center;
                 background-size: 15px;
                 border-radius: 2px;
                 &+label {
-                    color: #333333;
+                    color: #3d475f;
                 }
             }
-
             label {
             font-size: 16px;
             color: #999999;
             width: 90%;
             margin-left: 5px;
+            cursor: pointer;
             }
         }
 
@@ -187,5 +187,12 @@ export default class InsAdvancedSearch extends Vue {
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
+}
+.openCat{
+    background-color:@base_color!important;
+    color:#fff!important;
+    i{
+      color:#fff!important;
+    }
 }
 </style>

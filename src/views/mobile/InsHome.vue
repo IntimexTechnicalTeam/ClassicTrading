@@ -30,12 +30,12 @@ export default class InsHome extends Vue {
     get init () {
     return {
       HkPromotion: this.$store.state.HkPromotion,
-      HkHomeNews: this.$store.state.HkHomeNews
+      HkLiveBox: this.$store.state.HkLiveBox
     };
   }
   @Watch('init', { deep: true })
   onItemsChange (n, o) {
-    if (n.HkPromotion && n.HkHomeNews) {
+    if (n.HkPromotion && n.HkLiveBox) {
       this.$nextTick(() => {
         let wow = new WOW.WOW({
           boxClass: 'wow',

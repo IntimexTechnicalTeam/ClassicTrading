@@ -1,11 +1,5 @@
 <template>
   <div id="container">
-    <div class="ProducBanner">
-      <ProductListSwiper
-        class="innerBanner"
-        :TitleName="$t('product.Producttitle')"
-      />
-    </div>
     <div class="ProductSearch">
       <div class="SearchSlide">
         <div class="leftSide">
@@ -22,7 +16,7 @@
           <li @click="showSearchSlide">
             <b><i class="filterIcon"></i>{{ $t("product.Screening") }}</b>
           </li>
-          <li style="width: 700px;border: none;">
+          <li style="width: 700px;border: none;color:#838a97;">
             {{ $t("product.Total") }} {{ totalRecord }}
             {{ $t("product.Product") }}
           </li>
@@ -244,7 +238,7 @@ export default class InsProductSearch extends Vue {
 </style>
 <style scoped lang="less">
 .filterIcon{
-  background: url('/images/pc/filter.png') no-repeat center center;
+  background: url('/images/mobile/filter.png') no-repeat center center;
   width: 20px;
   height: 20px;
   display: inline-block;
@@ -351,7 +345,7 @@ export default class InsProductSearch extends Vue {
   li {
     float: left;
     margin-right: 4%;
-    border: 1px solid #e6e6e6;
+    border: 1px solid #838a97;
     height: 40px;
     line-height: 40px;
     list-style: none;
@@ -373,7 +367,7 @@ export default class InsProductSearch extends Vue {
       text-align: center;
       font-size: 16px;
       font-weight: 500;
-      color: #999999;
+      color: #838a97;
       align-items: center;
       justify-items: center;
     }
@@ -387,11 +381,11 @@ export default class InsProductSearch extends Vue {
       -webkit-appearance: none;
       -moz-appearance: none;
       appearance: none;
-      background: url(/images/mobile/mobile_04.jpg) 98% 10px no-repeat;
-      background-size: auto;
+      background: url(/images/mobile/baseIcon.png) 98% 10px no-repeat;
+      background-size: 15px;
       outline: none;
       cursor: pointer;
-      color:#333;
+      color:#838a97;
     }
     &:last-child {
       margin-right: 0px !important;

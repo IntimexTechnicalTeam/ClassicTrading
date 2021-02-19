@@ -1,20 +1,20 @@
 <template>
   <div class="liveBox mobileVersion">
     <div class="AboutUs"  :style="{'background-image': 'url('+ImagePath+')'}">
-        <p class="AboutTitle"><img src="/images/mobile/mobile_26.png"><span :class="{'TextCn':currentlang=='C'}">{{AboutName}}</span></p>
-        <p class="AboutContent" v-html="AboutContent"></p>
-        <router-link to="/CMS/content/20295" class="learnMore">{{$t('Message.ViewDetail')}}</router-link>
+        <p class="AboutTitle wow fadeIn" data-wow-delay="0.3s"><img src="/images/mobile/mobile_26.png"><span :class="{'TextCn':currentlang=='C'}">{{AboutName}}</span></p>
+        <p class="AboutContent wow fadeIn" v-html="AboutContent"  data-wow-delay="0.3s"></p>
+        <router-link to="/CMS/content/20295" class="learnMore wow fadeIn" data-wow-delay="0.3s">{{$t('Message.ViewDetail')}}</router-link>
     </div>
     <div class="liveBox_in">
-        <div class="fbcontent">
+        <div class="fbcontent wow fadeInLeftBig"  data-wow-delay="0.3s">
            <p v-html="videoContent"></p>
         </div>
-        <div class="fbcontent">
+        <div class="fbcontent wow fadeInRightBig"  data-wow-delay="0.3s">
            <p v-html="fbContent"></p>
         </div>
     </div>
-    <p class="ProductTitle"><img src="/images/mobile/mobile_07.png"><span :class="{'TextCn':currentlang=='C'}">{{CatName}}</span></p>
-    <div class="contactMain">
+    <p class="ProductTitle wow fadeIn" data-wow-delay="0.3s"><img src="/images/mobile/mobile_07.png"><span :class="{'TextCn':currentlang=='C'}">{{CatName}}</span></p>
+    <div class="contactMain wow fadeIn" data-wow-delay="0.3s">
         <p v-html="contactContent.Body"></p>
     </div>
     <div class="MapInfo">
@@ -61,6 +61,7 @@ export default class PkLiveBox extends Vue {
       this.AboutContent = result.Content;
       this.AboutName = result.Name;
       this.ImagePath = result.ImagePath;
+      this.$store.dispatch('setHkLiveBox', this.AboutName);
     }).catch((error) => {
       this.$message({
         message: error,

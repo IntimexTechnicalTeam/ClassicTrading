@@ -38,7 +38,7 @@ import inYouWouldLike from '@/components/business/pc/product/InsYouWouldLike.vue
 import YouWouldLike from '@/model/youWouldLike';
 import PanelDetail from '@/model/PanelDetail';
 import inPanel from '@/components/hkTasteBusiness/pc/product/InsPanel.vue';
-import inPreview from '@/components/business/pc/product/InsPreview.vue';
+import inPreview from '@/components/business/pc/product/InsPreviewN.vue';
 import inProductUpOrDown from '@/components/business/pc/product/InsProductUpOrDown.vue';
 import ProductAttr from '@/model/ProductAttr';
 import Tab from '@/model/Tab';

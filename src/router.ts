@@ -56,6 +56,12 @@ export const pRoutes = [
           import(/* webpackChunkName: "product" */ './views/pc/InsProductCat.vue')
       },
       {
+        path: '/product/brands',
+        name: 'product',
+        component: () =>
+          import(/* webpackChunkName: "product" */ './components/hkTasteBusiness/pc/product/HkBrands.vue')
+      },
+      {
         path: '/cms/content/:id',
         name: 'cmsContent',
         component: () =>
@@ -358,6 +364,12 @@ export const mRoutes = [
         name: 'productCat',
         component: () =>
           import(/* webpackChunkName: "product" */ './views/mobile/InsProductCat.vue')
+      },
+      {
+        path: '/product/brands',
+        name: 'product',
+        component: () =>
+          import(/* webpackChunkName: "product" */ './components/hkTasteBusiness/mobile/product/HkBrands.vue')
       },
       // 会员中心路由开始
       {
