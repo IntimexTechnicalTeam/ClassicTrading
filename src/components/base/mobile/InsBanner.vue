@@ -3,7 +3,7 @@
     <transition name="slide">
       <div key="1" v-if="!waiting" style="display:flex;">
         <div class="header-index">
-          <swiper :options="swiperOption" v-if="bannerList.length>0 && initSwiper" class="swiperBoxMain">
+          <swiper :options="swiperOption" v-if="bannerList.length>0 && initSwiper" class="swiperBoxMain" @slideChangeTransitionEnd="slideChangeTransitionEnd">
             <!-- slides -->
             <swiperSlide
               v-for="(slide, index) in bannerList"
@@ -72,6 +72,17 @@ export default class InsBanner extends Vue {
       prevEl: '.swiper-button-prev'
     }
   };
+    showFirstSlide () {
+    let _this = this;
+    setTimeout(() => {
+      $('.swiper-slide').eq(0).find('.BottomText').animate({ 'bottom': '25%', 'opacity': '1' }, 1500, 'linear');
+    }, 1500);
+  }
+  slideChangeTransitionEnd () {
+    $('.swiper-slide-next').find('.BottomText').css({ 'bottom': '25%', 'opacity': '0' });
+    $('.swiper-slide-prev').find('.BottomText').css({ 'bottom': '25%', 'opacity': '0' });
+    $('.swiper-slide-active').find('.BottomText').animate({ 'bottom': '25%', 'opacity': '1' }, 1500, 'linear');
+  }
   getBanner () {
     let _this = this;
     sdk.api.promotion.getHeaderBanner(this.page).then(
@@ -117,6 +128,7 @@ export default class InsBanner extends Vue {
         }
       }
     }
+     this.showFirstSlide();
   }
 }
 </script>
@@ -157,6 +169,7 @@ export default class InsBanner extends Vue {
     width: 100%;
     margin-top: 1rem;
     bottom: 25%;
+    opacity: 0;
     .T1{
       text-align: center;
       color: #fff;

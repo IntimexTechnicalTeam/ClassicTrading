@@ -2,13 +2,16 @@
 <div class="in_panel_header">
     <div class="p-name-box">
       <p style="width: 88%;">{{panelDetail.Name}}</p>
-      <div class="in_pannel_addtofav"><img :src="panelDetail.IsFavorite ? '/images/mobile/mobile_03.jpg': '/images/mobile/mobile_29.jpg'" @click="addFavorite"/></div>
+      <div class="in_pannel_addtofav"><img :src="panelDetail.IsFavorite ? '/images/mobile/mobile_01.png': '/images/mobile/mobile_25.png'" @click="addFavorite"/></div>
     </div>
     <div class="in_panel_subTitle"><inPrices :primePrices="panelDetail.ListPrice+AddPrice" :currentPrices="panelDetail.SalePrice+AddPrice"  :currency="panelDetail.Currency" size="huge" :heightLine="true" styla="margin: 1rem 0;" :max="panelDetail.MaxPurQty" :min="panelDetail.MinPurQty"></inPrices></div>
     <div class="in_unitInfo" v-if="panelDetail.UnitInfo.Desc!==null">{{$t('product.Unit')}}:{{panelDetail.UnitInfo.Desc}}</div>
     <div class="in_panel_product">
         <div class="ProductCode">
-            <div class="leftpart">{{$t("product.ProductCode")}}:{{panelDetail.Code}}</div>
+            <div class="leftpart">
+              <div class="ProductRate"><Rate  v-model="panelDetail.Score" disabled  disabled-void-color="#ffbb07" disabled-void-icon-class="el-icon-star-off"></Rate></div>
+              <p>{{$t("product.ProductCode")}}:{{panelDetail.Code}}</p>
+            </div>
             <div class="rightpart"><HkProductShare></HkProductShare></div>
         </div>
     </div>
@@ -19,7 +22,8 @@ import { Vue, Prop, Component, Watch } from 'vue-property-decorator';
 import PanelDetail from '@/model/PanelDetail';
 import inPrices from '@/components/base/pc/InsPrices.vue';
 import HkProductShare from '@/components/hkTasteBusiness/pc/product/HkProductShare.vue';
-@Component({ components: { inPrices, HkProductShare } })
+import { Rate } from 'element-ui';
+@Component({ components: { inPrices, HkProductShare, Rate } })
 export default class PkProductInfo extends Vue {
   @Prop() private readonly panelDetail!: PanelDetail;
   @Prop() private readonly ProductSku!: string;
@@ -86,7 +90,7 @@ export default class PkProductInfo extends Vue {
 .p-name-box p {
     width: 100%;
     color: #333333;
-    font-size: 26px;
+    font-size: 22px;
     line-height: 26px;
     overflow: hidden;
     -webkit-box-orient: vertical;
@@ -111,29 +115,33 @@ export default class PkProductInfo extends Vue {
 }
 .in_panel_product{
     width: 100%;
-    padding-bottom: 40px;
+    display: inline-block;
     border-bottom: 1px solid #e0e0e0;
-    padding-top: 30px;
-    margin-bottom: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .in_panel_product .ProductCode{
     width: 100%;
     display: block;
+    color: #838a97;
 }
 .in_panel_product .ProductCode .leftpart{
     width: 60%;
     float: left;
     font-size: 16px;
-    word-break: break-all;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    padding-top: 0.5rem;
+    padding-bottom: 10px;
     color:#b2b2b2;
+}
+.in_panel_product .ProductCode .leftpart{
+  .ProductRate{
+    width: 100%;
+    display: block;
+  }
+  p{
+    width: 100%;
+    display: block;
+  }
 }
 .in_panel_product .ProductCode .rightpart{
     width: 40%;

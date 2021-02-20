@@ -231,8 +231,6 @@ export default class InsFooterLayout1 extends Vue {
 .footerNav > ul >li >a{
     font-size:16px;
     color:#FFF;
-    font-weight: 700;
-    text-transform: uppercase;
 }
 .footerNav > ul >li >a >span{
     height: 40px;

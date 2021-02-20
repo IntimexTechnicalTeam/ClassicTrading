@@ -414,15 +414,17 @@ export default class InsCmsContent extends Vue {
       font-family: 'Arial';
       text-transform: uppercase;
       text-align: center;
-      width: 220px;
       margin: 0 auto;
       position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       .borderName{
         position: absolute;
         bottom: 40%;
-        width: 100%;
         display: block;
         font-size: 30px;
+        white-space: nowrap;
         letter-spacing: 2px;
       }
       img{

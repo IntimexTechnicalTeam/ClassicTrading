@@ -38,7 +38,7 @@ ul,li{
     margin-top: 30px;
 }
 .cateName{
-  color: #333333;
+  color: #838a97;
   font-weight: 700;
   font-size: 16px;
 }
@@ -65,16 +65,15 @@ ul,li{
 }
 .detail-select-attribute .common-select li{
     display: inline-block;
-    background-color: #fff;
-    color: #999999;
+    background-color: #838a97;
+    color: #fff;
     font-size: 16px;
     height: 40px;
     line-height: 40px;
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding-left: 10px;
+    padding-right: 10px;
     border-radius: 3px;
-    border:1px solid #cccccc;
-    min-width: 150px;
+    min-width: 100px;
     text-align: center;
 }
 </style>

@@ -1,6 +1,7 @@
 <template>
   <div id="container">
-    <div class="DetailTitle"><img :src="ImgList" v-show="ImgList!==null"><div class="TitleBg"><div class="innerBoxText">{{$t('Forgetpassword.ForgetPassword')}}</div></div></div>
+    <div class="DetailTitle"><img :src="ImgList" v-show="ImgList!==null"><div class="TitleBg"><div class="innerBoxText"><img src="/images/mobile/mobile_37.png">
+              <span class="borderName" :class="{'TextCn':currentlang=='C'}">{{$t('Forgetpassword.ForgetPassword')}}</span></div></div></div>
     <div class="ForgetPassMain">
       <div style="margin-top: 15px;" v-if="ResetPwd">
         <h2 class="ResetPwdTips">{{$t('Forgetpassword.ResetPwdTips')}}</h2>
@@ -60,13 +61,16 @@ import { Form as ElForm, Input as ElInput, Message, FormItem, Button as ElBotton
 })
 export default class InsForgetPassword extends Vue {
   ResetPwd: boolean = true;
-  ImgList:string='/images/mobile/mobile_06.jpg';
+  ImgList:string='/images/mobile/mobile_02.jpg';
   ruleForm: any = {
     UserEmail: ''
   };
   ResetReturn () {
     this.ResetPwd = !this.ResetPwd;
     this.ruleForm.UserEmail = '';
+  }
+  get currentlang () {
+    return this.$Storage.get('locale');
   }
   get rules () {
     return {
@@ -138,27 +142,34 @@ export default class InsForgetPassword extends Vue {
     width: 100%;
   }
   .TitleBg{
-    width: 42%;
+    width: 100%;
     position: absolute;
-    left: 5%;
     height: 100%;
-    background: rgba(89,97,100,.5);
     display: flex;
-    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
     .innerBoxText{
       color: #fff;
+      font-family: 'Arial';
+      text-transform: uppercase;
+      text-align: center;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.8rem;
-      font-weight: 700;
-      font-family: 'Arial';
-      line-height: 3rem;
-      text-transform: uppercase;
-      text-align: center;
-      padding: 2rem;
+      margin: 0 auto;
+      position: relative;
+       width: 40%;
+      .borderName{
+        position: absolute;
+        bottom: 40%;
+        white-space: nowrap;
+        display: block;
+        font-size: 1.8rem;
+        letter-spacing: 2px;
+      }
+      img{
+        width: 100%;
+      }
     }
   }
 }

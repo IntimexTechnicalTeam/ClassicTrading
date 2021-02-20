@@ -33,5 +33,9 @@ export default class HkProductShare extends Vue {
 .productshare_icon_warpper img {
   width: 40px;
   cursor: pointer;
+  opacity: .6;
+}
+.productshare_icon_warpper img:hover {
+    opacity:1;
 }
 </style>

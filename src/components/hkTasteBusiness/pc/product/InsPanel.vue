@@ -174,9 +174,10 @@ export default class Panel extends Vue {
   margin-right: 1rem;
 }
 .PcVersion  .el-input-number{
-  border:1px solid #d9d9d9!important;
+  border:1px solid #838a97!important;
   box-sizing: border-box;
   border-radius: 3px;
+  width: 150px;
 }
 .PcVersion  .el-input__inner{
   border:none!important;
@@ -186,17 +187,25 @@ export default class Panel extends Vue {
 .PcVersion  .el-input-number__decrease,.PcVersion .el-input-number__increase{
     width: 2rem !important;
     top:0px!important;
-    background: #ffffff!important;
+    background: #838a97!important;
+  }
+  .PcVersion  .el-input-number__decrease {
+    left: 0px!important;
+    border-radius: 0px;
+  }
+  .PcVersion  .el-input-number__increase {
+    right: 0px!important;
+    border-radius: 0px;
   }
 .PcVersion .el-input-number__decrease i, .el-input-number__increase i{
-  color:#e83428;
+  color:#FFF;
   font-weight: 700;
 }
 .PcVersion .el-input-number .el-input__inner{
     padding-left: 40px;
     padding-right: 40px;
     background: transparent!important;
-    width: 180px!important;
+    width: 150px!important;
     line-height: 2rem!important;
     height: 2rem!important;
     color: #333333 !important;
@@ -208,7 +217,7 @@ export default class Panel extends Vue {
   display: block!important;
   .in_num_label{
     display: block;
-    color:#333333;
+    color:#838a97;
     font-weight: 700;
   }
 }
@@ -308,8 +317,8 @@ export default class Panel extends Vue {
         display: inline-flex;
         justify-content: center;
         align-items: center;
-        border: 1px solid #333333;
-        background-color: #333333;
+        border: 1px solid #3d475f;
+        background-color: #3d475f;
         color: #fff;
         border-radius: 3px;
         transition: .1s;
@@ -318,8 +327,8 @@ export default class Panel extends Vue {
           transform: translateY(-3px);
         }
         &:first-child {
-          background-color: unset;
-          color: #333333;
+          background: #838a97!important;
+          border: 1px solid #838a97;
           margin-right: 4%;
         }
       }

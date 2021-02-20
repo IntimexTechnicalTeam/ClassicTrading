@@ -239,6 +239,7 @@
     min-height: 23rem;
     padding: 10px;
     transition: all .3s;
+    z-index: 0;
   }
   .in_pdWindow_page_item:hover {
       border:1px solid #c2c7d1;

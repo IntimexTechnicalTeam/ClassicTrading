@@ -1,10 +1,7 @@
 <template>
   <div id="container">
-    <div class="DetailTitle"><img :src="ImgList" v-show="ImgList!==null">
-      <div class="innerBox">
-          <div class="TitleBg"><div class="innerBoxText">{{$t('Forgetpassword.ForgetPassword')}}</div></div>
-      </div>
-    </div>
+    <div class="DetailTitle"><img :src="ImgList" v-show="ImgList!==null"><div class="TitleBg"><div class="innerBoxText"><img src="/images/mobile/mobile_37.png">
+              <span class="borderName" :class="{'TextCn':currentlang=='C'}">{{$t('Forgetpassword.ForgetPassword')}}</span></div></div></div>
     <div class="maincontent forgetMain">
     <div class="ForgetPassMain">
       <div style="margin-top: 15px;" v-if="ResetPwd">
@@ -66,7 +63,7 @@ import { Form as ElForm, Input as ElInput, Message, FormItem, Button as ElButton
 })
 export default class InsForgetPassword extends Vue {
   ResetPwd: boolean = true;
-  ImgList:string='/images/pc/pc_01.jpg';
+  ImgList:string='/images/pc/About-Us_02.jpg';
   ruleForm: any = {
     UserEmail: ''
   };
@@ -89,6 +86,9 @@ export default class InsForgetPassword extends Vue {
         }
       ]
     };
+  }
+  get currentlang () {
+    return this.$Storage.get('locale');
   }
   // 检查表单
   SubmitForm (ruleForm) {
@@ -140,38 +140,37 @@ export default class InsForgetPassword extends Vue {
   position: relative;
   align-items: center;
   justify-content: flex-start;
-  height: 100%;
   img{
     width: 100%;
   }
-  .innerBox{
-    width: 1200px;
-    position: absolute;
-    left: 50%;
-    transform: translate(-50%);
-    height: 100%;
-    z-index: 10;
-  }
   .TitleBg{
-    background: rgba(89,97,100,.5);
+    width: 100%;
+    position: absolute;
+    height: 100%;
     display: flex;
-    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    width: 220px;
-    height: 100%;
     .innerBoxText{
       color: #fff;
+      font-family: 'Arial';
+      text-transform: uppercase;
+      text-align: center;
+      margin: 0 auto;
+      position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 30px;
-      font-weight: 700;
-      font-family: 'Arial';
-      line-height: 3rem;
-      text-transform: uppercase;
-      text-align: center;
-      padding: 2rem;
+      .borderName{
+        position: absolute;
+        bottom: 40%;
+        display: block;
+        font-size: 30px;
+        white-space: nowrap;
+        letter-spacing: 2px;
+      }
+      img{
+        width: 100%;
+      }
     }
   }
 }

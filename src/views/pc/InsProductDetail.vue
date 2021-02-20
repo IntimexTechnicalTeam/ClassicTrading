@@ -5,7 +5,6 @@
       <inPreview style="width:50%" :imgList="ImgList" :pageNum="userAgent === 'mobile' ?  1 : 4"></inPreview>
       <div style="width:45%;margin-left:5%;float:right;">
           <PkProductInfo :panelDetail.sync="PanelDetail"  :ProductSku="ProductCode" width="100%" :AddPrice="getNewsPrice" style="margin-top:3rem;"></PkProductInfo>
-          <div class="ProductRate"><Rate  v-model="Score" disabled  disabled-void-color="#ffbb07" disabled-void-icon-class="el-icon-star-off"></Rate></div>
           <PkProductDetailCate :source="ExtAttrList" :cateTree="CatalogTree"  width="100%"></PkProductDetailCate>
           <inPanel :panelDetail.sync="PanelDetail" :ProductSku="ProductCode" @getPrice="showPrice" width="100%"></inPanel>
       </div>
@@ -46,7 +45,6 @@ import inComments from '@/components/business/pc/product/InsComments.vue';
 import PkProductDetailCate from '@/components/hkTasteBusiness/pc/product/HkProductDetailCate.vue';
 import PkProductInfo from '@/components/hkTasteBusiness/pc/product/PkProductInfo.vue';
 import ProductListSwiper from '@/components/hkTasteBusiness/pc/product/HkProductListSwiper.vue';
-import { Rate } from 'element-ui';
 @Component({ components: {
   inPreview,
   inPanel,
@@ -56,8 +54,7 @@ import { Rate } from 'element-ui';
   inProductUpOrDown,
   PkProductDetailCate,
   PkProductInfo,
-  ProductListSwiper,
-  Rate
+  ProductListSwiper
 } })
 export default class InsProductDetail extends Vue {
   private Slider: YouWouldLike[] = [];
@@ -156,21 +153,21 @@ export default class InsProductDetail extends Vue {
 }
 .PcVersion .productDetail_container {
   .currentPricesMain{
-     display: inline-block;
+     display: block;
     .huge{
       display: inline-block;
       &:nth-child(1){
-        font-size: 24px;
-        color:#e83428;
+        font-size: 22px;
+        color:#3d475f;
       }
       &:nth-child(2){
-        font-size:24px;
-        color:#e83428;
+        font-size:22px;
+        color:#3d475f;
       }
     }
   }
   .primePricesMain{
-    display: inline-block;
+    display: block;
     margin-right: 10px;
     .huge{
       display: inline-block;
@@ -221,13 +218,13 @@ export default class InsProductDetail extends Vue {
     margin-top: 100px;
 }
 .isActive{
-  color:#393d40!important;
+  color:#3d475f!important;
   position: relative;
   &::after{
     content: '';
-    width: 60px;
-    background: #e83428;
-    height: 3px;
+    width: 180px;
+    background: url('/images/pc/productLine.png') no-repeat center center;
+    height: 10px;
     display: block;
     position: absolute;
     left: 50%;
@@ -264,7 +261,6 @@ export default class InsProductDetail extends Vue {
       width: 1160px;
       margin:0 auto;
       background: #fff;
-      border: 1px solid #e0e0e0;
       min-height: 20rem;
       border-radius: 3px;
       margin-top: 1rem;
