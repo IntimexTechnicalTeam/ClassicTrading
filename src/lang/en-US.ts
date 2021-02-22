@@ -50,7 +50,9 @@ export default {
     HotCategories: 'Hot Categories',
     LatestTrends: 'Latest Trends',
     MoreProducts: 'More',
-    KeyWords:'Please Enter Key Words'
+    KeyWords:'Please Enter Key Words',
+    AllBrands:'All Brands',
+    Close:'Close'
   },
   RegNPay: {
     BackText: 'Back',

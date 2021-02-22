@@ -9,17 +9,17 @@
       /></a>
       <span v-show="show">
         <a
-          href="https://api.whatsapp.com/send?phone=85224988830&text=%E6%88%91%E6%83%B3%E6%9F%A5%E8%AF%A2%E4%B8%80%E4%B8%8B"
+          href="https://api.whatsapp.com/send?phone=85269066696&text=%E6%88%91%E6%83%B3%E6%9F%A5%E8%AF%A2%E4%B8%80%E4%B8%8B"
           target="_blank"
           ><img src="/images/mobile/mobile_31.png"
         /></a>
         <a href="javascript:;" class="livechat" @click="showLivechat"
           ><img src="/images/mobile/mobile_32.png"
         /></a>
-        <a href="tel:85224988830" class="fb-button" target="_blank"
+        <a href="tel:85269066696" class="fb-button" target="_blank"
           ><img src="/images/mobile/mobile_33.png"
         /></a>
-        <a href="mailto:johnlite@johnlite.com" class="fb-button"
+        <a href="mailto:info@classictradinghk.com" class="fb-button"
           ><img src="/images/mobile/mobile_34.png"
         /></a>
       </span>
@@ -31,7 +31,7 @@
         <div class="ctrlq fb-close"></div>
         <div
           class="fb-page"
-          data-href="https://www.facebook.com/pibalancehk"
+          data-href="https://www.facebook.com/%E5%98%89%E7%9B%9B%E8%B2%BF%E6%98%93%E5%85%AC%E5%8F%B8-103998348407624"
           data-tabs="messages"
           data-width="360"
           data-height="400"
@@ -40,19 +40,19 @@
           data-show-facepile="false"
         >
           <blockquote
-            cite="https://www.facebook.com/pibalancehk"
+            cite="https://www.facebook.com/%E5%98%89%E7%9B%9B%E8%B2%BF%E6%98%93%E5%85%AC%E5%8F%B8-103998348407624"
             class="fb-xfbml-parse-ignore"
           ></blockquote>
         </div>
         <div class="fb-credit">
-          <a href="https://www.facebook.com/pibalancehk" target="_blank"
-            >Facebook Chat Widget by  sharpwell limited</a
+          <a href="https://www.facebook.com/%E5%98%89%E7%9B%9B%E8%B2%BF%E6%98%93%E5%85%AC%E5%8F%B8-103998348407624" target="_blank"
+            >Facebook Chat Widget by   Classic Trading Company.</a
           >
         </div>
         <div id="fb-root"></div>
       </div>
       <a
-        href="https://www.facebook.com/pibalancehk"
+        href="https://www.facebook.com/%E5%98%89%E7%9B%9B%E8%B2%BF%E6%98%93%E5%85%AC%E5%8F%B8-103998348407624"
         title="Send us a message on Facebook"
         class="ctrlq fb-button"
       ></a>

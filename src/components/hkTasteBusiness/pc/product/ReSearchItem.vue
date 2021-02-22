@@ -8,12 +8,12 @@
           <transition name="fade">
           <ul :class="{'open': isOpen}">
             <li>
-                <input type="checkbox" id="All" v-model="isAll" @click="checkAll($event,searchGroup)">
-                <label for="All">{{$t('Message.All')}}</label>
+                <input type="checkbox" :id="searchGroup.Name+'-All'" v-model="isAll" @click="checkAll($event,searchGroup)">
+                <label :for="searchGroup.Name+'-All'">{{$t('Message.All')}}</label>
             </li>
             <li v-for="(child, index2) in (searchType === 1 ? searchGroup.AttrValues : searchType === 2 ? searchGroup.Children : [])" :key="index2">
-                <input type="checkbox" :id="index2" :value="child.Id" v-model="checkedValue" @click="selectAttr(searchGroup)">
-                <label :for="index2">{{child.Name}}</label>
+                <input type="checkbox" :id="child.Name+index2" :value="child.Id" v-model="checkedValue" @click="selectAttr(searchGroup)">
+                <label :for="child.Name+index2">{{child.Name}}</label>
             </li>
             <!-- <i class="el-icon-plus" @click="isOpen = !isOpen" v-if="!isOpen"></i>
             <i class="el-icon-minus" @click="isOpen = !isOpen" v-else></i> -->

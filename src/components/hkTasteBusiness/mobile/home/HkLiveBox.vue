@@ -6,9 +6,9 @@
         <router-link to="/CMS/content/20295" class="learnMore wow fadeIn" data-wow-delay="0.3s">{{$t('Message.ViewDetail')}}</router-link>
     </div>
     <div class="liveBox_in">
-        <div class="fbcontent wow fadeInLeftBig"  data-wow-delay="0.3s">
+        <!-- <div class="fbcontent wow fadeInLeftBig"  data-wow-delay="0.3s">
            <p v-html="videoContent"></p>
-        </div>
+        </div> -->
         <div class="fbcontent wow fadeInRightBig"  data-wow-delay="0.3s">
            <p v-html="fbContent"></p>
         </div>

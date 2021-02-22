@@ -2,11 +2,11 @@
     <div class="InsAdvancedSearch">
        <p class="resetTitle">{{$t('product.Screening')}}<span class="el-icon-close" @click="closeSub"></span></p>
        <p class="resetAll" @click="resetAll">{{$t('product.Resetall')}}</p>
+        <ul class="attrSearch" v-if="init">
+          <ReSearchItem v-for="(attr, index) in attrList" :key="index" :searchGroup="attr" :defaultSelected="deAttrGIds.indexOf(attr.Id) !== -1 ? selectedAttrs[deAttrGIds.indexOf(attr.Id)].Vals : []"  @changeSelect="changeAttrSelect" />
+        </ul>
         <ul class="catSearch" v-if="init">
           <ReSearchItem v-for="(cat, index) in catalogs" :key="index" :searchGroup="cat" :defaultSelected="deCatGIds.indexOf(cat.Id) !== -1 ? selectedCats[deCatGIds.indexOf(cat.Id)].Vals : []" :searchType="2"  @changeSelect="changeCatSelect" />
-        </ul>
-        <ul class="attrSearch" v-if="init" style="display: none;">
-          <ReSearchItem v-for="(attr, index) in attrList" :key="index" :searchGroup="attr" :defaultSelected="deAttrGIds.indexOf(attr.Id) !== -1 ? selectedAttrs[deAttrGIds.indexOf(attr.Id)].Vals : []"  @changeSelect="changeAttrSelect" />
         </ul>
     </div>
 </template>
@@ -22,7 +22,7 @@ export interface attrItem {
   }
 })
 export default class InsAdvancedSearch extends Vue {
-    @Prop({ default: 0 }) private attrType!: number; // 产品属性数据类型（0 => 所有属性， 1 => 仅库存属性， 2 => 仅非库存属性）
+    @Prop({ default: 2 }) private attrType!: number; // 产品属性数据类型（0 => 所有属性， 1 => 仅库存属性， 2 => 仅非库存属性）
 
     attrList: any[] = []; // 产品属性数据
     catalogs: any[] = []; // 产品目录数据

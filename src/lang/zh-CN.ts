@@ -49,7 +49,9 @@ export default {
     HotCategories: '熱門分類',
     LatestTrends: '最新動態',
     MoreProducts: '更多產品',
-    KeyWords: '請輸入關鍵字'
+    KeyWords: '請輸入關鍵字',
+    AllBrands: '所有品牌',
+    Close: '關閉'
   },
   Account: {
     MemberCenter: '會員中心',

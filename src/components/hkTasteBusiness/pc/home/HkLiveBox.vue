@@ -10,7 +10,7 @@
             <p v-html="fbContent" ></p>
         </div>
         <div class="videoContent wow fadeInRightBig" data-wow-delay="0.3s" >
-            <p v-html="videoContent"></p>
+            <!-- <p v-html="videoContent"></p> -->
              <p class="ProductTitle"><img src="/images/mobile/mobile_07.png"><span :class="{'TextCn':currentlang=='C'}">{{CatName}}</span></p>
             <div class="contactMain wow fadeIn" data-wow-delay="0.3s">
               <p v-html="contactContent.Body"></p>

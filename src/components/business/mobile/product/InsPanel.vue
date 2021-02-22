@@ -213,7 +213,7 @@ export default class InsPanel extends Vue {
 .in_panel_warpper  .el-input-number{
   width: auto!important;
 }
-.in_panel_warpper .el-input-number .el-input__inner{
+.mobileWarper .el-input-number .el-input__inner{
   padding-left: 0rem;
   padding-right: 0rem;
   background: transparent!important;

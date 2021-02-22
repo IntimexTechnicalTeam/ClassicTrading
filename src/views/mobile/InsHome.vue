@@ -3,6 +3,7 @@
     <HomeBanner :initOptions="swiperOption" :page="'Home'" :initSwiper="true" class="banner" />
     <HkPromotion />
     <HkLiveBox />
+    <cmx-pop-up v-show="showPopUP" @agree="agree"></cmx-pop-up>
   </div>
 </template>
 
@@ -14,10 +15,12 @@ import WOW from 'wowjs';
   components: {
     HomeBanner: () => import('@/components/base/mobile/InsBanner.vue'),
     HkPromotion: () => import('@/components/hkTasteBusiness/mobile/home/HkPromotion.vue'),
-    HkLiveBox: () => import('@/components/hkTasteBusiness/mobile/home/HkLiveBox.vue')
+    HkLiveBox: () => import('@/components/hkTasteBusiness/mobile/home/HkLiveBox.vue'),
+    CmxPopUp: () => import('@/components/hkTasteBusiness/mobile/home/CmxPopUp.vue')
   }
 })
 export default class InsHome extends Vue {
+  showPopUP:boolean=false;
   swiperOption: object = {
     autoplay: {
       disableOnInteraction: false
@@ -27,6 +30,11 @@ export default class InsHome extends Vue {
       clickable: true
     }
   };
+  agree () {
+    this.showPopUP = false;
+    window.localStorage.setItem('storge', 'true');
+    document.body.style.overflowY = 'auto';
+  }
     get init () {
     return {
       HkPromotion: this.$store.state.HkPromotion,
@@ -47,6 +55,21 @@ export default class InsHome extends Vue {
         });
         wow.init();
       });
+    }
+  }
+  mounted () {
+    this.$HiddenLayer();
+    if (!window.localStorage.getItem('storge')) {
+      let _this = this;
+      _this.$nextTick(() => {
+        _this.showPopUP = true;
+      });
+      setTimeout(() => {
+        if (_this.showPopUP) {
+          document.body.style.height = '100vh';
+          document.body.style.overflowY = 'hidden';
+        }
+      }, 2000);
     }
   }
 }
