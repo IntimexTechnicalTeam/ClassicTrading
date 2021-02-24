@@ -131,13 +131,15 @@ input[type="number"]{
   padding-right: 2rem;
   margin-right: .5rem;
   font-size: 16px;
-  &:hover{
-    border:1px solid #e83428!important;
-    color: #e83428!important;
-  }
+  color: #838a97;
+}
+.next{
+  background: #838a97;
+  color: #fff;
+  border:1px solid #838a97;
 }
 .noClick{
-  color:#666666;
+  color:#838a97;
   background: white;
   cursor: not-allowed;
   border: 1px solid #e6e6e6;
@@ -152,20 +154,22 @@ input[type="number"]{
     box-sizing: border-box;
     outline: 0;
     background: #fff;
-    color: #666;
+    color: #838a97;
     border-radius: 0.2rem;
     font-size: 16px;
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    background: url(/images/mobile/arrow-down-back.png) 90% 10px no-repeat;
+    background: url(/images/mobile/arrow-down-back.png) 90% 15px no-repeat;
+    background-size: 15px;
     width: 100px;
+    cursor: pointer;
 }
 .pageing{
   letter-spacing: 2px;
   margin-left: 5px;
   margin-right: 5px;
-  color:#666;
+  color:#838a97;
   font-size: 16px;
 }
 </style>

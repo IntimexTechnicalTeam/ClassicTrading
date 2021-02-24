@@ -1,1 +1,1 @@
-module.exports = { apiServer: 'http://api.dev.in-store.hk:84', AdminServer: 'http://admin.dev.in-store.hk:84' };
+module.exports = { apiServer: 'https://api.uat.intimex.hk', AdminServer: 'https://admin.uat.intimex.hk' };

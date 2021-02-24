@@ -38,7 +38,7 @@
             </div>
           </div>
           <div class="footerCpy">
-            <p class="cpy"><span class="leftSide">Copyright © {{currentYear}} Classic Trading Company.<br/>powered by Instore</span><span class="RightSide" @click="GoUrl('https://intimex.hk/')"><img src="/images/mobile/footerlogo.png"></span></p>
+            <p class="cpy"><span class="leftSide">Copyright © {{currentYear}} Classic Trading Company.<br/>powered by Intimex</span><a class="RightSide" href="https://www.intimex.hk/" target="_blank"><img src="/images/mobile/footerlogo.png"></a></p>
           </div>
     </div>
 </div>

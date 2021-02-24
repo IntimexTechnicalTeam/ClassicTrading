@@ -43,7 +43,7 @@
   </div>
   <div class="footercopy">
     <p class="cpy">
-      <span>Copyright {{currentYear}} Classic Trading Company.powered by Intimex<img src="/images/pc/footerlogo.png"></span>
+      <span>Copyright {{currentYear}} Classic Trading Company.powered by Intimex</span><a href="https://www.intimex.hk/" target="_blank"><img src="/images/pc/footerlogo.png"></a>
       </p>
   </div>
 </div>
@@ -222,7 +222,11 @@ export default class InsFooterLayout1 extends Vue {
 }
 .footerNav > ul{
     float: left;
-    width: 10%;
+    width: 9.5%;
+    margin-right: 0.55%;
+    &:last-child {
+      margin-right: 0px!important;
+    }
 }
 .footerNav > ul >li{
     width: 100%;
@@ -337,6 +341,10 @@ export default class InsFooterLayout1 extends Vue {
     display: flex;
     align-items: center;
     justify-content: center;
+    a {
+      display: inline-block;
+      margin-left: 5px;
+    }
   }
   span{
     color: #999999;
