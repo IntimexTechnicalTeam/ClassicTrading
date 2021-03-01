@@ -4,7 +4,7 @@
     <div class="in_radio_warpper">
       <input type="text" style="display:none;" v-model="Value" />
       <div class="in_radio_main" @click="choice">
-          <span class="in_radio_item" :class="{ chosen:Current == index }" v-for="(content,index) in items" :key="index" :data-key="index">{{content.Name}}</span>
+          <span class="in_radio_item" :class="{ chosen:Current == index && content.IsDisplay,'nochoice': !content.IsDisplay}"  v-for="(content,index) in items" :key="index" :data-key="index">{{content.Name}}</span>
       </div>
       <!-- <div
         class="in_select_main"
@@ -33,6 +33,7 @@ export default class InsRadio extends Vue {
   private Value: string = '';
   private RealValue: string = '';
   private AdditionalPrice: object = {};
+  private IsDisplay: boolean = true;
   private Current: string = '0';
   // props
   @Prop() private readonly label!: string;
@@ -41,10 +42,11 @@ export default class InsRadio extends Vue {
   //   method
   choice (e: MouseEvent) {
     const target = e.target as HTMLElement;
-    console.log(target.nodeName);
+    this.IsDisplay = this.items[target.dataset.key as string].IsDisplay;
     if (target.nodeName !== 'SPAN') {
       return;
     }
+    if (this.IsDisplay) {
     this.Value = this.items[target.dataset.key as string].Name;
     this.RealValue = this.items[target.dataset.key as string].Id;
     this.Current = target.dataset.key as string;
@@ -54,31 +56,75 @@ export default class InsRadio extends Vue {
     };
     this.$emit('input', this.RealValue);
     this.$emit('changePrice', this.AdditionalPrice);
+    } else {
+      return false;
+    }
   }
   //   created
   created () {
     if (this.items.length > 0) {
-      this.Value = this.items[0].Name;
-      this.RealValue = this.items[0].Id;
-      this.AdditionalPrice = {
-        TypeId: this.items['0'].Type.TypeId,
-        AdditionalPrice: this.items['0'].AdditionalPrice
-      };
-      this.$emit('changePrice', this.AdditionalPrice);
-      this.$emit('input', this.RealValue);
+      for (let i = 0; i < this.items.length; i++) {
+      if (this.items[i].IsDisplay) {
+          this.Value = this.items[i].Name;
+            this.RealValue = this.items[i].Id;
+            this.AdditionalPrice = {
+              TypeId: (this.items[i].Type as any).TypeId,
+              AdditionalPrice: this.items[i].AdditionalPrice
+            };
+             this.Current = i as any;
+            this.$emit('changePrice', this.AdditionalPrice);
+            this.$emit('input', this.RealValue);
+        break;
+      }
+    }
+      // this.items.forEach((v) => {
+      //     if (v.IsDisplay) {
+      //       this.Value = v.Name;
+      //       this.RealValue = v.Id;
+      //       this.AdditionalPrice = {
+      //         TypeId: (v.Type as any).TypeId,
+      //         AdditionalPrice: v.AdditionalPrice
+      //       };
+      //       this.$emit('changePrice', this.AdditionalPrice);
+      //       this.$emit('input', this.RealValue);
+      //     } else {
+      //         return false;
+      //     }
+      // });
     }
   }
   @Watch('items', { deep: true })
   onItemsChange () {
-    if (this.items.length > 0) {
-      this.Value = this.items[0].Name;
-      this.RealValue = this.items[0].Id;
-      this.AdditionalPrice = {
-        TypeId: this.items['0'].Type.TypeId,
-        AdditionalPrice: this.items['0'].AdditionalPrice
-      };
-      this.$emit('changePrice', this.AdditionalPrice);
-      this.$emit('input', this.RealValue);
+    // if (this.items.length > 0) {
+    //   this.items.forEach((v) => {
+    //       if (v.IsDisplay) {
+    //         console.log(v);
+    //         this.Value = v.Name;
+    //         this.RealValue = v.Id;
+    //         this.AdditionalPrice = {
+    //           TypeId: (v.Type as any).TypeId,
+    //           AdditionalPrice: v.AdditionalPrice
+    //         };
+    //         this.$emit('changePrice', this.AdditionalPrice);
+    //         this.$emit('input', this.RealValue);
+    //       } else {
+    //           return false;
+    //       }
+    //   });
+    // }
+      for (let i = 0; i < this.items.length; i++) {
+      if (this.items[i].IsDisplay) {
+          this.Value = this.items[i].Name;
+            this.RealValue = this.items[i].Id;
+            this.AdditionalPrice = {
+              TypeId: (this.items[i].Type as any).TypeId,
+              AdditionalPrice: this.items[i].AdditionalPrice
+            };
+             this.Current = i as any;
+            this.$emit('changePrice', this.AdditionalPrice);
+            this.$emit('input', this.RealValue);
+        break;
+      }
     }
   }
 }
@@ -113,6 +159,10 @@ export default class InsRadio extends Vue {
                 border: 1px solid #e83428;
                 color:#e83428;
                 background-color: white;
+            }
+           .nochoice {
+              cursor:not-allowed;
+              background: #ccc;
             }
         }
     }
