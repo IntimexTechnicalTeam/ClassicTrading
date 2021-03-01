@@ -471,9 +471,8 @@ export default class InsHeader extends Vue {
 }
  .navMainbar .topa{
       display: block;
-      background-size: 80%;
-      width: 100%;
-      height: 100%;
+      padding-left: 10px;
+      padding-right: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -514,6 +513,7 @@ export default class InsHeader extends Vue {
       -moz-transition: all 0.3s ease;
       padding-top: 10px;
       padding-bottom: 10px;
+      border-bottom: 1px solid #f0f0f0;
   }
   .navMainbar .topb:hover{
     color:#fff;
@@ -525,7 +525,7 @@ export default class InsHeader extends Vue {
   .navMainbar .topb span{
     width: 100%;
     font-size: 16px;
-    color:#666666;
+    color:#838a97;
     display: block;
     text-align: center;
     font-weight: 500;
@@ -533,7 +533,7 @@ export default class InsHeader extends Vue {
   .navMainbar .topb b{
     width: 100%;
     font-size: 13px;
-    color:#262626;
+    color:#838a97;
     display: block;
     text-align: center;
     transition: all 0.3s ease;
@@ -696,7 +696,7 @@ export default class InsHeader extends Vue {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: calc(100% - 3px);
+  height: 150%;
   position: relative;
 }
 .navMainbar >ul>li:hover ul{

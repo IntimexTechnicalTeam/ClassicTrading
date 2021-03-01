@@ -75,5 +75,6 @@ ul,li{
     border-radius: 3px;
     min-width: 100px;
     text-align: center;
+    margin-right: 10px;
 }
 </style>

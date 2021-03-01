@@ -177,6 +177,7 @@ export default class InsBanner extends Vue {
       width: 100%;
       font-weight: 700;
       margin-bottom: 1rem;
+      font-family: 'Microsoft YaHei';
     }
     .TextCn{
       text-align: center;
@@ -185,6 +186,7 @@ export default class InsBanner extends Vue {
       width: 100%;
       font-weight: 700;
       letter-spacing: 2px;
+      font-family: 'Microsoft YaHei';
     }
   }
 }

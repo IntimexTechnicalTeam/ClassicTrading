@@ -105,14 +105,15 @@ section {
 a{
   text-decoration: none;
 }
+@font-face {
+	font-family:'SOURCEHANSERIFSC-REGULAR';
+	src:url('/static/fonts/SOURCEHANSERIFSC-REGULAR.otf');
+}
 div,li,ul{
   list-style: none;
 }
-p, a, span {
-  font-family: 'Arial', 'Microsoft YaHei';
-}
 body {
-  font-family: 'Arial', 'Microsoft YaHei';
+  font-family: 'SOURCEHANSERIFSC-REGULAR', 'Arial', 'Microsoft YaHei';
 }
 div {
   user-select: none;

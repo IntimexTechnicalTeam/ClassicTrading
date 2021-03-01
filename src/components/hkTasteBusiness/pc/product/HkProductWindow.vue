@@ -236,7 +236,7 @@
 
   .in_pdWindow_page_item {
     border:1px solid #eee;
-    min-height: 23rem;
+    min-height: 24rem;
     padding: 10px;
     transition: all .3s;
     z-index: 0;

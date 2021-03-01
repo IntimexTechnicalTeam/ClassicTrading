@@ -26,7 +26,7 @@ export default {
     SucceedInOperating: '操作成功',
     SavedSuccessfully: '保存成功',
     Loading: '頁面正在加載，請稍候',
-    ViewDetail: '瞭解更多',
+    ViewDetail: '了解更多',
     FollowUs: '關注我們',
     Evidence: '憑據',
     UploadEvidence: '上傳憑據',

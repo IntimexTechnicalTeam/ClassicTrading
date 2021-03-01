@@ -22,15 +22,12 @@ li {
 a {
   text-decoration: none;
 }
-p, a, span {
-  font-family: 'Arial', 'Microsoft YaHei';
-}
 @font-face {
-	font-family:'ArialBlack';
-	src:url('/static/fonts/ArialBlack.ttf'),url('/static/fonts/ArialBlack.eof'),url('/static/fonts/ArialBlack.woff'),url('/static/fonts/ArialBlack.otf');
+	font-family:'SOURCEHANSERIFSC-REGULAR';
+	src:url('/static/fonts/SOURCEHANSERIFSC-REGULAR.otf');
 }
 body {
-  font-family: 'Arial', 'Microsoft YaHei';
+  font-family: 'SOURCEHANSERIFSC-REGULAR', 'Arial', 'Microsoft YaHei';
   overflow-x: hidden!important;
 }
 #container {
