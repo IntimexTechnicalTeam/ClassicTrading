@@ -426,6 +426,7 @@ export default class InsExpressWay extends Vue {
         lastName = '';
       }
       if (this.provinceList.length === 0) {
+        this.editAddress.Provinceo = new Province();
         this.editAddress.Provinceo.Id = -1;
         this.editAddress.Provinceo.Name = '';
       } else {
