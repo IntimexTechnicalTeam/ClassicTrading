@@ -1,7 +1,7 @@
 <template>
   <div class="productDetail_container mobileDeatail">
     <div class="productDetail_main" :style="'flex-wrap: wrap;'">
-      <ProductSwiper width="100%"  :imgList="ImgList"></ProductSwiper>
+      <ProductSwiper width="100%"  :imgList="ImgList" :ProductTitleName="ProductTitleName"></ProductSwiper>
       <PkProductInfo :panelDetail="PanelDetail"  :ProductSku="ProductSku" :AddPrice="getNewsPrice" width="100%" style="margin-top:2rem;"></PkProductInfo>
       <PkProductDetailCate :source="ExtAttrList" :cateTree="CatalogTree" width="100%" style="margin-top:2rem;"></PkProductDetailCate>
       <inPanel :panelDetail="PanelDetail" width="100%" :ProductSku="ProductSku"  @getPrice="showPrice" itemscopestyle="margin-top:2rem;"></inPanel>
@@ -72,6 +72,7 @@ export default class ProductDetail extends Vue {
   private PriceA:number=0;
   private PriceB:number=0;
   private PriceC:number=0;
+  private ProductTitleName:string = '';
   getProduct () {
     this.ProductSku = this.$route.params.id ? this.$route.params.id : '0';
     // 获取产品详情数据
@@ -82,6 +83,7 @@ export default class ProductDetail extends Vue {
       this.ImgList = result.AdditionalImage;
       this.Tabs = result.Tab;
       this.Score = result.PanelDetail.Score;
+      this.ProductTitleName = result.PanelDetail.Name;
       this.$HiddenLayer();
       this.$nextTick(() => {
         document.title = result.PanelDetail.Name;

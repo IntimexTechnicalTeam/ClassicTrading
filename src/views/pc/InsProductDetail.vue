@@ -2,7 +2,7 @@
 <div class="productDetailWarper PcVersion">
   <div class="productDetail_container">
     <div class="productDetail_main">
-      <inPreview style="width:50%" :imgList="ImgList" :pageNum="userAgent === 'mobile' ?  1 : 4"></inPreview>
+      <inPreview style="width:50%" :imgList="ImgList" :ProductTitleName="ProductTitleName" :pageNum="userAgent === 'mobile' ?  1 : 4"></inPreview>
       <div style="width:45%;margin-left:5%;float:right;">
           <PkProductInfo :panelDetail.sync="PanelDetail"  :ProductSku="ProductCode" width="100%" :AddPrice="getNewsPrice" style="margin-top:3rem;"></PkProductInfo>
           <PkProductDetailCate :source="ExtAttrList" :cateTree="CatalogTree"  width="100%"></PkProductDetailCate>
@@ -72,6 +72,7 @@ export default class InsProductDetail extends Vue {
   private PriceA:number=0;
   private PriceB:number=0;
   private PriceC:number=0;
+  private ProductTitleName:string = '';
   get pc () {
     return this.$route.params.id;
   }
@@ -104,6 +105,7 @@ export default class InsProductDetail extends Vue {
       that.Score = result.PanelDetail.Score;
       that.ImgList = result.AdditionalImage;
       that.Tabs = result.Tab;
+      that.ProductTitleName = result.PanelDetail.Name;
       that.$HiddenLayer();
     });
   }
