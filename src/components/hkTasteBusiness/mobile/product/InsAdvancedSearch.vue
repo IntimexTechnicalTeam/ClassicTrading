@@ -2,7 +2,7 @@
     <div class="InsAdvancedSearch">
        <p class="resetTitle">{{$t('product.Screening')}}<span class="el-icon-close" @click="closeSub"></span></p>
        <p class="resetAll" @click="resetAll">{{$t('product.Resetall')}}</p>
-        <ul class="attrSearch" v-if="init">
+        <ul class="attrSearch" v-if="init" style="display:none;">
           <ReSearchItem v-for="(attr, index) in attrList" :key="index" :searchGroup="attr" :defaultSelected="deAttrGIds.indexOf(attr.Id) !== -1 ? selectedAttrs[deAttrGIds.indexOf(attr.Id)].Vals : []"  @changeSelect="changeAttrSelect" />
         </ul>
         <ul class="catSearch" v-if="init">
