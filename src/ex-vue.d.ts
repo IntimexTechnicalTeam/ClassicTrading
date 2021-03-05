@@ -20,6 +20,7 @@ declare module 'vue/types/vue' {
         $Login : any;
         $LoginClose : any;
         $Storage : any;
+        $LoadScript: any;
         vw : number;
         Shake : Function;
         Reload : Function;

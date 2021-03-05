@@ -72,12 +72,6 @@ export default class InsCmsContent extends Vue {
   OtherPageImg:string='';
   TitleName:string='';
   // 引入外部js
-  LoadScript (src) {
-    const oScript = document.createElement('script');
-    oScript.type = 'text/javascript';
-    oScript.src = src;
-    document.body.appendChild(oScript);
-  }
   showContent (val, index) {
     this.$Api.cms.getContentByDevice({ ContentId: val, IsMobile: true }).then(result => {
       this.MapInfo = result.CMS.Body;
@@ -159,8 +153,8 @@ export default class InsCmsContent extends Vue {
       Version: '2.0',
       HasRNPConfirm: false
     };
-    this.LoadScript('/static/js/CanvasSigner.js');
-    this.LoadScript('/static/js/ajaxFileUpload.js');
+    this.$LoadScript('/static/js/CanvasSigner.js');
+    this.$LoadScript('/static/js/ajaxFileUpload.js');
 
     document.dispatchEvent(new Event('rnpFinshed'));
 

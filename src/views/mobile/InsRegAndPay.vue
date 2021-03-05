@@ -21,14 +21,6 @@ export default class InsRegAndPay extends Vue {
     private htmlString: string = '';
     Signer: any = null;
 
-    // 引入外部js
-    LoadScript (src) {
-      const oScript = document.createElement('script');
-      oScript.type = 'text/javascript';
-      oScript.src = src;
-      document.body.appendChild(oScript);
-    }
-
     getForm () {
       this.$Api.regAndPay.getHtml(this.$route.params.id, this.lang, true).then(result => {
         this.htmlString = result.HtmlString;
@@ -68,8 +60,8 @@ export default class InsRegAndPay extends Vue {
         Version: '2.0',
         HasRNPConfirm: false
       };
-      this.LoadScript('/static/js/CanvasSigner.js');
-      this.LoadScript('/static/js/ajaxFileUpload.js');
+      this.$LoadScript('/static/js/CanvasSigner.js');
+      this.$LoadScript('/static/js/ajaxFileUpload.js');
 
       document.dispatchEvent(new Event('rnpFinshed'));
 
