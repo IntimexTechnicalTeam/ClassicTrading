@@ -1,7 +1,10 @@
 <template>
     <el-submenu :index="item.Name" v-if="item.Childs && item.Childs.length">
         <template slot="title">
-            <span class="name" @click="toUrl(item.Url)">{{item.Name}}</span>
+            <span class="name" @click="toUrl(item.Url)" v-if="item.Type === 0">{{item.Name}}</span>
+             <router-link v-else  :style="{color: textColor}" @click.native="closeSlideMenu(item)" :to="To(item)" slot="title">
+              <b class="subline_b">{{item.Name}}</b>
+         </router-link>
         </template>
         <menu-item :textColor="textColor" v-for="(child,index) in item.Childs" :key="index" :item="child" :level="level+1" />
     </el-submenu>

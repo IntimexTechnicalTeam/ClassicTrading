@@ -233,6 +233,13 @@ export default class InsMenuLayout extends Vue {
         width: 100%;
         background-color: transparent;
         border: 0;
+        .subline_b {
+          color: #3d475f;
+          font-size: 1.4rem;
+          text-transform: uppercase;
+          font-style: normal;
+          font-weight: 500;
+        }
         .el-submenu__icon-arrow {
             display: block;
             font-size: 1.6rem;
@@ -257,9 +264,9 @@ export default class InsMenuLayout extends Vue {
                  b{
                      color:#FFF;
                      display: block;
-                     width: 100%;
                      font-weight: 500;
                      padding-left: 2rem;
+                     padding-right: 2rem;
                      &:nth-child(1){
                         color:#3d475f;
                         font-size: 1.4rem;
