@@ -325,7 +325,7 @@ export default class InsFooter extends Vue {
               border-radius: .3rem;
               a{
                 color:#fff;
-                font-size: 1.2rem;
+                font-size: 1rem;
                 width: 100%;
                 display: flex;
                 flex-wrap: wrap;
