@@ -49,8 +49,15 @@ export default class PickupAddress {
       return this._PD;
     }
     public set PD (v : Date) {
-      if (v) this.PickupDate = (v.getUTCDate() + 1) + '/' + (v.getUTCMonth() + 1) + '/' + v.getUTCFullYear();
-      else this.PickupDate = '';
+      // if (v) this.PickupDate = (v.getUTCDate() + 1) + '/' + (v.getUTCMonth() + 1) + '/' + v.getUTCFullYear();
+      // else this.PickupDate = '';
+      // this._PD = v;
+      if (v) {
+        // this.PickupDate = (v.getUTCDate() + 1) + '-' + (v.getUTCMonth() + 1) + '-' + v.getUTCFullYear();
+        this.PickupDate = new Date(v).getUTCFullYear() + '-' + ((new Date(v).getUTCMonth() + 1) < 10 ? ('0' + (new Date(v).getUTCMonth() + 1)) : (new Date(v).getUTCMonth() + 1)) + '-' + (new Date(v).getUTCDate() < 10 ? ('0' + new Date(v).getUTCDate()) : new Date(v).getUTCDate());
+      } else {
+        this.PickupDate = '';
+      };
       this._PD = v;
     }
     private _PickupTime : number;

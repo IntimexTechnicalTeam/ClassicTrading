@@ -92,9 +92,18 @@
               </span>
             </p>
             <p v-if="promotionCode===''" class="promotionCodeTips">{{$t('Action.PromotionCodeTips')}}</p>
-            <div class="price_item">
+            <!-- <div class="price_item">
               <span>{{$t('Order.Discount')}}:</span>
               <span>{{Shoppcart.Currency.Code}} {{(totalAmount - (parseFloat(cp))) | PriceFormat}}</span>
+            </div> -->
+            <div class="price_item">
+                  <span>{{$t('Order.Discount')}}:</span>
+                  <p v-show="showDistcount" style="width:100%">
+                    <span class="promotionA"><i>{{promotionCode}};</i><br/>{{$t('Message.AdditionalDiscount')}}</span>
+                    <span class="promotionB">-{{Shoppcart.Currency.Code}} {{(totalAmount - (parseFloat(cp))) | PriceFormat}}</span>
+                    <span class="promotionC" @click="promotionCodeCancel">{{$t('Message.Delete')}}</span>
+                  </p>
+                  <span v-show="!showDistcount">{{Shoppcart.Currency.Code}} {{(totalAmount - (parseFloat(cp))) | PriceFormat}}</span>
             </div>
           </div>
           <div class="price">
@@ -478,6 +487,16 @@
         this.$Confirm(this.$t('Message.Message'), this.$t('CheckOut.promotionCodeError'));
       });
     }
+    promotionCodeCancel () {
+        this.$store.dispatch('setPromotionDiscount', new PromotionDiscount());
+        this.$emit('promotionCode', '');
+        this.showDistcount = false;
+        this.$message({
+          message: this.$t('Message.SuccessfullyDeleted') as string,
+          type: 'success',
+          customClass: 'messageBoxMobile'
+        });
+    }
     @Watch('promotionCode')
     onPromotionCode() {
       if (!this.promotionCode) {
@@ -802,4 +821,32 @@
     text-align: right;
     color: #262626;
   }
+  .promotionA {
+  display: block;
+  color: green;
+  text-decoration: underline;
+  margin-bottom: 10px;
+  width: 50%;
+  float: left;
+  i{
+    font-style: normal;
+    color: green;
+    text-decoration: underline;
+  }
+}
+.promotionB {
+    display: block;
+    margin-bottom: 10px;
+    text-align: right;
+    color: #c62828;
+    width: 50%;
+    float: left;
+}
+.promotionC {
+  display: block;
+  text-decoration: underline;
+  text-align: right;
+  cursor: pointer;
+  color: green;
+}
 </style>

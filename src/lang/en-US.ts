@@ -52,7 +52,12 @@ export default {
     MoreProducts: 'More',
     KeyWords:'Please Enter Key Words',
     AllBrands:'All Brands',
-    Close:'Close'
+    Close:'Close',
+    PlsAddPiUpAddr: 'Please add relevant self-referral address information ! ',
+    NoneAddPiUpAddr: 'Unable to query the relevant address information!',
+    AdditionalDiscount: 'The Additional Discount is In Effect',
+    Delete: 'Delete',
+    SuccessfullyDeleted: 'Successfully Deleted'
   },
   RegNPay: {
     BackText: 'Back',

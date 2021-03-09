@@ -51,7 +51,12 @@ export default {
     MoreProducts: '更多產品',
     KeyWords: '請輸入關鍵字',
     AllBrands: '所有品牌',
-    Close: '關閉'
+    Close: '關閉',
+    PlsAddPiUpAddr: '請添加相關自提地址信息！',
+    NoneAddPiUpAddr: '查詢不到相關自提地址信息！',
+    AdditionalDiscount: '額外折扣已生效',
+    Delete: '刪除',
+    SuccessfullyDeleted: '刪除成功'
   },
   Account: {
     MemberCenter: '會員中心',

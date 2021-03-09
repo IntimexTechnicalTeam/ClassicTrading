@@ -12,14 +12,51 @@ export default {
     date: '请选择日期',
     password: '两次输入密码不一致',
     textarea: '',
-    emailNotFound: '邮箱不存在'
+    emailNotFound: '邮箱不存在',
+    logopassword: '请输入密码',
+    confirmpassword: '两次输入密码不一致',
+    nomessage: '暂无数据',
+    phoneincorrect: '电话号码格式不正确'
   },
   Message: {
     Logout: '您尚未登陆或已登录超时，请重新登陆',
     Message: '消息',
     Confirm: '确认',
     Cancel: '关闭',
-    SucceedInOperating: '操作成功'
+    SucceedInOperating: '操作成功',
+    SavedSuccessfully: '保存成功',
+    Loading: '页面正在加载，请稍候',
+    ViewDetail: '了解更多',
+    FollowUs: '关注我们',
+    Evidence: '凭据',
+    UploadEvidence: '上传凭据',
+    OrderNumber: '订单编号',
+    Remark: '备注',
+    Image: '图片',
+    SubmitSuccess: '提交成功',
+    SubmitFailed: '提交失败',
+    DeliveryDate: '送货日期',
+    DeliveryTime: '送货时段',
+    DeliveryInstructions: '送货指示',
+    DeliveryMark: '预订请预早⼀天，每天晚上10 点截单，套餐满800 包市区送货。10点前⼊数⽅可隔天送货。',
+    All: '全部',
+    PrivacyPolicy: '私隐政策',
+    TermsAndConditions: '购物条款',
+    ContactUs: '联络我们',
+    LearnMore: '了解更多',
+    Weaccept: '付款方式',
+    WhatNew: '最新商品',
+    HotCategories: '热门分类',
+    LatestTrends: '最新动态',
+    MoreProducts: '更多产品',
+    KeyWords: '请输入关键字',
+    AllBrands: '所有品牌',
+    Close: '关闭',
+    PlsAddPiUpAddr: '请添加相关自提地址信息！',
+    NoneAddPiUpAddr: '查询不到相关自提地址信息！',
+    AdditionalDiscount: '额外折扣已生效',
+    Delete: '删除',
+    SuccessfullyDeleted: '删除成功'
   },
   Account: {
     MemberCenter: '会员中心',
@@ -53,7 +90,7 @@ export default {
     RequiredText: '请检查你的答案'
   },
   product: {
-    ProductCode: '产品代码',
+    ProductCode: '产品编号',
     buy: '立即购买',
     addToCart: '加入购物车',
     buyNow: '立即购买',
@@ -96,10 +133,8 @@ export default {
     Paixu: '排序',
     Total: '共',
     Product: '个产品',
-    ProductDetail: '产品详情'
-  },
-  pyramidSelling: {
-    ps: '传销'
+    ProductDetail: '产品详情',
+    Unit: '单位'
   },
   Shoppingcart: {
     ShoppingcartTitle: '购物车',
@@ -130,7 +165,8 @@ export default {
     LoginPwd: '请输入密码',
     LoginoldPwd: '密码不正确',
     Loginerror: '账号或密码不正确',
-    LoginSucceeded: '登入成功！'
+    LoginSucceeded: '登入成功！',
+    Account: '个人中心'
   },
   Register: {
     RegisterTitle: '注册会员',
@@ -166,7 +202,9 @@ export default {
     RegisterSuccess: '注册成功',
     RegisterFail: '注册失败',
     RegisterWelcome: '恭喜您,注册成功',
-    RegisterTips: '此电子邮箱尚未注册，请立即注册成为会员！'
+    RegisterTips: '此电子邮箱尚未注册，请立即注册成为会员！',
+    Login: '跳转登录',
+    Registerdigital: '长度由8至20个字符 须包含大写字母、小写字母及数字'
   },
   DeliveryAddress: {
     AddAddress: '新增地址',
@@ -233,7 +271,9 @@ export default {
     Send: '发送',
     Unread: '未读',
     Read: '已读',
-    UpdateSucceeded: '更新成功!'
+    UpdateSucceeded: '更新成功!',
+    Check: '选择',
+    Id: '序号'
   },
   Forgetpassword: {
     ForgetPassword: '忘记密码',
