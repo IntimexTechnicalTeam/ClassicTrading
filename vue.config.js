@@ -26,6 +26,18 @@ function getArgList () {
 };
 let p = './src/sdk/common/ApiAndAdminServer.ts';
 fs.writeFileSync(p, 'module.exports = { apiServer: \'' + apiServer + '\', AdminServer: \'' + AdminServer + '\' };\r\n');
+// 区分運行環境，設置CND
+const JS_CDN = process.env.NODE_ENV === 'development'
+  ? [
+    // 本地運行
+    'http://pm.dev.in-store.hk:84/Scripts/jquery-1.12.4.min.js',
+    'http://pm.dev.in-store.hk:84/scripts/store/regnpay-2.0.js'
+  ] : [
+    // 發佈環境運行
+    '/ClientResources/Script/jquery-1.12.4.min.js',
+    '/ClientResources/Script/regnpay-2.0.js'
+  ];
+
 module.exports = {
   chainWebpack: config => {
     // 添加别名
@@ -33,6 +45,12 @@ module.exports = {
     config.resolve.alias
       .set('@', resolve('src'))
       .set('@assets', resolve('src/assets'));
+    // 根據運行環境动态注入CDN
+    config.plugin('html')
+      .tap(args => {
+          args[0].JS_CDN = JS_CDN;
+        return args;
+      });
   },
   devServer: {
     disableHostCheck: true,

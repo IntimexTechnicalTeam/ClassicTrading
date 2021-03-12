@@ -32,6 +32,9 @@
     </div>
   </div>
   <!-- DEV -->
+  <% for (var i in htmlWebpackPlugin.options.JS_CDN) { %>
+    <script src="<%= htmlWebpackPlugin.options.JS_CDN[i] %>"></script>
+  <% } %>
   <script src="/fbLogin.js" rel=prefetch></script>
 </body>
 </html>
