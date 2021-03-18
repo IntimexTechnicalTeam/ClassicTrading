@@ -265,8 +265,8 @@ export default class InsMenuLayout extends Vue {
                      color:#FFF;
                      display: block;
                      font-weight: 500;
-                     padding-left: 2rem;
-                     padding-right: 2rem;
+                     padding-left: 20px;
+                     padding-right: 20px;
                      &:nth-child(1){
                         color:#3d475f;
                         font-size: 1.4rem;
