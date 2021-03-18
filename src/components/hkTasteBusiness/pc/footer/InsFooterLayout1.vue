@@ -218,12 +218,11 @@ export default class InsFooterLayout1 extends Vue {
 }
 .footerNav{
     width: 100%;
-    display: inline-block;
+    justify-content: space-between;
+    display: flex;
 }
 .footerNav > ul{
     float: left;
-    width: 9.5%;
-    margin-right: 0.55%;
     &:last-child {
       margin-right: 0px!important;
     }
