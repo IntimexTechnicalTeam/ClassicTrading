@@ -21,6 +21,14 @@ export default class ShopCart {
     this._Currency = v;
   }
 
+  private _DefaultCurrency : Currency;
+  public get DefaultCurrency () : Currency {
+    return this._DefaultCurrency;
+  }
+  public set DefaultCurrency (v : Currency) {
+    this._DefaultCurrency = v;
+  }
+
   private _DeliveryCharge : number;
   public get DeliveryCharge () : number {
     return this._DeliveryCharge;
@@ -53,6 +61,13 @@ export default class ShopCart {
     this._ItemsAmount = v;
   }
 
+  private _ExchangeRate : number;
+  public get ExchangeRate () : number {
+    return this._ExchangeRate;
+  }
+  public set ExchangeRate (v : number) {
+    this._ExchangeRate = v;
+  }
   private _ItemsTaxAmount : number;
   public get ItemsTaxAmount () : number {
     return this._ItemsTaxAmount;
@@ -115,11 +130,12 @@ export default class ShopCart {
     _ItemsTaxAmount = 0,
     _Qty = 0,
     _TotalAmount = 0,
+    _ExchangeRate = 0,
     _TotalWeight = 0,
     _PayMethodTypeId = '',
     _PayMethodType = '',
     _Items = [],
-    _Currency = new Currency()) {
+    _Currency = new Currency(), _DefaultCurrency = new Currency()) {
     this._DeliveryCharge = _DeliveryCharge;
     this._DicountAmount = _DicountAmount;
     this._IsTemp = _IsTemp;
@@ -127,10 +143,12 @@ export default class ShopCart {
     this._ItemsTaxAmount = _ItemsTaxAmount;
     this._Qty = _Qty;
     this._TotalAmount = _TotalAmount;
+    this._ExchangeRate = _ExchangeRate;
     this._TotalWeight = _TotalWeight;
     this._PayMethodTypeId = _PayMethodTypeId;
     this._PayMethodType = _PayMethodType;
     this._Items = _Items;
     this._Currency = _Currency;
+    this._DefaultCurrency = _DefaultCurrency;
   }
 }

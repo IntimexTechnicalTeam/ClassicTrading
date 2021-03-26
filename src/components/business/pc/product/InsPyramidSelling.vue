@@ -75,7 +75,7 @@ export default class InsPyramidSelling extends Vue {
       this.ShowItems[this.ShowItems.length - 1].length < this.pageNum
     ) {
       this.ShowItems[this.ShowItems.length - 1].push(
-        new YouWouldLike('-1', '', '', '', '', '', new Currency(), true)
+         new YouWouldLike('-1', '', '', '', '', '', new Currency(), '', '', new Currency(), true)
       );
     }
   }

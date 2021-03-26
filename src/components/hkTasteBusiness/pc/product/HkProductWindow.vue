@@ -15,7 +15,7 @@
             <div class="in_pdWindow_item_description">
               <a href="javascript:;" class="in_pdWindow_item_title" v-on:click="ToUrl(item)">{{item.Name}}</a>
               <div class="in_pdWindow_item_price">
-                <inPrices :primePrices="item.ListPrice" :currentPrices="item.SalePrice" :currency="item.Currency" size="small"></inPrices>
+                <inPrices :primePrices="item.ListPrice" :currentPrices="item.SalePrice" :DefaultListPrice="item.DefaultListPrice" :DefaultSalePrice="item.DefaultSalePrice" :DefaultCurrency="item.DefaultCurrency" :currency="item.Currency" size="small"></inPrices>
               </div>
             </div>
           </div>
@@ -236,7 +236,7 @@
 
   .in_pdWindow_page_item {
     border:1px solid #eee;
-    min-height: 24rem;
+    min-height: 26rem;
     padding: 10px;
     transition: all .3s;
     z-index: 0;

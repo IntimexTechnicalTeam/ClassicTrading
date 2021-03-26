@@ -60,7 +60,7 @@ import ProductListSwiper from '@/components/hkTasteBusiness/mobile/product/HkPro
 export default class ProductDetail extends Vue {
   private Slider: YouWouldLike[] = [];
   private Tabs: Tab = new Tab('none');
-  private PanelDetail: PanelDetail = new PanelDetail('', '', '', 0, 0, '');
+  private PanelDetail: PanelDetail = new PanelDetail('', '', '', 0, 0, 0, 0, '');
   private Src: string = '';
   private ImgList: string[] = [];
   private ExtAttrList: any[] = [];

@@ -44,7 +44,7 @@ export default class InsShoppingcartItem extends Vue {
     }
     LoadData () {
       this.$Api.shoppingCart.LoadData().then((result) => {
-        this.currentCode = result.Currency.Code;
+        this.currentCode = result.DefaultCurrency.Code;
       });
     }
     mounted () {

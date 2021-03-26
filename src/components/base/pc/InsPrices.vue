@@ -1,7 +1,11 @@
 <template>
     <div class="prices_warrper" :style="styla">
-         <div class="currentPricesMain"><div :class="size">{{currency.Code}}&nbsp;</div><div :class="size + HL">{{(currentPrices) | PriceFormat}}</div></div>
-         <div class="primePricesMain" v-if="primePrices!==0 && primePrices !== currentPrices"><div :class="size">{{currency.Code }}&nbsp;</div><div class="primePrices" :class="size">{{(primePrices) | PriceFormat}}</div></div>
+         <div class="primePricesMain" v-if="DefaultListPrice!==0 && DefaultListPrice !== DefaultSalePrice"><div :class="size">{{DefaultCurrency.Code }}&nbsp;</div><div class="primePrices" :class="size">{{(DefaultListPrice) | PriceFormat}}</div></div>
+         <div class="currentPricesMain"><div :class="size">{{DefaultCurrency.Code}}&nbsp;</div><div :class="size + HL">{{(DefaultSalePrice) | PriceFormat}}</div></div>
+         <div v-show="DefaultSalePrice!=currentPrices">
+            <!-- <div class="primePricesMain" v-if="primePrices!==0 && primePrices !== currentPrices"><div :class="size">≈{{currency.Code }}&nbsp;</div><div class="primePrices" :class="size">{{(primePrices) | PriceFormat}}</div></div> -->
+            <div class="currentPricesMain"><div :class="size">≈{{currency.Code}}&nbsp;</div><div :class="size + HL">{{(currentPrices) | PriceFormat}}</div></div>
+         </div>
     </div>
 </template>
 <script lang="ts">
@@ -15,6 +19,9 @@ export default class InsPrices extends Vue {
     @Prop() heightLine!:boolean;
     @Prop() styla!:string;
     @Prop() currency!: Currency;
+    @Prop() DefaultListPrice!:string;
+    @Prop() DefaultSalePrice!:string;
+    @Prop() DefaultCurrency!: Currency;
     private Sizes = ['small', 'middle', 'large', 'huge', 'sb'];
     get HL ():string {
       return this.heightLine ? ' ' + this.size : '';

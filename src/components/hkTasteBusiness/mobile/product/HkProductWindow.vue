@@ -6,7 +6,7 @@
                 <router-link :to="'/product/detail/'+item.Sku" class="in_pdWindow_item_title" >{{item.Name}}</router-link >
                 <!-- <div class="in_pdWindow_item_code">&nbsp;{{item.Code}}</div> -->
                 <div class="in_pdWindow_item_price">
-                  <inPrices :primePrices="item.ListPrice" :currentPrices="item.SalePrice" :currency="item.Currency" size="small"></inPrices>
+                  <inPrices :primePrices="item.ListPrice" :currentPrices="item.SalePrice" :currency="item.Currency"  :DefaultListPrice="item.DefaultListPrice" :DefaultSalePrice="item.DefaultSalePrice" :DefaultCurrency="item.DefaultCurrency" size="small"></inPrices>
                 </div>
             </div>
         </div>
@@ -80,7 +80,7 @@ export default class InsProductWindow extends Vue {
 .in_pdWindow_page_item {
   .innerborder{
     border:1px solid #eee;
-    min-height: 25rem;
+    min-height: 26rem;
     width: calc(100% - 4px)!important;
   }
 }

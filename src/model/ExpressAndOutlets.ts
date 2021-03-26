@@ -73,6 +73,14 @@ export default class ExpressAndOutlets {
       this._IsExpressPoint = v;
     }
 
+    private _ComeFrom : number;
+    public get ComeFrom () : number {
+      return this._ComeFrom;
+    }
+    public set ComeFrom (v : number) {
+      this._ComeFrom = v;
+    }
+
     private _IsSelfDefineDeliveryDate : boolean;
     public get IsSelfDefineDeliveryDate () : boolean {
       return this._IsSelfDefineDeliveryDate;
@@ -96,6 +104,25 @@ export default class ExpressAndOutlets {
     public set ServiceType (v : string) {
       this._ServiceType = v;
     }
+
+    // 自取日期是否必填
+    private _PickupDateRequire : boolean;
+    public get PickupDateRequire () : boolean {
+      return this._PickupDateRequire;
+    }
+    public set PickupDateRequire (v : boolean) {
+      this._PickupDateRequire = v;
+    }
+
+    // 自取(人)信息是否必填
+    private _PickupInfoRequire : boolean;
+    public get PickupInfoRequire () : boolean {
+      return this._PickupInfoRequire;
+    }
+    public set PickupInfoRequire (v : boolean) {
+      this._PickupInfoRequire = v;
+    }
+
     constructor (_CountryCode = '',
       _Discount = 0,
       _DiscountPrice = 0,
@@ -105,9 +132,12 @@ export default class ExpressAndOutlets {
       _ExpressPointList = [],
       _Id = '',
       _IsExpressPoint = true,
+      _ComeFrom = 0,
       _IsSelfDefineDeliveryDate = false,
       _Price = 0,
-      _ServiceType = '') {
+      _ServiceType = '',
+      _PickupDateRequire = false,
+      _PickupInfoRequire = false) {
       this._CountryCode = _CountryCode;
       this._Discount = _Discount;
       this._DiscountPrice = _DiscountPrice;
@@ -117,8 +147,11 @@ export default class ExpressAndOutlets {
       this._ExpressPointList = this.ExpressPointList;
       this._Id = _Id;
       this._IsExpressPoint = _IsExpressPoint;
+      this._ComeFrom = _ComeFrom;
       this._IsSelfDefineDeliveryDate = _IsSelfDefineDeliveryDate;
       this._Price = _Price;
       this._ServiceType = _ServiceType;
+      this._PickupDateRequire = _PickupDateRequire;
+      this._PickupInfoRequire = _PickupInfoRequire;
     }
 }

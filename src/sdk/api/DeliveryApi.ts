@@ -163,7 +163,7 @@ export class DeliveryApi extends WSAPI {
   @Proxy('[ExpressAndOutlets]')
   getExpressChargeForEx (exCond: any) {
     return this.instance.post(
-      this.apiPath + '/Express/GetExpressChargeForEx',
+      this.apiPath + '/Express/GetDefaultExpressChargeForEx',
       exCond
     ).then((result) => {
       return result.data;
@@ -184,6 +184,35 @@ export class DeliveryApi extends WSAPI {
       return result.data;
     });
   }
+
+  // 順豐自提接口（新）
+  // params: { useShunFengData: boolean, useBasicData: boolean }
+  // useShunFengData=true表示只取順豐自提數據，useBasicData = true 表示只取原來舊的自提數據
+  // 注意，系統還有兩個開關：ShunFengPointSwitch(順豐自提數據開關),DefaultPointSwitch（舊的自提數據開關）
+  GetPickUpPointCharge (params: any) {
+    return this.instance.post(
+      this.apiPath + '/Delivery/GetPickUpPointCharge',
+      params
+    ).then((result) => {
+      return result.data.ReturnValue;
+    });
+  }
+
+  // 獲取自提點類型
+  GetShunFengPointType () {
+    return this.instance.get(this.apiPath + '/Delivery/GetShunFengPointType').then((result) => {
+      return result.data;
+    });
+  };
+
+  // 獲取對應送貨方式城市
+  // params: pid: int
+  GetCityByProvince (pid, callback: Function) {
+    return this.instance.get(this.apiPath + '/Delivery/City', { params: { pid: pid } }).then((result) => {
+      return result.data;
+    });
+  };
+
   private static instance: DeliveryApi;
   //* * 单例 */
   public static getInstance (): DeliveryApi {

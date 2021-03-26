@@ -48,6 +48,21 @@ export default class PanelDetail {
   public set SalePrice (v : number) {
     this._SalePrice = v;
   }
+  private _DefaultListPrice : number;
+  public get DefaultListPrice () : number {
+    return this._DefaultListPrice;
+  }
+  public set DefaultListPrice (v : number) {
+    this._DefaultListPrice = v;
+  }
+
+  private _DefaultSalePrice :number;
+  public get DefaultSalePrice () : number {
+    return this._DefaultSalePrice;
+  }
+  public set DefaultSalePrice (v : number) {
+    this._DefaultSalePrice = v;
+  }
   private _AttrList : ProductAttr[][];
   public get AttrList () : ProductAttr[][] {
     return this._AttrList;
@@ -86,6 +101,13 @@ export default class PanelDetail {
   }
   public set Currency (v : Currency) {
     this._Currency = v;
+  }
+  private _DefaultCurrency : Currency = new Currency();
+  public get DefaultCurrency () : Currency {
+    return this._DefaultCurrency;
+  }
+  public set DefaultCurrency (v : Currency) {
+    this._DefaultCurrency = v;
   }
   private _MinPurQty : number;
   public get MinPurQty () : number {
@@ -146,8 +168,15 @@ export default class PanelDetail {
   public set YoutubeLink (v : string) {
     this._YoutubeLink = v;
   }
+  private _SoldOutAttrComboList : Catelog[];
+  public get SoldOutAttrComboList () : Catelog[] {
+    return this._SoldOutAttrComboList;
+  }
+  public set SoldOutAttrComboList (v : Catelog[]) {
+    this._SoldOutAttrComboList = v;
+  }
   public button: Button[] = [];
-  constructor (sku:string, name:string, code:string, listPrice:number, salePrice:number, _YoutubeLink:string, overView:string = '', attrList:ProductAttr[][] = [], extAttrList:ProductAttr[][] = [], productStatus:number = 3, currency:Currency = new Currency(), _MaxPurQty:number = 0, _MinPurQty:number = 1, _CatId = 0, _CatalogTree = [], _IsFavorite:boolean = false, _Score:number = 0, _UnitInfo:object = {}) {
+  constructor (sku:string, name:string, code:string, listPrice:number, salePrice:number, DefaultListPrice:number, DefaultSalePrice:number, _YoutubeLink:string, overView:string = '', attrList:ProductAttr[][] = [], extAttrList:ProductAttr[][] = [], productStatus:number = 3, currency:Currency = new Currency(), DefaultCurrency:Currency = new Currency(), _MaxPurQty:number = 0, _MinPurQty:number = 1, _CatId = 0, _CatalogTree = [], _IsFavorite:boolean = false, _Score:number = 0, _UnitInfo:object = {}, _SoldOutAttrComboList = []) {
     this._Name = name;
     this._Sku = sku;
     this._Code = code;
@@ -166,5 +195,9 @@ export default class PanelDetail {
     this._Score = _Score;
     this._UnitInfo = _UnitInfo;
     this._YoutubeLink = _YoutubeLink;
+    this._DefaultListPrice = DefaultListPrice;
+    this._DefaultSalePrice = DefaultSalePrice;
+    this._DefaultCurrency = DefaultCurrency;
+    this._SoldOutAttrComboList = _SoldOutAttrComboList;
   }
 }

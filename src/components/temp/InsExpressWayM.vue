@@ -7,11 +7,24 @@
       <div class="fare2_express">
                 <InsSelect @input="ExpressSelect" :disabled="lockFare" styla="width:100%" name="ExpressCompanyName" :Placeholder="$t('CheckOut.ShippingMethod')" :items="Express" :label="$t('CheckOut.ShippingMethod')" v-model="ChosenExpress" />
       </div>
+
+      <!-- （新）順豐自提 -->
+      <div style="padding: 0 20px;" v-if="newSF">
+        <InsSelect styla="width:100%"  :Placeholder="$t('CheckOut.CountryName')" :items="SFCountry" :label="$t('CheckOut.CountryName')" v-model="SFScreen.Country"/>
+        <InsSelect styla="width:100%" :Placeholder="$t('CheckOut.ProvinceName')" :items="SFProvince" :label="$t('CheckOut.ProvinceName')" v-model="SFScreen.Province"/>
+        <InsSelect styla="width:100%"  :Placeholder="$t('CheckOut.CityName')" :items="SFCity" :label="$t('CheckOut.CityName')" v-model="SFScreen.City"/>
+        <InsSelect styla="width:100%" :Placeholder="$t('CheckOut.SFPointType')" name="Text" :items="SFPointType" :label="$t('CheckOut.SFPointType')" v-model="SFScreen.PointType"/>
+      </div>
+
+      <div class="searchSF" v-if="newSF">
+        <el-button type="primary" icon="el-icon-search" @click="GetPickUpPointCharge">{{$t('Action.SearchPiUpAddr')}}</el-button>
+      </div>
+
       <!-- 快递自提 -->
-      <div class="express_pickup" v-show="$store.state.pickUpExpress && ChosenExpress.ExpressCompanyId !== 'P'">
-          <InsSelect :disabled="lockFare" :Placeholder="$t('CheckOut.Address')" :items="ChosenExpress.ExpressPointList" :label="$t('CheckOut.Address')" v-model="ChosenExpressPoint" />
-          <InsInput2 :label="$t('CheckOut.Name')" :needLabel="true" v-model="PickName"  :disabled="lockFare"/>
-          <InsInput2 :label="$t('CheckOut.Phone')" :needLabel="true" v-model="PickPhone"  :disabled="lockFare"  type="phone"/>
+      <div class="express_pickup" v-show="$store.state.pickUpExpress && ChosenExpress.ExpressCompanyId !== 'P'  && !newSF">
+          <InsSelect v-if="!newSF" :disabled="lockFare" :Placeholder="$t('CheckOut.Address')" :items="ChosenExpress.ExpressPointList" :label="$t('CheckOut.Address')" v-model="ChosenExpressPoint" />
+          <InsInput2 :label="$t('CheckOut.Name')" :needLabel="true" :must="PickupInfoRequire" v-model="PickName"  :disabled="lockFare"/>
+          <InsInput2 :label="$t('CheckOut.Phone')" :needLabel="true" :must="PickupInfoRequire" v-model="PickPhone"  :disabled="lockFare"  type="phone"/>
       </div>
       <!-- 快递上门 -->
       <div class="express" v-show="!$store.state.pickUpExpress">
@@ -55,25 +68,41 @@
               </Collaspe>
               <InsInput2 :label="$t('DeliveryAddress.UserContactNumber')" :needLabel="true" v-model="editAddress.Phone"  type="phone" />
               <!-- <InsInput2 :label="$t('DeliveryAddress.Mobile')" :needLabel="true" v-model="editAddress.Mobile"  /> -->
-              <InsSelect styla="display:inline-flex;vertical-align:middle;width:100%" :must="true"  :Placeholder="$t('DeliveryAddress.Area')" :items="countryList" :label="$t('DeliveryAddress.Address')" v-model="editAddress.Country" />
-              <InsSelect class="selectArea" styla="display:inline-flex;vertical-align:middle;width:100%;" :Placeholder="$t('DeliveryAddress.Province')" :items="provinceList" :label="' '" v-model="editAddress.Provinceo"/>
+              <InsSelect class="SelectArea" styla="display:inline-flex;vertical-align:middle;width:100%" :must="true"  :Placeholder="$t('DeliveryAddress.Area')" :items="countryList" :label="$t('DeliveryAddress.Address')" v-model="editAddress.Country" />
+              <InsSelect class="SelectProvince" styla="display:inline-flex;vertical-align:middle;width:100%;" :Placeholder="$t('DeliveryAddress.Province')" :items="provinceList" :label="' '" v-model="editAddress.Provinceo"/>
               <InsInput2 class="textArea" :placeholder="$t('DeliveryAddress.Detail')"  :label="' '" v-model="editAddress.Address" :needLabel="true"  type="textarea"/>
-              <InsButton :nama="$t('Action.Save')" @click="save ('adderform')"  class="SaveBtn"/>
+              <InsButton :nama="$t('Action.Save')" @click="save ('adderform')" class="SaveBtn" />
             </InsForm>
           </div>
           </Collaspe>
       </div>
-      <!-- 门店自提 -->
+     <!-- 门店自提（地址、門店信息） -->
       <div class="store_pickup" v-show="$store.state.pickUpExpress && ChosenExpress.ExpressCompanyId === 'P'">
-          <InsSelect  :items="PickupAddressList" :label="$t('CheckOut.CompanyName')" v-model="CurrentPickupAddress" :disabled="lockFare"/>
+          <InsSelect  :items="PickupAddressList" :label="$t('CheckOut.CompanyName')" v-model="CurrentPickupAddress" @input="(v)=>{ this.PickAddress.Id = this.PickAddress.ExpressPointId = v.Id;this.PickAddress.PickupCompanyName=v.Name; }" :disabled="lockFare"/>
           <div>
-              <InsInput2 :label="$t('CheckOut.CompanyPhone')" :needLabel="true"   v-model="CurrentPickupAddress.Phone" :disabled="true"  />
-              <InsInput2 :label="$t('CheckOut.CompanyName')" :needLabel="true"   v-model="CurrentPickupAddress.Name" :disabled="true" />
-              <InsInput2 :label="$t('CheckOut.Name')" :needLabel="true"   v-model="PickAddress.Name" :disabled="lockFare"/>
+              <InsInput2 :label="$t('CheckOut.CompanyPhone')" :needLabel="true"   v-model="CurrentPickupAddress.Phone" @input="(v)=>{ this.PickAddress.PickupAddressPhone = v; }" :disabled="true"/>
+              <InsInput2 :label="$t('CheckOut.CompanyAddress')" :needLabel="true"   v-model="CurrentPickupAddress.Address"  @input="(v)=>{ this.PickAddress.PickupAddress = v; }" :disabled="true" />
+
+              <!-- <InsInput2 :label="$t('CheckOut.Name')" :needLabel="true"   v-model="PickAddress.Name" :disabled="lockFare"/>
               <InsInput2 :label="$t('CheckOut.Phone')" :needLabel="true"  v-model="PickAddress.Phone" :disabled="lockFare" type="phone"/>
               <InsInput2 :label="$t('CheckOut.PickupDate')" :needLabel="true"  v-model="PickAddress.PD" type="date" :disabled="lockFare"/>
-              <InsSelect  :items="pickupTimeList" :label="$t('CheckOut.PickupTime')" :value="PickAddress.PickupTime" @input="(v)=>{ this.PickAddress.PickupTime = v.Id }"  :disabled="lockFare"/>
+              <InsSelect  :items="pickupTimeList" :label="$t('CheckOut.PickupTime')" :value="PickAddress.PickupTime" @input="(v)=>{ this.PickAddress.PickupTime = v.Id }"  :disabled="lockFare"/> -->
           </div>
+      </div>
+      <!-- 自提時間 -->
+      <div class="pickup_info" v-show="$store.state.pickUpExpress && ((newSF && PiUpPointList.length) || !newSF)">
+        <InsSelect v-if="newSF" :disabled="lockFare" :Placeholder="$t('CheckOut.Address')" :items="PiUpPointList" name="Address" :label="$t('CheckOut.Address')" v-model="ChosenExpressPoint"/>
+
+        <template v-if="ChosenExpress.ExpressCompanyId === 'P' || newSF">
+          <InsInput2 :label="$t('CheckOut.Name')" :needLabel="true" :must="PickupInfoRequire"  v-model="PickAddress.Name" :disabled="lockFare"/>
+          <InsInput2 :label="$t('CheckOut.Phone')" :needLabel="true" :must="PickupInfoRequire" v-model="PickAddress.Phone" :disabled="lockFare"  type="phone"/>
+        </template>
+
+        <!-- 非新順豐自提點和門店自提不顯示，正確邏輯為 自提點皆顯示 ，舊邏輯未處理好 -->
+        <template v-if="ChosenExpress.ExpressCompanyId === 'P' || newSF">
+          <InsInput2 :label="$t('CheckOut.PickupDate')" :needLabel="true" :must="PickupDateRequire" v-model="PickAddress.PD" type="date" :disabled="lockFare"/>
+          <InsSelect :needLabel="true" :must="PickupDateRequire" :items="pickupTimeList" :label="$t('CheckOut.PickupTime')" :value="PickAddress.PickupTime" @input="(v)=>{ this.PickAddress.PickupTime = v.Id }"  :disabled="lockFare"/>
+        </template>
       </div>
      </div>
     <div style="clear:both;"></div>
@@ -195,6 +224,25 @@ export default class InsExpressWay extends Vue {
     private DateSelect:string='';
     private TimeNote:string='';
 
+    // 新順豐自提Flag
+    private newSF: boolean = false;
+    // 自提點類型
+    private SFPointType: any[] = [];
+    // 新順豐自提篩選條件
+    private SFScreen: any = {};
+    // 新順豐自提城市列表
+    private SFCountry: Country[] = [];
+    // 新順豐自提省份列表
+    private SFProvince: Province[] = [];
+    // 新順豐自提城市列表
+    private SFCity: any[] = [];
+    // （新）順豐自提地址數據
+    private PiUpPointList: any[] = [];
+    // 自取日期是否必填
+    private PickupDateRequire: boolean = false;
+    // 自取(人)信息是否必填
+    private PickupInfoRequire: boolean = false;
+
     @Prop({ default: false }) private lockFare!: boolean;
     pickerOptions : object = {
       disabledDate(time) {
@@ -253,6 +301,24 @@ export default class InsExpressWay extends Vue {
       this.loading = true;
       this.chooseCharge = false;
       this.$store.dispatch('setPickUpExpress', this.ChosenExpress.IsExpressPoint);
+
+      // 自取設置信息
+      if (this.ChosenExpress.IsExpressPoint) {
+        this.PickupDateRequire = this.ChosenExpress.PickupDateRequire;
+        this.PickupInfoRequire = this.ChosenExpress.PickupInfoRequire;
+        this.$store.dispatch('setPickupInfoRequire', this.PickupInfoRequire);
+      }
+
+      // 新順豐自提
+      if (this.ChosenExpress.ComeFrom) {
+        this.newSF = true;
+        this.$store.dispatch('setNewSF', true);
+      } else {
+        this.newSF = false;
+        this.$store.dispatch('setNewSF', false);
+        this.PiUpPointList = [];
+      }
+
       if (!this.$store.state.pickUpExpress) {
         // 如果是送貨上門就加載可用地址
         this.loadAddress();
@@ -299,14 +365,24 @@ export default class InsExpressWay extends Vue {
             this.PickupAddressList = result.PickupAddress;
             if (this.PickupAddressList.length > 0) this.CurrentPickupAddress = this.PickupAddressList[0]; else this.CurrentPickupAddress = new PickupAddress();
             this.PickAddress.Id = this.CurrentPickupAddress.Id;
+            this.PickAddress.ExpressPointId = this.CurrentPickupAddress.Id;
             this.PickAddress.CompanyAddress = this.CurrentPickupAddress.Address;
+          });
+        }
+
+        if (this.newSF) {
+          // 新順豐自提
+          Promise.all([this.getSFCounty(), this.GetShunFengPointType()]).then((result) => {
+            this.loading = false;
+            // this.$store.dispatch('setDeliveryType', 'P');
           });
         }
       }
     }
     @Watch('ChosenExpressPoint')
     onChosenExpressPoint () {
-      if (this.ChosenExpressPoint.Id === '-1') return;
+      // if (this.ChosenExpressPoint.Id === '-1') return;
+      if (!this.ChosenExpressPoint || this.ChosenExpressPoint.Id === '-1') return;
       this.loading = true;
       this.$Api.delivery.getExpressPointCharge(new ExpressChargeReq(this.ItemsAmount, this.ChosenExpressPoint.Id)).then(
         (result) => {
@@ -498,19 +574,90 @@ export default class InsExpressWay extends Vue {
       (this.$refs.adderform as InsForm).reset();
       this.showEdit = false;
     }
+
+        // 獲取（新）順豐自提點國家列表
+    async getSFCounty () {
+      await this.$Api.delivery.getCountyForEx(this.ChosenExpress.Id).then((result) => {
+        this.SFCountry = result.Country;
+      }).catch((error) => {
+        console.log(error, 'error');
+        this.$message({
+          message: error,
+          type: 'error'
+        });
+      });
+    }
+
+    // 獲取（新）順豐自提點省份列表
+    getSFProvince () {
+      this.$Api.delivery.getProvinceForEx(this.ChosenExpress.Id, this.SFScreen.Country.Id).then((result) => {
+        this.SFProvince = result.Province;
+      }).catch((error) => {
+        console.log(error, 'error');
+        this.$message({
+          message: error,
+          type: 'error'
+        });
+      });
+    }
+
+    // 獲取（新）順豐自提點城市列表
+    getSFCity () {
+      console.log(this.SFScreen.Province.Id, 'this.SFScreen.Province.Id');
+      this.$Api.delivery.GetCityByProvince(this.SFScreen.Province.Id).then((result) => {
+        this.SFCity = result;
+      }).catch((error) => {
+        console.log(error, 'error');
+        this.$message({
+          message: error,
+          type: 'error'
+        });
+      });
+    }
+
+    // 獲取自提點類型
+    async GetShunFengPointType() {
+      await this.$Api.delivery.GetShunFengPointType().then((result) => {
+        console.log(result, '獲取自提點類型');
+        this.SFPointType = result;
+      });
+    }
+
+    // 查詢獲取（新）順豐自提地址數據
+    async GetPickUpPointCharge() {
+      await this.$Api.delivery.GetPickUpPointCharge({
+        countryId: this.SFScreen.Country ? this.SFScreen.Country.Id : 0,
+        provinceId: this.SFScreen.Province ? this.SFScreen.Province.Id : 0,
+        cityId: this.SFScreen.City ? this.SFScreen.City.Id : 0,
+        ponitType: this.SFScreen.PointType ? this.SFScreen.PointType.Id : 0,
+        useShunFengData: true,
+        Page: 1,
+        PageSize: 100
+      }).then((result) => {
+        console.log(result, '獲取（新）順豐自提數據');
+        this.PiUpPointList = result;
+
+        if (!this.PiUpPointList.length) {
+          // this.$alert(this.$t('Message.NoneAddPiUpAddr') as string, '', {
+          //   confirmButtonText: this.$t('Message.Confirm') as string
+          // });
+          this.$Confirm(this.$t('Message.Message'), this.$t('Message.NoneAddPiUpAddr') as string);
+        }
+      });
+    }
+
+    @Watch('SFScreen.Country')
+    SFCountryChange() {
+      this.getSFProvince();
+    }
+
+    @Watch('SFScreen.Province')
+    SFProvinceChange() {
+      this.getSFCity();
+    }
 }
 </script>
 <style lang="less">
-.mobile{
-  .selectArea{
-    .in_select_dropdown ul {
-      margin: 3px 3px 3px 3px;
-      height: 150px;
-      overflow-x: hidden;
-      overflow-y: auto;
-    }
-  }
-}
 .mobileEx .my_textarea{
       width: calc(100% - 120px)!important;
       float: right;
@@ -518,13 +665,24 @@ export default class InsExpressWay extends Vue {
 .mobile .el-date-editor.el-input, .el-date-editor.el-input__inner{
   width: 100%!important;
 }
-.mobile {
-  .SaveBtn{
-    span{
-      font-size: 1.4rem;
+
+.expressWay_Warpper {
+    .in_select_dropdown {
+      border-top: 1px solid rgba(0,0,0,.2);
+      min-width: 100%;
+      .in_select_dropdown_content {
+        max-height: 30vh;
+        overflow-y: auto;
+
+        li {
+          height: unset;
+          line-height: unset;
+          padding: 10px 20px;
+          white-space: normal;
+        }
+      }
     }
   }
-}
 </style>
 <style lang="less" scoped>
 .DeliveryMark{
@@ -630,7 +788,7 @@ export default class InsExpressWay extends Vue {
         }
     }
   }
-  .express_pickup,.store_pickup{
+  .express_pickup,.store_pickup,.pickup_info{
     padding: 0 20px 20px 20px;
   }
 }
@@ -664,6 +822,17 @@ export default class InsExpressWay extends Vue {
         height: 40px;
       }
     }
+  }
+}
+
+.searchSF {
+  padding: 10px 20px 20px;
+  text-align: center;
+
+  .el-button {
+    width: 100%;
+    background: @base_color;
+    border-color: @base_color;
   }
 }
 </style>

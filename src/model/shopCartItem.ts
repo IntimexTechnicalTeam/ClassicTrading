@@ -123,7 +123,7 @@ export default class ShopCartItem {
     constructor (_Attr1 = 1, _Attr2 = 1, _Attr3 = 1, _AttrName1 = '', _AttrName2 = '', _AttrName3 = '', _AttrTypeName1 = '', _AttrTypeName2 = '', _AttrTypeName3 = '', _CreateAt = '',
       _GrossWeight = 0,
       _Id = '',
-      _Product = new PanelDetail('', '', '', 0, 0, ''),
+      _Product = new PanelDetail('', '', '', 0, 0, 0, 0, ''),
       _PromotionRule = '',
       _Qty = 0) {
       this._Attr1 = _Attr1;

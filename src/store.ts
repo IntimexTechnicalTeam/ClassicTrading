@@ -54,14 +54,17 @@ export default new Vuex.Store({
     discount: new PromotionDiscount(),
     productDetailSku: '0',
     productDetailTab: new Tab('none'),
-    productDetail: new PanelDetail('', '', '', 0, 0, ''),
+    productDetail: new PanelDetail('', '', '', 0, 0, 0, 0, ''),
     imgList: [],
     DPickName: '',
     DPickPhone: '',
     catMenuType: 1, // 菜单产品目录跳转类型（0 => 产品目录，1 => 产品搜索页）
     HomeBanner: null,
     HkPromotion: null,
-    HkLiveBox: null
+    HkLiveBox: null,
+    showFixedHeader: false, // 是否處於顯示固定頭部狀態
+    newSF: false, // 是否（新）順豐自提
+    PickupInfoRequire: false // 自取(人)信息是否必填
   },
   mutations: {
     setHomeBanner (state, id) {
@@ -192,6 +195,15 @@ export default new Vuex.Store({
     },
     setDPickPhone (state, DPickPhone) {
       state.DPickPhone = DPickPhone;
+    },
+     setShowFixedHeader (state, showFixedHeader) {
+      state.showFixedHeader = showFixedHeader;
+    },
+    setNewSF (state, newSF) {
+      state.newSF = newSF;
+    },
+    setPickupInfoRequire (state, PickupInfoRequire) {
+      state.PickupInfoRequire = PickupInfoRequire;
     }
   },
   actions: {
@@ -324,6 +336,15 @@ export default new Vuex.Store({
     },
     setDPickPhone (context, DPickPhone) {
       context.commit('setDPickPhone', DPickPhone);
+    },
+    setShowFixedHeader: ({ commit }, showFixedHeader) => {
+      commit('setShowFixedHeader', showFixedHeader);
+    },
+    setNewSF (context, newSF) {
+      context.commit('setNewSF', newSF);
+    },
+    setPickupInfoRequire (context, PickupInfoRequire) {
+      context.commit('setPickupInfoRequire', PickupInfoRequire);
     }
   }
 });

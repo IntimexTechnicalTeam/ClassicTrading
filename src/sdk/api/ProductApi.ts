@@ -148,6 +148,15 @@ export class ProductApi extends WSAPI {
       return result.data;
     });
   };
+
+  // 獲取產品屬性圖片
+  getAttrImage (sku:string, imageType:number = 1, attr1:number = 0, attr2:number = 0, attr3:number = 0) {
+    return this.instance.get(this.apiPath + '/product/GetAttrImage', { params: { sku: sku, attrType: imageType, attr1: attr1, attr2: attr2, attr3: attr3 } }).then(
+      (result) => {
+        if (result.data !== 0) { return result.data; } else { throw new Error('沒有更多了'); };
+      });
+  }
+
   @Proxy('[Catalogs]')
   getAttrList2 () {
     return this.instance.get(this.apiPath + '/Catalog/getCatalogs').then((result) => {
