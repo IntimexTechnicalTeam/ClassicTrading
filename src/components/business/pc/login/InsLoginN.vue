@@ -284,15 +284,11 @@ export default class InsLoginN extends Vue {
         box-sizing: border-box;
         margin: 0 auto;
         padding: 40px;
+        display: flex;
         .login{
-            display: inline-flex;
-            justify-content: space-between;
-            flex-direction: column;
-            width: 489px;
-            height: 350px;
-            padding: 0 20px 0 0;
-            box-sizing: border-box;
-            vertical-align: top;
+          float: left;
+          width: 47.5%;
+          margin-right: 2.5%;
             .remember_warpper{
                 padding: 0 0 0 20px;
                 margin: 30px 0 0 0;
@@ -301,15 +297,10 @@ export default class InsLoginN extends Vue {
             }
         }
         .register{
-            box-sizing: border-box;
-            padding: 0 0 0 20px;
-            display: inline-flex;
-            justify-content: space-between;
-            flex-direction: column;
-            width: 489px;
-            height: 350px;
+            width: 47.5%;
+            float: left;
+            padding-left: 2.5%;
             border-left: solid 1px rgba(0, 0, 0, .2);
-            vertical-align: top;
             .register_half{
                 display: flex;
                 flex-wrap: wrap;
