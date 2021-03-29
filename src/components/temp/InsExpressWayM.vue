@@ -39,7 +39,7 @@
                   <div class="address_item itemPadding">{{item.FullName}}
                   </div>
                   <div class="address_item itemPadding">{{item.Phone}}</div>
-                  <div class="address_item itemPadding">{{item.Country.Name + '  ' + item.ProvinceName + ' ' + item.Address}}</div>
+                  <div  class="address_item itemPadding">{{item.Country.Name}} {{item.ProvinceName}} {{item.City==null?'':item.City}} {{item.Address}}</div>
                 </div>
             </div>
             <div class="address_footer">
@@ -70,6 +70,7 @@
               <!-- <InsInput2 :label="$t('DeliveryAddress.Mobile')" :needLabel="true" v-model="editAddress.Mobile"  /> -->
               <InsSelect class="SelectArea" styla="display:inline-flex;vertical-align:middle;width:100%" :must="true"  :Placeholder="$t('DeliveryAddress.Area')" :items="countryList" :label="$t('DeliveryAddress.Address')" v-model="editAddress.Country" />
               <InsSelect class="SelectProvince" styla="display:inline-flex;vertical-align:middle;width:100%;" :Placeholder="$t('DeliveryAddress.Province')" :items="provinceList" :label="' '" v-model="editAddress.Provinceo"/>
+              <InsInput2 :label="$t('DeliveryAddress.Area')" v-show="editAddress.Country.Code !== 'HKG'" :needLabel="true" v-model="editAddress.City" :must="false" type="City"/>
               <InsInput2 class="textArea" :placeholder="$t('DeliveryAddress.Detail')"  :label="' '" v-model="editAddress.Address" :needLabel="true"  type="textarea"/>
               <InsButton :nama="$t('Action.Save')" @click="save ('adderform')" class="SaveBtn" />
             </InsForm>
@@ -522,7 +523,8 @@ export default class InsExpressWay extends Vue {
         Mobile: this.editAddress.Mobile,
         PostalCode: this.editAddress.PostalCode,
         Address: this.editAddress.Address,
-        MemberId: this.Profile.MemberId
+        MemberId: this.Profile.MemberId,
+        City: this.editAddress.City
       };
       setTimeout(() => {
         (this.$refs[formName] as InsForm).validate((valid) => {
