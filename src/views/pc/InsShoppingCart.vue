@@ -17,7 +17,7 @@
               <div class="clear"></div>
             </div>
             <div class="favorite-one merchant-one" v-for="(one,index) in items" :key="index">
-              <a class="product-img" v-bind:href="'/product/Detail?id='+one.Product.Sku">
+              <a class="product-img" v-bind:href="'/product/Detail/'+one.Product.Sku">
                 <img v-bind:src="one.Product.Img_M" alt />
               </a>
               <div class="favorite-one-messge">

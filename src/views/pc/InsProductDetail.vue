@@ -5,7 +5,6 @@
       <inPreview style="width:50%" :imgList="ImgList" :ProductTitleName="ProductTitleName" :pageNum="userAgent === 'mobile' ?  1 : 4"></inPreview>
       <div style="width:45%;margin-left:5%;float:right;">
           <PkProductInfo :panelDetail.sync="PanelDetail"  :ProductSku="ProductCode" width="100%" :AddPrice="getNewsPrice" style="margin-top:3rem;"></PkProductInfo>
-          <PkProductDetailCate :source="ExtAttrList" :cateTree="CatalogTree"  width="100%"></PkProductDetailCate>
           <inPanel :panelDetail.sync="PanelDetail" :ProductSku="ProductCode" @getPrice="showPrice" width="100%"></inPanel>
       </div>
     </div>
