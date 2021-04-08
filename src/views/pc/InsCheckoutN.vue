@@ -238,7 +238,7 @@ export default class InsCheckoutN extends Vue {
         }
       }
 
-      if (this.$store.state.DeliveryType === 'D' && !this.express) { this.$Confirm(this.$t('Message.Message'), this.$t('CheckOut.expressError')); return; }
+      if (this.$store.state.DeliveryType === 'D' && !this.express) { this.$Confirm(this.$t('Message.Message'), this.$t('CheckOut.confirmAddress')); return; }
       if (this.$store.state.DeliveryType === 'P' && !this.PickAddress && this.$store.state.PickupInfoRequire) {
         this.$Confirm(
           this.$t('Message.Message'), this.$t('CheckOut.PickAddressError')
