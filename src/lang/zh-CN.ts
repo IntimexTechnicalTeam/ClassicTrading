@@ -56,7 +56,9 @@ export default {
     NoneAddPiUpAddr: '查詢不到相關自提地址信息！',
     AdditionalDiscount: '額外折扣已生效',
     Delete: '刪除',
-    SuccessfullyDeleted: '刪除成功'
+    SuccessfullyDeleted: '刪除成功',
+    Save: '保存',
+    SaveAll: '保存所有'
   },
   Account: {
     MemberCenter: '會員中心',
@@ -220,7 +222,7 @@ export default {
     DefaultAddress: '設為默認送貨地址?',
     SaveBtn: '保存',
     ResetBtn: '重置',
-    CloseBtn: '关闭',
+    CloseBtn: '關閉',
     YesBtn: '是',
     NoBtn: '否',
     AddFirstName: '名字',
@@ -413,7 +415,11 @@ export default {
     As: '作爲',
     PaymentMethodError: '支付方式尚未选择！',
     OrderSent: '訂單已發出',
-    PaymentProcess: '請繼續完成付款程序'
+    PaymentProcess: '請繼續完成付款程序',
+    CountryName: '國家名稱',
+    ProvinceName: '省份名稱',
+    CityName: '城市名稱',
+    SFPointType: '自提點類型'
   },
   Address: {
     Country: '請選擇國家',

@@ -57,7 +57,9 @@ export default {
     NoneAddPiUpAddr: 'Unable to query the relevant address information!',
     AdditionalDiscount: 'The Additional Discount is In Effect',
     Delete: 'Delete',
-    SuccessfullyDeleted: 'Successfully Deleted'
+    SuccessfullyDeleted: 'Successfully Deleted',
+    Save: 'Save',
+    SaveAll: 'SaveAll'
   },
   RegNPay: {
     BackText: 'Back',
@@ -413,7 +415,11 @@ export default {
     Use: 'Use',
     As: 'As',
     OrderSent: 'Order has been sent',
-    PaymentProcess: 'Please complete the payment process'
+    PaymentProcess: 'Please complete the payment process',
+    CountryName: 'Country Name',
+    ProvinceName: 'Province Name',
+    CityName: 'City Name',
+    SFPointType: 'Self Point Type'
   },
   Concessions: {
     Cannot: 'Offer cannot be used at the same time'

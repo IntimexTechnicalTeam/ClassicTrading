@@ -38,9 +38,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="btn_warpper"><ElButton type="primary" @click="save(index)">保存</ElButton></div>
+                <div class="btn_warpper"><ElButton type="primary" @click="save(index)">{{$t('Message.Save')}}</ElButton></div>
             </Card>
-            <div class="btn_warpper"><ElButton type="primary" @click="saveAll">保存所有</ElButton></div>
+            <div class="btn_warpper"><ElButton type="primary" @click="saveAll">{{$t('Message.SaveAll')}}</ElButton></div>
         </div>
     </div>
 </template>
