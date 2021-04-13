@@ -101,9 +101,13 @@
         </template>
 
         <!-- 非新順豐自提點和門店自提不顯示，正確邏輯為 自提點皆顯示 ，舊邏輯未處理好 -->
-        <template v-if="ChosenExpress.ExpressCompanyId === 'P' || newSF">
+        <template v-if="ChosenExpress.ExpressCompanyId === 'P'">
           <InsInput2 :label="$t('CheckOut.PickupDate')" :needLabel="true" :must="PickupDateRequire" labelWidth="300px" v-model="PickAddress.PD" type="date" :disabled="lockFare"/>
           <InsSelect labelWidth="300px" :needLabel="true" :must="PickupDateRequire" :items="pickupTimeList" :label="$t('CheckOut.PickupTime')" :value="PickAddress.PickupTime" @input="(v)=>{ this.PickAddress.PickupTime = v.Id }"  :disabled="lockFare"/>
+        </template>
+        <template v-if="newSF">
+          <InsInput2 :label="$t('CheckOut.PickupDate')" :needLabel="true" :must="PickupDateRequire" labelWidth="300px" v-model="PickAddress.PD" type="date" :disabled="lockFare" style="display:none;"/>
+          <InsSelect labelWidth="300px" :needLabel="true" :must="PickupDateRequire" :items="pickupTimeList" :label="$t('CheckOut.PickupTime')" :value="PickAddress.PickupTime" @input="(v)=>{ this.PickAddress.PickupTime = v.Id }"  :disabled="lockFare" style="display:none;"/>
         </template>
       </div>
      </div>
