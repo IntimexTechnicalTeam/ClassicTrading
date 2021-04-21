@@ -522,6 +522,14 @@ export default class InsCheckoutN extends Vue {
 }
 </style>
 <style lang="less" scoped>
+  /deep/ .shoppingcart_item_name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
 .checkoutn_warpper{
   margin: 100px auto;
   width: 1200px;

@@ -490,6 +490,20 @@ export default class InsCheckoutN extends Vue {
 }
 </style>
 <style lang="less" scoped>
+    /deep/ .shoppingcart_item_name {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+     /deep/ .shoppingcart_item_qty .qty_count {
+        display: inline-block;
+        &:last-child {
+          margin-left: 1rem;
+        }
+    }
     // min-height: calc(100vh - 402px);
     .shoppingcart_header{
         font-size: 2rem;

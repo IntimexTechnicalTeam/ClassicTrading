@@ -502,7 +502,8 @@ export default {
     Package: 'Package',
     ProductSearch: 'Product Search',
     Total: 'Total',
-    Products: 'Products'
+    Products: 'Products',
+    SearchPiUpAddr: 'Search for pickup point address'
   },
   accountHeader: {
     MemberFile: 'Membership File',

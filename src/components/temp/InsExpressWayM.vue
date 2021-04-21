@@ -301,6 +301,13 @@ export default class InsExpressWay extends Vue {
         }
       }, 500);
     }
+   // 监听门店自取地址选择
+    @Watch('CurrentPickupAddress')
+    onCurrentPickupAddressChange () {
+        this.PickAddress.Id = this.CurrentPickupAddress.Id;
+        this.PickAddress.ExpressPointId = this.CurrentPickupAddress.Id;
+        this.PickAddress.CompanyAddress = this.CurrentPickupAddress.Address;
+    }
     @Watch('ChosenExpress')
     onChosenExpressChange () {
       this.loading = true;
@@ -670,8 +677,11 @@ export default class InsExpressWay extends Vue {
 }
 .mobile .el-date-editor.el-input, .el-date-editor.el-input__inner{
   width: 100%!important;
+  input{
+    width: 100%!important;
+    padding: 12px;
+  }
 }
-
 .expressWay_Warpper {
     .in_select_dropdown {
       border-top: 1px solid rgba(0,0,0,.2);

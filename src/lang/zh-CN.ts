@@ -499,7 +499,8 @@ export default {
     Package: '套餐',
     ProductSearch: '產品搜尋',
     Total: '共',
-    Products: '個產品'
+    Products: '個產品',
+    SearchPiUpAddr: '搜索自提點地址'
   },
   accountHeader: {
     MemberFile: '會員檔案',

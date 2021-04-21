@@ -9,12 +9,12 @@
       </div>
       <!-- （新）順豐自提 -->
       <div style="padding: 0 20px;" v-if="newSF">
-        <InsSelect styla="display:inline-flex;vertical-align:middle;width:350px;margin-right:68px;"  :Placeholder="$t('CheckOut.CountryName')" :items="SFCountry" :label="$t('CheckOut.CountryName')" v-model="SFScreen.Country" labelWidth="130px"/>
-        <InsSelect styla="display:inline-flex;vertical-align:middle;width:350px;" :Placeholder="$t('CheckOut.ProvinceName')" :items="SFProvince" :label="$t('CheckOut.ProvinceName')" v-model="SFScreen.Province" labelWidth="130px"/>
-        <InsSelect styla="display:inline-flex;vertical-align:middle;width:350px;margin-right:68px;"  :Placeholder="$t('CheckOut.CityName')" :items="SFCity" :label="$t('CheckOut.CityName')" v-model="SFScreen.City" labelWidth="130px"/>
-        <InsSelect styla="display:inline-flex;vertical-align:middle;width:350px;" :Placeholder="$t('CheckOut.SFPointType')" name="Text" :items="SFPointType" :label="$t('CheckOut.SFPointType')" v-model="SFScreen.PointType" labelWidth="130px"/>
+        <InsSelect styla="vertical-align:middle;width:350px;float: left;"  :Placeholder="$t('CheckOut.CountryName')" :items="SFCountry" :label="$t('CheckOut.CountryName')" v-model="SFScreen.Country" labelWidth="130px"/>
+        <InsSelect styla="vertical-align:middle;width:350px;float: right;" :Placeholder="$t('CheckOut.ProvinceName')" :items="SFProvince" :label="$t('CheckOut.ProvinceName')" v-model="SFScreen.Province" labelWidth="130px"/>
+        <InsSelect styla="vertical-align:middle;width:350px;float: left;"  :Placeholder="$t('CheckOut.CityName')" :items="SFCity" :label="$t('CheckOut.CityName')" v-model="SFScreen.City" labelWidth="130px"/>
+        <InsSelect styla="vertical-align:middle;width:350px;float: right;" :Placeholder="$t('CheckOut.SFPointType')" name="Text" :items="SFPointType" :label="$t('CheckOut.SFPointType')" v-model="SFScreen.PointType" labelWidth="130px"/>
       </div>
-
+      <div style="clear:both;"></div>
       <div class="searchSF" v-if="newSF">
         <el-button type="primary" icon="el-icon-search" @click="GetPickUpPointCharge">{{$t('Action.SearchPiUpAddr')}}</el-button>
       </div>
@@ -311,6 +311,13 @@ export default class InsExpressWay extends Vue {
           this.$store.dispatch('setPickupAddress', this.PickAddress);
         }
       }, 500);
+    }
+   // 监听门店自取地址选择
+    @Watch('CurrentPickupAddress')
+    onCurrentPickupAddressChange () {
+        this.PickAddress.Id = this.CurrentPickupAddress.Id;
+        this.PickAddress.ExpressPointId = this.CurrentPickupAddress.Id;
+        this.PickAddress.CompanyAddress = this.CurrentPickupAddress.Address;
     }
     @Watch('ChosenExpress')
     onChosenExpressChange () {
@@ -687,6 +694,7 @@ export default class InsExpressWay extends Vue {
   width: 300px;
   input{
     width: 100%!important;
+    padding: 12px;
   }
 }
 
