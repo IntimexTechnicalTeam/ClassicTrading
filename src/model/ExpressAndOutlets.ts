@@ -40,7 +40,13 @@ export default class ExpressAndOutlets {
     public set ExpressCompanyName (v : string) {
       this._ExpressCompanyName = v;
     }
-
+    private _ExpressCode: string;
+    public get ExpressCode() : string {
+      return this._ExpressCode;
+    }
+    public set ExpressCode (v : string) {
+      this._ExpressCode = v;
+    }
     private _ExpressPointId : string;
     public get ExpressPointId () : string {
       return this._ExpressPointId;
@@ -128,6 +134,7 @@ export default class ExpressAndOutlets {
       _DiscountPrice = 0,
       _ExpressCompanyId = '',
       _ExpressCompanyName = '',
+      _ExpressCode = '',
       _ExpressPointId = '',
       _ExpressPointList = [],
       _Id = '',
@@ -143,6 +150,7 @@ export default class ExpressAndOutlets {
       this._DiscountPrice = _DiscountPrice;
       this._ExpressCompanyId = _ExpressCompanyId;
       this._ExpressCompanyName = _ExpressCompanyName;
+      this._ExpressCode = _ExpressCode;
       this._ExpressPointId = _ExpressPointId;
       this._ExpressPointList = this.ExpressPointList;
       this._Id = _Id;

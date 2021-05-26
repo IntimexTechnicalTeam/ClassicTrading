@@ -16,10 +16,10 @@
         <a href="javascript:;" class="livechat" @click="showLivechat"
           ><img src="/images/mobile/mobile_32.png"
         /></a>
-        <a href="tel:85269066696" class="fb-button" target="_blank"
+        <a href="tel:85269066695" class="fb-button" target="_blank"
           ><img src="/images/mobile/mobile_33.png"
         /></a>
-        <a href="mailto:info@classictradinghk.com" class="fb-button"
+        <a href="mailto:info@ClassicTrading.hk" class="fb-button"
           ><img src="/images/mobile/mobile_34.png"
         /></a>
       </span>

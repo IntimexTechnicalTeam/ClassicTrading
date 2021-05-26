@@ -23,6 +23,7 @@
           value-format="yyyy-MM-dd"
           placeholder=""
           :disabled="disabled"
+          :picker-options="pickerOptions"
         >
         </el-date-picker>
         <input
@@ -100,6 +101,11 @@ export default class InsInput extends Vue {
       this.inputtype = 'text';
     }
   }
+  pickerOptions : object = {
+      disabledDate(time) {
+        return time.getTime() < Date.now();
+      }
+  }
   @Watch('Value')
   onValueChange() {
     this.error = true;
@@ -113,6 +119,16 @@ export default class InsInput extends Vue {
       this.ruleerr = true;
       this.ruleerrmsg = '';
       return false;
+    }
+    if (this.type === 'textarea') {
+      if (this.Value.length < 5) {
+        this.ruleerr = false;
+        this.ruleerrmsg = this.$t('Message.textareaError') + '';
+        return false;
+      } else {
+        this.ruleerr = true;
+        this.ruleerrmsg = '';
+      }
     }
 
     // this.Shake(() => {
@@ -130,7 +146,7 @@ export default class InsInput extends Vue {
     }
     // 国内电话和香港电话正则表达式
       if (this.type === 'phone') {
-         /* eslint-disable */ 
+        /* eslint-disable */
         var mobile = /^(\+)?(\d{0,4}\-?)?\d{7,11}$/;
         if (mobile.test(this.Value) === false) {
           this.ruleerr = false;
@@ -143,11 +159,10 @@ export default class InsInput extends Vue {
     }
     if (!this.rule || this.rule === '') {
     } else {
-      if (this.rule instanceof RegExp)
-        this.error =
+      if (this.rule instanceof RegExp) {
+this.error =
           (this.rule as RegExp).test(this.Value) || this.Value === '';
-      else if (typeof this.rule === 'string')
-        this.error = this.rule === this.Value;
+ } else if (typeof this.rule === 'string') { this.error = this.rule === this.Value; }
       if (this.error === false) return false;
     }
     if (InsInput.defaultRule[this.type] instanceof RegExp) {
@@ -190,9 +205,9 @@ export default class InsInput extends Vue {
       }
       // 国内电话和香港电话正则表达式
       if (this.type === 'phone') {
-         /* eslint-disable */ 
+        /* eslint-disable */
         var mobile = /^(\+)?(\d{0,4}\-?)?\d{7,11}$/;
-        if ( mobile.test(this.Value) === false) {
+        if (mobile.test(this.Value) === false) {
           this.ruleerr = false;
           this.ruleerrmsg = this.$t('Input.phoneincorrect') + '';
           return false;
@@ -201,6 +216,16 @@ export default class InsInput extends Vue {
           this.ruleerrmsg = '';
         }
       }
+    if (this.type === 'textarea') {
+      if (this.Value.length < 5) {
+        this.ruleerr = false;
+        this.ruleerrmsg = this.$t('Message.textareaError') + '';
+        return false;
+      } else {
+        this.ruleerr = true;
+        this.ruleerrmsg = '';
+      }
+    }
     }
   }
   validate() {
@@ -214,6 +239,7 @@ export default class InsInput extends Vue {
     }
     if (this.type === 'password') {
       // var i = /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{8,20}$/;
+      /* eslint-disable */
       var i = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[^]{8,20}$/;
       if (i.test(this.Value) === false) {
         this.ruleerr = false;
@@ -226,7 +252,7 @@ export default class InsInput extends Vue {
     }
     // 国内电话和香港电话正则表达式
     if (this.type === 'phone') {
-       /* eslint-disable */ 
+      /* eslint-disable */
       var mobile = /^(\+)?(\d{0,4}\-?)?\d{7,11}$/;
       if (mobile.test(this.Value) === false) {
         this.ruleerr = false;
@@ -237,11 +263,20 @@ export default class InsInput extends Vue {
         this.ruleerrmsg = '';
       }
     }
+    if (this.type === 'textarea') {
+      if (this.Value.length < 5) {
+        this.ruleerr = false;
+        this.ruleerrmsg = this.$t('Message.textareaError') + '';
+        return false;
+      } else {
+        this.ruleerr = true;
+        this.ruleerrmsg = '';
+      }
+    }
     if (!this.rule || this.rule === '') {
     } else {
       if (this.rule instanceof RegExp) this.error = (this.rule as RegExp).test(this.Value) || this.Value === '';
-      else if (typeof this.rule === 'string')
-        this.error = this.rule === this.Value;
+      else if (typeof this.rule === 'string') { this.error = this.rule === this.Value; }
       if (this.error === false) return false;
     }
 
@@ -285,6 +320,7 @@ export default class InsInput extends Vue {
     border-right: 0;
     border-bottom: 0;
     background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 0px;
   }
   .el-input--prefix {
     i {
@@ -294,6 +330,10 @@ export default class InsInput extends Vue {
   .el-date-editor.el-input,
   .el-date-editor.el-input__inner {
     width: 100% !important;
+  }
+   .el-date-editor.el-input__inner {
+    padding: 12px;
+    border-radius: 0px!important;
   }
 }
 </style>
@@ -311,8 +351,9 @@ export default class InsInput extends Vue {
   .input_label {
     font-size: 16px;
     min-width: 120px;
+    display: flex;
+    align-items: center;
     // text-align: right;
-    line-height: 40px;
   }
   .input_main {
     flex-grow: 1;

@@ -39,7 +39,7 @@
                         <span>{{item.Qty}}</span>
                       </p>
                       <p class="product-price">
-                        <span  class="p-price-discount">{{CurrencyCode}} {{(item.Product.SalePrice) | PriceFormat}}</span>
+                        <span  class="p-price-discount">{{CurrencyCode}} {{(item.Product.SalePrice + item.Attr1Price  + item.Attr2Price + item.Attr3Price)*item.Qty | PriceFormat}}</span>
                       </p>
                     </ElCol>
                   </Row>

@@ -64,7 +64,7 @@
             <InsForm ref="adderform" v-model="editAddress">
               <InsInput2 :label="$t('CheckOut.Name')" :needLabel="true" v-model="editAddress.FullName" labelWidth="300px"/>
               <Collaspe>
-              <InsInput2 :label="$t('DeliveryAddress.PostalCode')" v-show="editAddress.Country.Code !== 'HKG'" :needLabel="true" v-model="editAddress.PostalCode" :must="false" labelWidth="300px" />
+                  <InsInput2 :label="$t('DeliveryAddress.PostalCode')" v-if="editAddress.Country.Code !== 'HKG' && ChosenExpress.ExpressCode ==='ECS'" :needLabel="true" v-model="editAddress.PostalCode" :must="true" labelWidth="300px" />
               </Collaspe>
               <InsInput2 :label="$t('DeliveryAddress.UserContactNumber')" :needLabel="true" v-model="editAddress.Phone" labelWidth="300px" type="phone"/>
               <!-- <InsInput2 :label="$t('DeliveryAddress.Mobile')" :needLabel="true" v-model="editAddress.Mobile" labelWidth="300px" /> -->
@@ -312,7 +312,7 @@ export default class InsExpressWay extends Vue {
         }
       }, 500);
     }
-   // 监听门店自取地址选择
+    // 监听门店自取地址选择
     @Watch('CurrentPickupAddress')
     onCurrentPickupAddressChange () {
         this.PickAddress.Id = this.CurrentPickupAddress.Id;
@@ -694,7 +694,6 @@ export default class InsExpressWay extends Vue {
   width: 300px;
   input{
     width: 100%!important;
-    padding: 12px;
   }
 }
 

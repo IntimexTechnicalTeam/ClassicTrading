@@ -163,9 +163,19 @@ export default class PkLiveBox extends Vue {
     margin-top: 2rem;
     /deep/ p {
       color:#fff;
-      font-size: 1.4rem;
-      line-height: 2.5rem;
+      font-size: 1.4rem!important;
+      line-height: 2.5rem!important;
     }
+    /deep/ span {
+        color:#fff;
+        font-size: 1.4rem!important;
+        line-height: 2.5rem!important;
+      }
+      /deep/ b{
+        color:#fff;
+        font-size: 1.4rem!important;
+        line-height: 2.5rem!important;
+      }
   }
   .learnMore {
       width: 50%;

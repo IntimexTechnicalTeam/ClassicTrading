@@ -187,8 +187,8 @@ export default class InsOrderList extends Vue {
 }
 .OrderMain .el-button--success {
     color: #fff;
-    background-color: #ce352b;
-    border-color: #ce352b;
+    background-color: #3d475f;
+    border-color: #3d475f;
 }
 .OrderMain .el-pagination.is-background .el-pager li:not(.disabled).active {
     background-color: @base_color;

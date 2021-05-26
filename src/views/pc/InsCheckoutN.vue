@@ -55,7 +55,9 @@
                 <div class="payment_main">
                   <div class="payment_title">{{$t('CheckOut.PayBy')}}</div>
                   <div class="payment_item" v-for="(pay, index) in payments" :key="index">
-                    <Radio v-model="payment" :label="pay"><img v-bind:src="pay.Img" /><span v-show="pay.Code==='FPS'">{{pay.Desc}}</span></Radio>
+                    <Radio v-model="payment" :label="pay" :disabled="Shoppcart.Currency.Code === 'RMB' && pay.Code === 'Stripe'"><img v-bind:src="pay.Img" /><span v-show="pay.Code==='FPS'">{{pay.Desc}}</span></Radio>
+
+                    <p class="noRMBStripe" v-if="Shoppcart.Currency.Code === 'RMB' && pay.Code === 'Stripe'">{{$t('Message.noRMBStripe')}}</p>
                   </div>
                 </div>
             </div>
@@ -116,7 +118,9 @@
                 <div class="payment_main">
                   <div class="payment_title">{{$t('CheckOut.PayBy')}}</div>
                   <div class="payment_item" v-for="(pay, index) in payments" :key="index">
-                    <Radio v-model="payment" :label="pay"><img v-bind:src="pay.Img" /><span v-show="pay.Code==='FPS'">{{pay.Desc}}</span></Radio>
+                    <Radio v-model="payment" :label="pay" :disabled="Shoppcart.Currency.Code === 'RMB' && pay.Code === 'Stripe'"><img v-bind:src="pay.Img" /><span v-show="pay.Code==='FPS'">{{pay.Desc}}</span></Radio>
+
+                    <p class="noRMBStripe" v-if="Shoppcart.Currency.Code === 'RMB' && pay.Code === 'Stripe'">{{$t('Message.noRMBStripe')}}</p>
                   </div>
                 </div>
             </div>
@@ -310,6 +314,11 @@ export default class InsCheckoutN extends Vue {
             () => { profile.Mobile = order.PickupPhone; this.updateProfile(profile).then(() => { this.createOrder(order); }); },
             () => { this.createOrder(order); }
           );
+        } else if (this.Shoppcart.Currency.Code === 'RMB' && this.payment.Code === 'Stripe') {
+          this.$Confirm(
+            this.$t('Message.Message'),
+            this.$t('Message.noRMBStripe')
+          );
         } else {
           this.createOrder(order);
         }
@@ -495,7 +504,7 @@ export default class InsCheckoutN extends Vue {
   padding-right: 0px!important;
 }
 .PcV .el-radio, .el-radio--medium.is-bordered .el-radio__label{
-    display: flex;
+    display: inline-flex;
     justify-items: center;
     align-items: center;
 
@@ -551,6 +560,8 @@ export default class InsCheckoutN extends Vue {
             }
             .payment_item{
                 padding: 10px 20px;
+                display: flex;
+                align-items: center;
                 img{
                     height: 60px;
                 }
@@ -771,5 +782,10 @@ export default class InsCheckoutN extends Vue {
   text-align: right;
   cursor: pointer;
   color: green;
+}
+
+.noRMBStripe {
+  display: inline-block;
+  color: red;
 }
 </style>

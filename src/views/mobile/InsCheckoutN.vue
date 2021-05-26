@@ -60,7 +60,9 @@
                 <div class="payment_main">
                   <div class="payment_title">{{$t('CheckOut.PayBy')}}</div>
                   <div class="payment_item" v-for="(pay, index) in payments" :key="index">
-                    <Radio v-model="payment" :label="pay"><img v-bind:src="pay.Img" /><span v-show="pay.Code==='FPS'">{{pay.Desc}}</span></Radio>
+                    <Radio v-model="payment" :label="pay" :disabled="Shoppcart.Currency.Code === 'RMB' && pay.Code === 'Stripe'"><img v-bind:src="pay.Img" /><span v-show="pay.Code==='FPS'">{{pay.Desc}}</span></Radio>
+
+                    <p class="noRMBStripe" v-if="Shoppcart.Currency.Code === 'RMB' && pay.Code === 'Stripe'">{{$t('Message.noRMBStripe')}}</p>
                   </div>
                 </div>
             </div>
@@ -115,7 +117,9 @@
                 <div class="payment_main">
                   <div class="payment_title">{{$t('CheckOut.PayBy')}}</div>
                   <div class="payment_item" v-for="(pay, index) in payments" :key="index">
-                    <Radio v-model="payment" :label="pay"><img v-bind:src="pay.Img" /><span v-show="pay.Code==='FPS'">{{pay.Desc}}</span></Radio>
+                    <Radio v-model="payment" :label="pay" :disabled="Shoppcart.Currency.Code === 'RMB' && pay.Code === 'Stripe'"><img v-bind:src="pay.Img" /><span v-show="pay.Code==='FPS'">{{pay.Desc}}</span></Radio>
+
+                    <p class="noRMBStripe" v-if="Shoppcart.Currency.Code === 'RMB' && pay.Code === 'Stripe'">{{$t('Message.noRMBStripe')}}</p>
                   </div>
                 </div>
             </div>
@@ -297,6 +301,11 @@ export default class InsCheckoutN extends Vue {
             this.$t('CheckOut.Use') + ' ' + order.PickupPhone + ' ' + this.$t('CheckOut.As') + ' ' + this.$t('CheckOut.Phone'),
             () => { profile.Mobile = order.PickupPhone; this.updateProfile(profile).then(() => { this.createOrder(order); }); },
             () => { this.createOrder(order); }
+          );
+        } else if (this.Shoppcart.Currency.Code === 'RMB' && this.payment.Code === 'Stripe') {
+          this.$Confirm(
+            this.$t('Message.Message'),
+            this.$t('Message.noRMBStripe')
           );
         } else {
           this.createOrder(order);
@@ -485,11 +494,12 @@ export default class InsCheckoutN extends Vue {
     font-size: 1.4rem;
   }
 .payment_item .el-radio{
-  display: flex;
+  display: inline-flex;
   align-items: center;
 }
 </style>
 <style lang="less" scoped>
+    // min-height: calc(100vh - 402px);
     /deep/ .shoppingcart_item_name {
       overflow: hidden;
       text-overflow: ellipsis;
@@ -504,7 +514,6 @@ export default class InsCheckoutN extends Vue {
           margin-left: 1rem;
         }
     }
-    // min-height: calc(100vh - 402px);
     .shoppingcart_header{
         font-size: 2rem;
         line-height: 5rem;
@@ -628,8 +637,8 @@ export default class InsCheckoutN extends Vue {
             }
             .payment_item{
                 padding: 10px 20px;
-                display: flex;
-                align-items: flex-start;
+                // display: flex;
+                // align-items: flex-start;
                 img{
                     height:40px;
                 }
@@ -773,5 +782,11 @@ export default class InsCheckoutN extends Vue {
   text-align: right;
   cursor: pointer;
   color: green;
+}
+
+.noRMBStripe {
+  display: inline-block;
+  color: red;
+  margin-top: 1.5rem;
 }
 </style>
