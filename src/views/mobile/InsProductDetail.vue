@@ -77,17 +77,21 @@ export default class ProductDetail extends Vue {
     this.ProductSku = this.$route.params.id ? this.$route.params.id : '0';
     // 获取产品详情数据
     this.$Api.product.GetProduct(this.ProductSku).then((result) => {
-      this.PanelDetail = result.PanelDetail;
-      this.ExtAttrList = result.PanelDetail.ExtAttrList;
-      this.CatalogTree = result.PanelDetail.CatalogTree;
-      this.ImgList = result.AdditionalImage;
-      this.Tabs = result.Tab;
-      this.Score = result.PanelDetail.Score;
-      this.ProductTitleName = result.PanelDetail.Name;
-      this.$HiddenLayer();
-      this.$nextTick(() => {
-        document.title = result.PanelDetail.Name;
-      });
+      if (result) {
+        this.PanelDetail = result.PanelDetail;
+        this.ExtAttrList = result.PanelDetail.ExtAttrList;
+        this.CatalogTree = result.PanelDetail.CatalogTree;
+        this.ImgList = result.AdditionalImage;
+        this.Tabs = result.Tab;
+        this.Score = result.PanelDetail.Score;
+        this.ProductTitleName = result.PanelDetail.Name;
+        this.$HiddenLayer();
+        this.$nextTick(() => {
+          document.title = result.PanelDetail.Name;
+        });
+      } else {
+        this.$Confirm(this.$t('Message.Message'), this.$t('Message.FindNoProduct'), () => { this.Reload(); }, () => { this.$router.push('/'); });
+      }
     });
   }
   get currentlang () {

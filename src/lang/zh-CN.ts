@@ -66,7 +66,8 @@ export default {
     Save: '保存',
     SaveAll: '保存所有',
     noRMBStripe: '貨幣RMB不支持Stripe支付，請選擇其他支付方式或切換貨幣模式',
-    textareaError: '請輸入5個字符以上'
+    textareaError: '請輸入5個字符以上',
+    FindNoProduct: '系統正忙，請重新刷新頁面'
   },
   Account: {
     MemberCenter: '會員中心',

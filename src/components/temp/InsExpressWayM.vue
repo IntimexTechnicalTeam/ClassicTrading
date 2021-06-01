@@ -71,7 +71,7 @@
               <InsSelect class="SelectArea" styla="display:inline-flex;vertical-align:middle;width:100%" :must="true"  :Placeholder="$t('DeliveryAddress.Area')" :items="countryList" :label="$t('DeliveryAddress.Address')" v-model="editAddress.Country" />
               <InsSelect class="SelectProvince" styla="display:inline-flex;vertical-align:middle;width:100%;" :Placeholder="$t('DeliveryAddress.Province')" :items="provinceList" :label="' '" v-model="editAddress.Provinceo"/>
               <InsInput2 :label="$t('DeliveryAddress.Area')" v-show="editAddress.Country.Code !== 'HKG'" :needLabel="true" v-model="editAddress.City" :must="false" type="City"/>
-              <InsInput2 class="textArea" :placeholder="$t('DeliveryAddress.Detail')"  :label="' '" v-model="editAddress.Address" :needLabel="true"  type="textarea"/>
+              <InsInput2 class="textArea" :placeholder="$t('DeliveryAddress.Detail')"  :label="' '" v-model="editAddress.Address" :needLabel="true"  type="textarea" style="padding-bottom:30px;"/>
               <InsButton :nama="$t('Action.Confirm')" @click="save ('adderform')" class="SaveBtn" />
             </InsForm>
           </div>
