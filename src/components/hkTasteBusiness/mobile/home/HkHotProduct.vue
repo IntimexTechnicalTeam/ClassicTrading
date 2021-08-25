@@ -139,8 +139,6 @@ export default class PkHotProduct extends Vue {
     margin-top: 3rem;
     width: 90%;
     margin: 0 auto;
-    display: flex;
-    flex-wrap: wrap;
 }
 .productBox a{
     text-decoration: none;

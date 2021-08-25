@@ -127,7 +127,7 @@ export default class Result extends Vue {
         this.$Api.regAndPay.savePayMethod(this.paymentMethod.Id, this.result.Id).then(result => {
           if (result.data.Succeeded) {
             // this.$router.push({ path: '/payment/' + this.paymentMethod.Code + '/' + this.result.Id });
-            window.location.replace('/PG/pay/' + this.paymentMethod.Code + '/ISRNP/' + this.result.Id);
+            window.location.href = '/PG/pay/' + this.paymentMethod.Code + '/ISRNP/' + this.result.Id;
           } else {
             // alert(result.data.Message);
             // this.$Confirm('', '支付失败，请稍后再试！');

@@ -88,6 +88,13 @@ export default class RegAndPayApi extends WSAPI {
     });
   }
 
+  // 嵌套单选跳出下一层问题
+  getPanel (id: string, callback: Function) {
+    return this.instance.get(
+      this.apiPath + '/RegNPay/GetPanel', { params: { id: id } }).then((result) => {
+      return result;
+    });
+  }
   // eslint-disable-next-line no-useless-constructor
   private constructor () {
     super();

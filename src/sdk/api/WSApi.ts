@@ -62,7 +62,7 @@ class WSAPI {
                   window.location.href = ('/account/login?returnurl=' + window.location.pathname);
                 });
             });
-          } else { Vue.prototype.Shake(() => { storage.set('isLogin', 0); Auth.GetToken().then(() => Vue.prototype.Reload()); }); }
+          } else { Vue.prototype.Shake(() => { storage.set('isLogin', 0); Cookie.remove('access_token'); Auth.GetToken().then(() => Vue.prototype.Reload()); }); }
           return Promise.reject(error);
         };
         let status = error.response.status;
@@ -77,7 +77,7 @@ class WSAPI {
                   window.location.href = ('/account/login?returnurl=' + window.location.pathname);
                 });
             });
-          } else { Vue.prototype.Shake(() => { storage.set('isLogin', 0); Auth.GetToken().then(() => Vue.prototype.Reload()); }); }
+          } else { Vue.prototype.Shake(() => { storage.set('isLogin', 0); Cookie.remove('access_token'); Auth.GetToken().then(() => Vue.prototype.Reload()); }); }
         } else {
           Vue.prototype.$Confirm(this.msgTitle, this.codeMessage[status]);
         }

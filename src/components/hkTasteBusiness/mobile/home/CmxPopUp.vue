@@ -114,6 +114,7 @@ export default class CmxPopUp extends Vue {
         line-height: 2rem;
         text-align: justify;
         font-weight: 100;
+        word-break: break-word;
       }
     }
   }

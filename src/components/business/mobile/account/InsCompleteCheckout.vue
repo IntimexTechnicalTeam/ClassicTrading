@@ -64,7 +64,7 @@ export default class InsCompleteCheckout extends Vue {
       });
     }
     pay (pay) {
-      window.open('/PG/pay/' + this.Order.PaymentMethod + '/IS/' + this.orderId, '_self');
+      window.location.href = '/PG/pay/' + this.Order.PaymentMethod + '/IS/' + this.orderId;
     }
     // get paymentCode () {
     //   return this.$store.state.paymentMethod.Code;

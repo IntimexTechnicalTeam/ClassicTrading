@@ -252,6 +252,7 @@ export default {
     TotalNum: '共有',
     Piece: '張',
     NotUse: '可用',
+    DoNotUse: '不可用',
     Used: '已用',
     Among: '其中',
     All: '全部'

@@ -26,6 +26,7 @@ function getArgList () {
 };
 let p = './src/sdk/common/ApiAndAdminServer.ts';
 fs.writeFileSync(p, 'module.exports = { apiServer: \'' + apiServer + '\', AdminServer: \'' + AdminServer + '\' };\r\n');
+
 // 区分運行環境，設置CND
 const JS_CDN = process.env.NODE_ENV === 'development'
   ? [
@@ -45,10 +46,16 @@ module.exports = {
     config.resolve.alias
       .set('@', resolve('src'))
       .set('@assets', resolve('src/assets'));
+
     // 根據運行環境动态注入CDN
-    config.plugin('html')
-      .tap(args => {
-          args[0].JS_CDN = JS_CDN;
+    // config.plugin('html')
+    //   .tap(args => {
+    //       args[0].JS_CDN = JS_CDN;
+    //     return args;
+    //   });
+      config.plugin('html').tap(args => {
+        args[0].minify = false;
+        args[0].JS_CDN = JS_CDN;
         return args;
       });
   },

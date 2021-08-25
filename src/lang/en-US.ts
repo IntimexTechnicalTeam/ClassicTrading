@@ -253,6 +253,7 @@ export default {
     TotalNum: 'Total',
     Piece: 'Piece',
     NotUse: 'Valid',
+    DoNotUse: 'Invalid',
     Used: 'Invalid',
     Among: 'Among',
     All: 'All'

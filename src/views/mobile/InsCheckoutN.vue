@@ -32,7 +32,7 @@
                                 <div class="coupon_remark" v-else>{{$t('Order.Full')}} {{item.MeetAmount}} {{$t('Order.Hit')}} {{item.DiscountAmount}} {{$t('Order.Precent')}}</div>
                                 <div class="coupon_expiryDate">{{$t('CheckOut.expiryDate')}} : {{item.EffectiveDate}}-{{item.ExpiryDate}}</div>
                                 <div class="coupon_is_valid">
-                                  <span class="valid_content">{{ !item.canCheck ? $t('MyCoupon.NotUse') : $t('MyCoupon.Used') }}</span>
+                                  <span class="valid_content">{{ !item.canCheck ? $t('MyCoupon.NotUse') : $t('MyCoupon.DoNotUse') }}</span>
                                 </div>
                               </div>
                             </Checkbox>
@@ -47,7 +47,7 @@
                               <div class="coupon_remark" v-else>{{$t('Order.Full')}} {{item.MeetAmount}} {{$t('Order.Hit')}} {{item.DiscountAmount}} {{$t('Order.Precent')}}</div>
                               <div class="coupon_expiryDate">{{$t('CheckOut.expiryDate')}} : {{item.EffectiveDate}}-{{item.ExpiryDate}}</div>
                               <div class="coupon_is_valid">
-                                <span class="valid_content">{{ !item.canCheck ? $t('MyCoupon.NotUse') : $t('MyCoupon.Used') }}</span>
+                                <span class="valid_content">{{ !item.canCheck ? $t('MyCoupon.NotUse') : $t('MyCoupon.DoNotUse') }}</span>
                               </div>
                             </div>
                           </Checkbox>
@@ -209,7 +209,7 @@ export default class InsCheckoutN extends Vue {
         this.$Api.member.getActiveCoupon({ Page: 1, PageSize: 10 }).then((result) => {
           this.coupon = result.Coupon;
           this.coupon.forEach((element) => {
-            if (element.MeetAmount >= this.totalP) return;
+            if (element.MeetAmount > this.totalP) return;
             element.canCheck = false;
             this.$set(this.all, element.Id, element);
             if (element.IsAdditional === true) this.multiple.push(element);

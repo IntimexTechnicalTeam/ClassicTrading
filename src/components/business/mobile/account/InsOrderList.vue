@@ -132,7 +132,7 @@ export default class InsOrderList extends Vue {
   }
   // 支付打开页面
   PayNow (order) {
-    window.open('/PG/pay/' + order.PaymentMethod + '/IS/' + order.OrderId, '_blank');
+       window.location.href = '/PG/pay/' + order.PaymentMethod + '/IS/' + order.OrderId;
   }
   OrderComment (order) {
     this.$router.push({

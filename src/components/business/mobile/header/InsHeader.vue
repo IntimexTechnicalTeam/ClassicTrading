@@ -242,6 +242,7 @@ export default class InsHeader extends Vue {
   float: left;
   display: flex;
   flex-wrap: wrap;
+  width: 12rem;
   a{
     width: 100%;
     display: inline-block;
@@ -543,9 +544,10 @@ export default class InsHeader extends Vue {
   z-index: 999;
   width: 100%;
   display: flex;
-  position:absolute;
+  position:relative;
   top:0px;
   left:0px;
+  background: #3d4364;
 }
 .mobileNormal,.mobileFixed {
   .input{

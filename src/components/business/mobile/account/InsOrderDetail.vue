@@ -130,8 +130,7 @@ export default class InsOrderDetail extends Vue {
     //   params: { id: order.OrderId }
     // });
     // window.open(routeData.href, '_blank');
-    let url = '/PG/pay/' + order.PaymentMethod + '/IS/' + order.OrderId;
-    window.open(url);
+    window.location.href = '/PG/pay/' + order.PaymentMethod + '/IS/' + order.OrderId;
   }
 
   // 立即关闭按钮

@@ -122,8 +122,7 @@ export default class InsOrderDetail extends Vue {
   }
   // 支付打开页面
   PayNow (order) {
-    let url = '/PG/pay/' + order.PaymentMethod + '/IS/' + order.OrderId;
-    window.open(url);
+    window.location.href = '/PG/pay/' + order.PaymentMethod + '/IS/' + order.OrderId;
   }
 
   // 立即关闭按钮
