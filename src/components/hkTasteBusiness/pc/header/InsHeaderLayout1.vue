@@ -442,7 +442,7 @@ export default class InsHeader extends Vue {
       }
     }
     .logoBox{
-    width: 305px;
+    width: 230px;
     float: left;
     text-align: center;
     display: flex;
@@ -551,9 +551,10 @@ export default class InsHeader extends Vue {
 .headerBg{
   z-index: 999;
   width: 100%;
-  position:absolute;
+  position:relative;
   top:0px;
   left:0px;
+  background: #3d4364;
     .headerTop{
         width: 1200px;
         margin: 0 auto;
@@ -587,7 +588,7 @@ export default class InsHeader extends Vue {
       }
     }
     .logoBox{
-    width:300px;
+    width:230px;
     float: left;
     text-align: center;
     display: flex;

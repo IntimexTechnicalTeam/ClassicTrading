@@ -26,6 +26,16 @@
           :picker-options="pickerOptions"
         >
         </el-date-picker>
+        <el-date-picker
+          v-else-if="type === 'Brithdate'"
+          v-model="Value"
+          type="date"
+          format = "dd/MM"
+          value-format="dd/MM"
+          :placeholder="placeholder"
+          :disabled="disabled"
+        >
+        </el-date-picker>
         <input
           v-model="Value"
           @blur="blur"
@@ -335,6 +345,9 @@ this.error =
     padding: 12px;
     border-radius: 0px!important;
   }
+  .el-date-editor input::-webkit-input-placeholder {
+  color: #757575!important;
+ }
 }
 </style>
 <style lang="less" scoped>

@@ -5,7 +5,13 @@ function fbLogin () {
     checkLoginState();
   }, { scope: 'email' });
 }
-appid = '449048593081393';
+var url = window.location.hostname;
+if (url.indexOf('classictrading.hk') !== -1) {
+  appid = '449048593081393';
+}
+if (url.indexOf('classictradinghk.com') !== -1) {
+  appid = '129150592584132';
+}
 function checkLoginState () {
   FB.getLoginStatus(function (response) {
     statusChangeCallback(response);
