@@ -33,10 +33,10 @@ module.exports = {
     productSeoList: ['Home'],
     DevEnvironmental: false, // 是否为DEV环境，true:是，false:否
     langList: [{
-      name: '繁',
+      name: '繁中',
       value: 'C'
     }, {
-      name: 'Eng',
+      name: 'ENG',
       value: 'E'
     }]
   }

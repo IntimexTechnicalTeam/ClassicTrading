@@ -11,7 +11,7 @@
             <div class="functionBox">
                   <div class="searchBox">
                       <input type="text" v-model="key" :placeholder = "$t('Message.KeyWords')"/>
-                       <span class="search_btn"  @click="searchFun(key)"><img src="/images/pc/pc_05.jpg"></span>
+                       <span class="search_btn"  @click="searchFun(key)"><img src="/images/pc/searchBlue.png"></span>
                   </div>
                   <InsLogin class="memberLogin"></InsLogin>
                     <!-- 我的喜爱开始 -->
@@ -68,7 +68,7 @@
             <div class="functionBox">
                   <div class="searchBox">
                       <input type="text" v-model="key" :placeholder = "$t('Message.KeyWords')"/>
-                       <span class="search_btn"  @click="searchFun(key)"><img src="/images/pc/pc_05.jpg"></span>
+                      <span class="search_btn"  @click="searchFun(key)"><img src="/images/pc/searchBlue.png"></span>
                   </div>
                   <InsLogin class="memberLogin"></InsLogin>
                     <!-- 我的喜爱开始 -->
@@ -344,9 +344,9 @@ export default class InsHeader extends Vue {
     overflow: hidden;
     z-index: 1;
     background: #fff;
-    border: 1px solid #e0e0e0;
     border-radius: 2rem;
     margin-right: 20px;
+    border:1px solid #eee;
     input{
         width: calc(100% - 40px);
         height: 35px;
@@ -400,7 +400,7 @@ export default class InsHeader extends Vue {
 .header-Fixed {
     position: relative;
     width: 100%;
-    background-color:#3d4364;
+    background-color:#ffffff;
     position: fixed;
     left: 0;
     top: 0;
@@ -408,6 +408,7 @@ export default class InsHeader extends Vue {
     display:none;
     width: 100%;
     background-size: cover;
+    border-bottom: 1px solid #eee;
   .headerTop{
         width: 1200px;
         margin: 0 auto;
@@ -458,7 +459,7 @@ export default class InsHeader extends Vue {
         }
     }
     .fav-icon {
-        background: url('/images/mobile/mobile_28.png') no-repeat center center;
+        background: url('/images/pc/mobile_28.png') no-repeat center center;
         display: inline-block;
         width: 25px;
         height: 25px;
@@ -485,7 +486,7 @@ export default class InsHeader extends Vue {
   .navMainbar .topa span{
     width: 100%;
     font-size: 18px;
-    color:#fff;
+    color:#3d475f;
     display: block;
     text-align: center;
     font-weight: 500;
@@ -554,7 +555,7 @@ export default class InsHeader extends Vue {
   position:relative;
   top:0px;
   left:0px;
-  background: #3d4364;
+  background: #ffffff;
     .headerTop{
         width: 1200px;
         margin: 0 auto;
@@ -604,7 +605,7 @@ export default class InsHeader extends Vue {
         }
     }
     .fav-icon {
-        background: url('/images/mobile/mobile_28.png') no-repeat center center;
+        background: url('/images/pc/mobile_28.png') no-repeat center center;
         display: inline-block;
         width: 25px;
         height: 25px;

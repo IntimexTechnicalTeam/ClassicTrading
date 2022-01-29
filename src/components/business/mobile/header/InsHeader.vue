@@ -5,7 +5,7 @@
       <div class="headerTop">
         <!-- 会员登陆 -->
         <div class="headerLeft">
-           <router-link to="/"><img src="/images/mobile/mobile_06.png"></router-link>
+           <router-link to="/"><img src="/images/pc/pclogo.png"></router-link>
         </div>
         <div class="headerRight">
            <InsLogin/>
@@ -23,7 +23,7 @@
       <div class="headerTop">
         <!-- 会员登陆 -->
         <div class="headerLeft">
-           <router-link to="/"><img src="/images/mobile/mobile_06.png"></router-link>
+           <router-link to="/"><img src="/images/pc/pclogo.png"></router-link>
         </div>
         <div class="headerRight">
            <InsLogin/>
@@ -345,7 +345,7 @@ export default class InsHeader extends Vue {
 .mobileFixed{
   position: relative;
   width: 100%;
-  background-color: #3d4364;
+  background-color: #ffffff;
   position: fixed;
   opacity:1;
   left: 0;
@@ -354,6 +354,7 @@ export default class InsHeader extends Vue {
   display:none;
   width: 100%;
   background-size: cover;
+  border-bottom: 1px solid #eee;
   .logoimg{
     width: 10rem!important;
   }
@@ -547,7 +548,7 @@ export default class InsHeader extends Vue {
   position:relative;
   top:0px;
   left:0px;
-  background: #3d4364;
+  background: #ffffff;
 }
 .mobileNormal,.mobileFixed {
   .input{

@@ -66,13 +66,14 @@ export default class InsLangSwitch extends Vue {
     display: inline-block;
     vertical-align: middle;
     height: 30px;
-    color:#fff;
-    background:  url(/images/mobile/downicon.png) 95% 8px no-repeat;
-    background-size: 15px;
+    color:#3d475f;
+    background:  url(/images/pc/downicon_blue.png) 95% 10px no-repeat;
+    background-size: 12px;
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
     outline: 0;
+    padding-left: 10px;
     cursor: pointer;
       option{
         color:#666666;

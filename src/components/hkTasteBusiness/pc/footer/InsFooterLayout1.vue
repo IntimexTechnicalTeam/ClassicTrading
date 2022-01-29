@@ -21,7 +21,7 @@
           </div>
           <div class="footerBottom">
               <div class="footerLogo">
-                  <p class="headerLogo"><img src="/images/pc/pclogo.png"></p>
+                  <p class="headerLogo"><img src="/images/mobile/mobile_06.png"></p>
                   <div class="ContentList">
                     <ul>
                         <li v-for="(v,index) in ContentList" :key="index"><router-link :to="'/cms/content/'+v.Id">{{v.Title}}</router-link></li>
@@ -43,7 +43,7 @@
   </div>
   <div class="footercopy">
     <p class="cpy">
-      <span>Copyright {{currentYear}} Classic Trading Company.powered by Intimex</span><a href="https://www.intimex.hk/" target="_blank"><img src="/images/pc/footerlogo.png"></a>
+      <span>Copyright {{currentYear}} Classic Trading Company.powered by Eventizer</span><a href="https://eventizer.hk/" target="_blank"><img src="/images/pc/footerlogo.png"></a>
       </p>
   </div>
 </div>

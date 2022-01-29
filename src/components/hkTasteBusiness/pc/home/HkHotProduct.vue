@@ -20,7 +20,7 @@
           v-if="swiperOption.navigation && swiperOption.navigation.prevEl"
         ></div>
         </swiper>
-        <router-link to="/product/search/-" class="moreBtn wow fadeIn" data-wow-delay="0.3s">{{$t('Message.MoreProducts')}}</router-link>
+        <router-link :to="LinkUrl" class="moreBtn wow fadeIn" data-wow-delay="0.3s">{{$t('Message.MoreProducts')}}</router-link>
     </div>
   </div>
 </template>
@@ -39,6 +39,7 @@ export default class PkHotProduct extends Vue {
     hotProducts:any[]=[];
     bannerImg: string = '';
     bannerTitle:string = '';
+    LinkUrl:string='';
     @Prop() private readonly postionNum!: string;
     @Prop() private readonly swiperClass!: string;
     swiperOption: object = {
@@ -53,6 +54,10 @@ export default class PkHotProduct extends Vue {
       var page = 'Home';
       this.$Api.promotion.getPromotion('Home', this.postionNum).then((result) => {
         this.bannerTitle = result.Promotion.Desc;
+        if (result.Promotion.BannerList.length > 0) {
+            this.LinkUrl = result.Promotion.BannerList[0].Url;
+        }
+        console.log(result, 'resultresult');
         if (result.Promotion.PrmtProductList.length > 0) {
           this.hotProducts = result.Promotion.PrmtProductList.slice(0, 8);
           this.$store.dispatch('setHkPromotion', this.hotProducts);

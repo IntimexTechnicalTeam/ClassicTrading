@@ -57,17 +57,18 @@ export default class InsCodeSelect extends Vue {
     width: 60px;
     font-size: 15px;
     background: none;
-    color: #fff;
+    color:#3d475f;
     border: none;
     outline: none;
-    background:  url(/images/mobile/downicon.png) 95% 8px no-repeat;
-    background-size: 15px;
+    background:  url(/images/pc/downicon_blue.png) 95% 10px no-repeat;
+    background-size: 12px;
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
     outline: 0;
     height: 30px;
     cursor: pointer;
+    padding-left: 10px;
   }
 }
 </style>

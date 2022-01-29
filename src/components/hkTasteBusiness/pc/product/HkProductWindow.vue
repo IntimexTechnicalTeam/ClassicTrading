@@ -128,13 +128,13 @@
     font-size: 18px;
     word-break: break-word;
     text-align: center;
-    color: @base_color;
+    color:red;
     display: inline-block;
   }
 
   .PcVersion .in_pdWindow_item_price .currentPricesMain .small:nth-child(2) {
     font-size: 18px;
-    color: @base_color;
+    color:red;
     display: inline-block;
   }
 
